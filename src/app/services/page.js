@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import CTASection from '@/components/CTASection';
 
-const BASE = 'https://pixelgroup.id';
+const BASE = 'https://cms.pixelgroup.id';
 
 const oohMediaServices = [
   {
@@ -13,13 +13,13 @@ const oohMediaServices = [
   },
   {
     title: 'High Visibility',
-    desc: 'Ensuring your brand is seen by the right audience at the right time in high-traffic locations.',
-    image: `${BASE}/uploads/large_IMG_20250411_103911_38db06e4de.jpg`,
+    desc: 'OOH media is one of the most effective ways to reach a large and diverse audience, as it is visible to people in public spaces where they live, work, and travel.',
+    image: `${BASE}/uploads/large_Copy_of_Pixel_2155_SO_1_195ab4f1ab.jpg`,
   },
   {
     title: 'Improved Targeting',
-    desc: 'Leveraging data to place ads where your target demographics are most likely to see them.',
-    image: `${BASE}/uploads/large_IMG_20250411_103911_38db06e4de.jpg`,
+    desc: 'With OOH media management, it is possible to target specific geographic areas, demographics, and even at selected time of day, to reach the right audience at the right time.',
+    image: `${BASE}/uploads/large_Pixel_9703_SO_fc95ff2730.jpg`,
   },
 ];
 
@@ -31,13 +31,13 @@ const oohProductionServices = [
   },
   {
     title: 'Creative Expertise',
-    desc: 'Bringing your brand vision to life with innovative designs and high-quality production.',
-    image: `${BASE}/uploads/large_IMG_20250411_103839_3acbf2b5d6.jpg`,
+    desc: 'Pixel brings specialized creative expertise and experience to the table, with a team of designers and strategists who can conceptualize and execute innovative and impactful outdoor advertising campaigns.',
+    image: `${BASE}/uploads/large_Copy_of_Pixel_1503_SO_1_53757bd66c.jpg`,
   },
   {
     title: 'Advanced Technology',
-    desc: 'Utilizing the latest digital printing and LED display technology for stunning visual results.',
-    image: `${BASE}/uploads/large_IMG_20250411_103839_3acbf2b5d6.jpg`,
+    desc: 'With access to the latest production technologies and tools, Pixel can create high-quality, visually stunning advertising displays that are optimized for maximum visibility and impact.',
+    image: `${BASE}/uploads/large_Pixel_0350_SO_4f119ac9cf.jpg`,
   },
 ];
 
@@ -60,7 +60,7 @@ function HeroSection() {
       <div className="relative isolate z-10 h-full pb-11 md:pb-14 xl:pb-20">
         <div aria-hidden="true" className="absolute inset-x-0 top-[-20%] z-0 h-[150%] overflow-hidden bg-black">
           <video autoPlay loop muted playsInline className="absolute top-0 right-0 h-full w-full object-cover md:w-4/6">
-            <source src={`${BASE}/video/dot-wave-16x10-c.mp4`} type="video/mp4" />
+            <source src="https://pixelgroup.id/video/dot-wave-16x10-c.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black to-black/0" />
           <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-black to-black/0" />
@@ -85,17 +85,21 @@ function HeroSection() {
 
 function MediaManagementSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const resolvedActiveIndex = activeIndex === -1 ? 0 : activeIndex;
 
   return (
     <div className="relative z-10 py-6">
       <div className="container flex md:gap-x-4 xl:gap-x-20">
         <div className="hidden w-[40%] md:block">
           <div className="relative box-border w-full overflow-hidden rounded-2xl border border-neutral-700 md:aspect-[294/430] xl:aspect-[1/1]">
-            <img
-              src={oohMediaServices[activeIndex]?.image ?? oohMediaServices[0].image}
-              alt="Media Management"
-              className="h-full w-full object-cover transition-transform duration-700"
-            />
+            {oohMediaServices.map((service, i) => (
+              <img
+                key={i}
+                src={service.image}
+                alt={service.title}
+                className={`absolute inset-0 h-full w-full object-cover transition-all duration-700 ${resolvedActiveIndex === i ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
+              />
+            ))}
           </div>
         </div>
         <div className="flex-1">
@@ -118,6 +122,7 @@ function MediaManagementSection() {
 
 function ProductionHouseSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const resolvedActiveIndex = activeIndex === -1 ? 0 : activeIndex;
 
   return (
     <section className="relative z-10 pt-10 pb-20" id="ooh-production-house">
@@ -137,11 +142,14 @@ function ProductionHouseSection() {
         <div className="container flex md:gap-x-4 xl:gap-x-20 flex-row-reverse">
           <div className="hidden w-[40%] md:block">
             <div className="relative box-border w-full overflow-hidden rounded-2xl border border-neutral-700 md:aspect-[294/430] xl:aspect-[1/1]">
-              <img
-                src={oohProductionServices[activeIndex]?.image ?? oohProductionServices[0].image}
-                alt="Production House"
-                className="h-full w-full object-cover transition-transform duration-700"
-              />
+              {oohProductionServices.map((service, i) => (
+                <img
+                  key={i}
+                  src={service.image}
+                  alt={service.title}
+                  className={`absolute inset-0 h-full w-full object-cover transition-all duration-700 ${resolvedActiveIndex === i ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
+                />
+              ))}
             </div>
           </div>
           <div className="flex-1">

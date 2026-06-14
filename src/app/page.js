@@ -4,6 +4,7 @@ import AnimatedButton from '@/components/AnimatedButton';
 import MarqueeRow from '@/components/MarqueeRow';
 import CTASection from '@/components/CTASection';
 import { useState, useEffect, useRef } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
 
 const BASE = 'https://pixelgroup.id';
 
@@ -255,111 +256,28 @@ function OurSolutionSection() {
 }
 
 function PortfolioSection() {
-  const [currentIndex, setCurrentIndex] = useState(8);
-  const [isTransitioning, setIsTransitioning] = useState(true);
-  const currentIndexRef = useRef(currentIndex);
-  currentIndexRef.current = currentIndex;
-
-  const [isDesktop, setIsDesktop] = useState(false);
-  const trackRef = useRef(null);
-  const [dragOffset, setDragOffset] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-  const [wasDragged, setWasDragged] = useState(false);
-  const dragStartRef = useRef(0);
-  const isDraggingRef = useRef(false);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: 'center',
+    loop: true,
+    startIndex: portfolioItems.length - 1,
+  });
+  const [selectedIndex, setSelectedIndex] = useState(portfolioItems.length - 1);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(min-width: 1280px)');
-    setIsDesktop(mediaQuery.matches);
-    const handler = (e) => setIsDesktop(e.matches);
-    mediaQuery.addEventListener('change', handler);
-    return () => mediaQuery.removeEventListener('change', handler);
-  }, []);
-
-  const handleTransitionEnd = (e) => {
-    if (e && e.target !== e.currentTarget) return;
-
-    const currentIdx = currentIndexRef.current;
-    if (currentIdx >= 16) {
-      setIsTransitioning(false);
-      setCurrentIndex(currentIdx - 8);
-    } else if (currentIdx <= 7) {
-      setIsTransitioning(false);
-      setCurrentIndex(currentIdx + 8);
-    }
-  };
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+    emblaApi.on('select', () => {
+      setSelectedIndex(emblaApi.selectedScrollSnap());
+    });
+  }, [emblaApi]);
 
   const next = () => {
-    if (!isTransitioning) return;
-    setCurrentIndex((prev) => Math.min(prev + 1, 18));
+    if (emblaApi) emblaApi.scrollNext();
   };
 
   const prev = () => {
-    if (!isTransitioning) return;
-    setCurrentIndex((prev) => Math.max(prev - 1, 5));
+    if (emblaApi) emblaApi.scrollPrev();
   };
-
-  const handleDragStart = (e) => {
-    if (e.type === 'mousedown' && e.button !== 0) return;
-    setIsDragging(true);
-    isDraggingRef.current = true;
-    dragStartRef.current = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
-    setDragOffset(0);
-    setWasDragged(false);
-  };
-
-  const handleDragMove = (e) => {
-    if (!isDraggingRef.current) return;
-    const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
-    const offset = clientX - dragStartRef.current;
-    setDragOffset(offset);
-    if (Math.abs(offset) > 5) {
-      setWasDragged(true);
-    }
-  };
-
-  const handleDragEnd = () => {
-    if (!isDraggingRef.current) return;
-    isDraggingRef.current = false;
-    setIsDragging(false);
-
-    const trackWidth = trackRef.current ? trackRef.current.offsetWidth : 1200;
-    const slideWidth = isDesktop ? (trackWidth / 5) : (trackWidth / 3);
-    const indexChange = Math.round(-dragOffset / slideWidth);
-
-    setDragOffset(0);
-
-    if (indexChange !== 0) {
-      setIsTransitioning(true);
-      setCurrentIndex((prev) => {
-        const nextIdx = prev + indexChange;
-        return Math.max(5, Math.min(nextIdx, 18));
-      });
-    }
-  };
-
-  useEffect(() => {
-    if (!isTransitioning) {
-      const track = document.getElementById('portfolio-track');
-      if (track) {
-        track.offsetHeight; // force reflow
-      }
-      const timer = setTimeout(() => {
-        setIsTransitioning(true);
-      }, 30);
-      return () => clearTimeout(timer);
-    }
-  }, [isTransitioning]);
-
-  const extendedItems = [...portfolioItems, ...portfolioItems, ...portfolioItems];
-
-  const baseTranslatePercent = isDesktop
-    ? -(currentIndex - 2) * 20
-    : -(currentIndex - 1) * (100 / 3);
-  
-  const currentTrackWidth = trackRef.current ? trackRef.current.offsetWidth : 1200;
-  const dragPercent = (dragOffset / currentTrackWidth) * 100;
-  const translatePercent = baseTranslatePercent + dragPercent;
 
   return (
     <section className="bg-background z-10 isolate min-h-screen flex items-center overflow-hidden py-10 md:py-20 snap-start">
@@ -370,35 +288,31 @@ function PortfolioSection() {
         >
           <div className="flex justify-center px-5 w-[800px] md:w-[1200px] relative xl:h-full">
             <div className="relative h-full w-full xl:w-[150%] flex items-center">
-              <div className="overflow-hidden">
-                <div
-                  id="portfolio-track"
-                  ref={trackRef}
-                  onTransitionEnd={handleTransitionEnd}
-                  onMouseDown={handleDragStart}
-                  onMouseMove={handleDragMove}
-                  onMouseUp={handleDragEnd}
-                  onMouseLeave={handleDragEnd}
-                  onTouchStart={handleDragStart}
-                  onTouchMove={handleDragMove}
-                  onTouchEnd={handleDragEnd}
-                  className={`flex -ml-4 ${isTransitioning && !isDragging ? 'transition-transform duration-500 [transition-timing-function:cubic-bezier(0.25,1,0.5,1)]' : ''} select-none cursor-grab active:cursor-grabbing`}
-                  style={{
-                    transform: `translateX(${translatePercent}%)`
-                  }}
-                >
-                  {extendedItems.map((item, i) => {
-                    const distFromCurrent = Math.abs(i - currentIndex);
-                    const scale = distFromCurrent === 0 ? 1 : distFromCurrent === 1 ? 0.8 : 0.6;
-                    const translateX = distFromCurrent === 0 ? '0%' : distFromCurrent === 1 ? '0%' : '20%';
+              <div className="overflow-hidden w-full" ref={emblaRef}>
+                <div className="flex -ml-4 select-none">
+                  {portfolioItems.map((item, i) => {
+                    const nextIndex = (selectedIndex + 1) % portfolioItems.length;
+                    const prevIndex = (selectedIndex - 1 + portfolioItems.length) % portfolioItems.length;
+
+                    const isActive = selectedIndex === i;
+                    const isNext = nextIndex === i;
+                    const isPrev = prevIndex === i;
+
+                    let scale = 0.6;
+                    let translateX = '20%';
+                    if (isActive) {
+                      scale = 1;
+                      translateX = '0%';
+                    } else if (isNext || isPrev) {
+                      scale = 0.8;
+                      translateX = '0%';
+                    }
+
                     return (
                       <div
                         key={i}
                         onClick={() => {
-                          if (wasDragged) return;
-                          if (isTransitioning) {
-                            setCurrentIndex(i);
-                          }
+                          if (emblaApi) emblaApi.scrollTo(i);
                         }}
                         className="min-w-0 shrink-0 grow-0 pl-4 h-full w-fit basis-1/3 xl:basis-1/5 flex items-center cursor-pointer"
                       >
@@ -420,7 +334,7 @@ function PortfolioSection() {
                               className="select-none touch-none border border-white rounded-lg object-cover w-full h-full absolute top-0 left-0 pointer-events-none"
                             />
                           </div>
-                          {distFromCurrent === 0 && (
+                          {isActive && (
                             <h4 className="font-semibold text-xl md:text-2xl w-full text-center text-foreground pt-2 line-clamp-2">
                               {item.title}
                             </h4>
@@ -436,18 +350,16 @@ function PortfolioSection() {
 
           {/* Nav buttons */}
           <button
-            onClick={next}
-            disabled={!isTransitioning}
-            className="bg-background rounded-md border border-neutral-600 hover:scale-95 transition-transform size-14 xl:size-16 grid place-content-center absolute z-10 top-1/2 right-0 -translate-y-1/2 xl:hidden disabled:opacity-30 disabled:cursor-not-allowed"
+            onClick={prev}
+            className="bg-background rounded-md border border-neutral-600 hover:scale-95 transition-transform size-14 xl:size-16 grid place-content-center absolute z-10 top-1/2 left-0 -translate-y-1/2 xl:hidden rotate-180 cursor-pointer hover:border-primary transition-colors"
           >
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M16.171 4.39L27.359 15.577M27.359 15.577L16.171 26.765M27.359 15.577L5.034 15.577" stroke="white" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="round" />
             </svg>
           </button>
           <button
-            onClick={prev}
-            disabled={!isTransitioning}
-            className="bg-background rounded-md border border-neutral-600 hover:scale-95 transition-transform size-14 xl:size-16 grid place-content-center absolute z-10 top-1/2 left-0 -translate-y-1/2 xl:hidden rotate-180 disabled:opacity-30 disabled:cursor-not-allowed"
+            onClick={next}
+            className="bg-background rounded-md border border-neutral-600 hover:scale-95 transition-transform size-14 xl:size-16 grid place-content-center absolute z-10 top-1/2 right-0 -translate-y-1/2 xl:hidden cursor-pointer hover:border-primary transition-colors"
           >
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M16.171 4.39L27.359 15.577M27.359 15.577L16.171 26.765M27.359 15.577L5.034 15.577" stroke="white" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="round" />
@@ -475,8 +387,7 @@ function PortfolioSection() {
             <div className="hidden xl:flex gap-4 mt-8">
               <button
                 onClick={prev}
-                disabled={!isTransitioning}
-                className="bg-background rounded-md border border-neutral-600 hover:scale-95 transition-transform size-14 xl:size-16 grid place-content-center cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed hover:border-primary transition-colors rotate-180"
+                className="bg-background rounded-md border border-neutral-600 hover:scale-95 transition-transform size-14 xl:size-16 grid place-content-center cursor-pointer hover:border-primary transition-colors rotate-180"
               >
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M16.171 4.39L27.359 15.577M27.359 15.577L16.171 26.765M27.359 15.577L5.034 15.577" stroke="white" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="round" />
@@ -484,8 +395,7 @@ function PortfolioSection() {
               </button>
               <button
                 onClick={next}
-                disabled={!isTransitioning}
-                className="bg-background rounded-md border border-neutral-600 hover:scale-95 transition-transform size-14 xl:size-16 grid place-content-center cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed hover:border-primary transition-colors"
+                className="bg-background rounded-md border border-neutral-600 hover:scale-95 transition-transform size-14 xl:size-16 grid place-content-center cursor-pointer hover:border-primary transition-colors"
               >
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M16.171 4.39L27.359 15.577M27.359 15.577L16.171 26.765M27.359 15.577L5.034 15.577" stroke="white" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="round" />
