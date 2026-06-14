@@ -146,6 +146,7 @@ function ContactSection({ formData, setFormData, handleSubmit, isSubmitting }) {
                 <form className="space-y-5" onSubmit={handleSubmit}>
                   <input
                     type="text"
+                    name="name"
                     placeholder="Name"
                     required
                     value={formData.name}
@@ -154,6 +155,7 @@ function ContactSection({ formData, setFormData, handleSubmit, isSubmitting }) {
                   />
                   <input
                     type="text"
+                    name="companyName"
                     placeholder="Company Name"
                     required
                     value={formData.companyName}
@@ -162,6 +164,7 @@ function ContactSection({ formData, setFormData, handleSubmit, isSubmitting }) {
                   />
                   <input
                     type="email"
+                    name="email"
                     placeholder="Email"
                     required
                     value={formData.email}
@@ -171,6 +174,7 @@ function ContactSection({ formData, setFormData, handleSubmit, isSubmitting }) {
                   <div className="flex">
                     <div className="flex w-full rounded-lg border border-[#1E293B] bg-[#03070E] focus-within:border-[#A4B3D0] transition-colors">
                       <select
+                        name="countryCode"
                         value={formData.countryCode}
                         onChange={(e) => setFormData({ ...formData, countryCode: e.target.value })}
                         className="rounded-l-lg border-r border-[#1E293B] bg-[#03070E] p-3 text-sm text-white focus:outline-none cursor-pointer"
@@ -182,6 +186,7 @@ function ContactSection({ formData, setFormData, handleSubmit, isSubmitting }) {
                       </select>
                       <input
                         type="tel"
+                        name="phoneNumber"
                         placeholder="Phone number"
                         required
                         value={formData.phone}
@@ -192,6 +197,7 @@ function ContactSection({ formData, setFormData, handleSubmit, isSubmitting }) {
                   </div>
                   <div className="relative">
                     <textarea
+                      name="message"
                       placeholder="Message"
                       rows={5}
                       maxLength={120}

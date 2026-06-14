@@ -107,6 +107,8 @@
 
 /* Animated Button */
 .animated-link {
+  --duration: 0.5s;
+  cursor: pointer;
   overflow: hidden;
   transition: transform 0.3s ease;
 }
@@ -115,33 +117,36 @@
   transform: scale(1.02);
 }
 
-.animated-link .text > div:first-child {
-  transition: transform 0.3s ease;
-}
-
-.animated-link .text > div:last-child {
-  transition: transform 0.3s ease;
-}
-
-.animated-link:hover .text > div:first-child {
-  transform: translateY(-100%);
-}
-
-.animated-link:hover .text > div:last-child {
-  transform: translateY(-100%);
+.animated-link .text {
+  transition: transform var(--duration, 0.3s) ease-out;
 }
 
 .animated-link .icon-wrapper {
-  background-color: transparent;
-  transition: background-color 0.3s ease;
+  background-color: inherit;
+  transition: all var(--duration, 0.3s) ease-out;
 }
 
 .animated-link .icon {
-  transition: transform 0.3s ease;
+  transition: all var(--duration, 0.3s) ease-out;
 }
 
+.animated-link:hover .text {
+  transform: translateY(-1.25em);
+}
+
+.animated-link:hover .icon-wrapper {
+  background-color: transparent;
+}
+
+/* On mobile/tablet translate by 34px, on desktop translate by 40px */
 .animated-link:hover .icon {
-  transform: translateX(-28px);
+  transform: translateX(34px);
+}
+
+@media (min-width: 768px) {
+  .animated-link:hover .icon {
+    transform: translateX(40px);
+  }
 }
 
 /* Scroll Animations */

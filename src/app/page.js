@@ -257,7 +257,6 @@ function OurSolutionSection() {
 function PortfolioSection() {
   const [currentIndex, setCurrentIndex] = useState(8);
   const [isTransitioning, setIsTransitioning] = useState(true);
-  const [isMoving, setIsMoving] = useState(false);
   const currentIndexRef = useRef(currentIndex);
   currentIndexRef.current = currentIndex;
 
@@ -268,8 +267,6 @@ function PortfolioSection() {
   const [wasDragged, setWasDragged] = useState(false);
   const dragStartRef = useRef(0);
   const isDraggingRef = useRef(false);
-
-  const movementTimeoutRef = useRef(null);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(min-width: 1280px)');
@@ -282,11 +279,6 @@ function PortfolioSection() {
   const handleTransitionEnd = (e) => {
     if (e && e.target !== e.currentTarget) return;
 
-    if (movementTimeoutRef.current) {
-      clearTimeout(movementTimeoutRef.current);
-      movementTimeoutRef.current = null;
-    }
-
     const currentIdx = currentIndexRef.current;
     if (currentIdx >= 16) {
       setIsTransitioning(false);
@@ -294,33 +286,17 @@ function PortfolioSection() {
     } else if (currentIdx <= 7) {
       setIsTransitioning(false);
       setCurrentIndex(currentIdx + 8);
-    } else {
-      setIsMoving(false);
     }
-  };
-
-  const startMovement = (newIndex) => {
-    setIsMoving(true);
-    setIsTransitioning(true);
-    setCurrentIndex(newIndex);
-    
-    if (movementTimeoutRef.current) {
-      clearTimeout(movementTimeoutRef.current);
-    }
-    
-    movementTimeoutRef.current = setTimeout(() => {
-      handleTransitionEnd();
-    }, 600);
   };
 
   const next = () => {
-    if (isMoving || !isTransitioning) return;
-    startMovement(currentIndex + 1);
+    if (!isTransitioning) return;
+    setCurrentIndex((prev) => Math.min(prev + 1, 18));
   };
 
   const prev = () => {
-    if (isMoving || !isTransitioning) return;
-    startMovement(currentIndex - 1);
+    if (!isTransitioning) return;
+    setCurrentIndex((prev) => Math.max(prev - 1, 5));
   };
 
   const handleDragStart = (e) => {
@@ -354,9 +330,11 @@ function PortfolioSection() {
     setDragOffset(0);
 
     if (indexChange !== 0) {
-      startMovement(currentIndex + indexChange);
-    } else {
-      startMovement(currentIndex);
+      setIsTransitioning(true);
+      setCurrentIndex((prev) => {
+        const nextIdx = prev + indexChange;
+        return Math.max(5, Math.min(nextIdx, 18));
+      });
     }
   };
 
@@ -368,7 +346,6 @@ function PortfolioSection() {
       }
       const timer = setTimeout(() => {
         setIsTransitioning(true);
-        setIsMoving(false);
       }, 30);
       return () => clearTimeout(timer);
     }
@@ -419,8 +396,8 @@ function PortfolioSection() {
                         key={i}
                         onClick={() => {
                           if (wasDragged) return;
-                          if (!isMoving && isTransitioning) {
-                            startMovement(i);
+                          if (isTransitioning) {
+                            setCurrentIndex(i);
                           }
                         }}
                         className="min-w-0 shrink-0 grow-0 pl-4 h-full w-fit basis-1/3 xl:basis-1/5 flex items-center cursor-pointer"
@@ -460,7 +437,7 @@ function PortfolioSection() {
           {/* Nav buttons */}
           <button
             onClick={next}
-            disabled={isMoving || !isTransitioning}
+            disabled={!isTransitioning}
             className="bg-background rounded-md border border-neutral-600 hover:scale-95 transition-transform size-14 xl:size-16 grid place-content-center absolute z-10 top-1/2 right-0 -translate-y-1/2 xl:hidden disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -469,7 +446,7 @@ function PortfolioSection() {
           </button>
           <button
             onClick={prev}
-            disabled={isMoving || !isTransitioning}
+            disabled={!isTransitioning}
             className="bg-background rounded-md border border-neutral-600 hover:scale-95 transition-transform size-14 xl:size-16 grid place-content-center absolute z-10 top-1/2 left-0 -translate-y-1/2 xl:hidden rotate-180 disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -498,7 +475,7 @@ function PortfolioSection() {
             <div className="hidden xl:flex gap-4 mt-8">
               <button
                 onClick={prev}
-                disabled={isMoving || !isTransitioning}
+                disabled={!isTransitioning}
                 className="bg-background rounded-md border border-neutral-600 hover:scale-95 transition-transform size-14 xl:size-16 grid place-content-center cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed hover:border-primary transition-colors rotate-180"
               >
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -507,7 +484,7 @@ function PortfolioSection() {
               </button>
               <button
                 onClick={next}
-                disabled={isMoving || !isTransitioning}
+                disabled={!isTransitioning}
                 className="bg-background rounded-md border border-neutral-600 hover:scale-95 transition-transform size-14 xl:size-16 grid place-content-center cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed hover:border-primary transition-colors"
               >
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">

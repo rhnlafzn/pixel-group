@@ -44,8 +44,9 @@ export default function CTASection() {
               >
                 <div className="flex-1 h-[38px] md:h-[49px] px-6 flex items-center">
                   <div className="h-[1.25em] max-h-[1.25em] overflow-hidden whitespace-nowrap text-[14px] md:text-[20px] leading-[1.25em] font-semibold font-lato">
-                    <div className="flex flex-col transition-transform duration-300 group-hover:-translate-y-1/2">
-                      <div>LET`S CONNECT</div>
+                    <div className="text">
+                      <div>LET'S CONNECT</div>
+                      <div aria-hidden="true">LET'S CONNECT</div>
                     </div>
                   </div>
                 </div>

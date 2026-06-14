@@ -59,7 +59,9 @@ function HeroSection() {
     <section className="relative z-10 pt-28 pb-20" id="ooh-media-management">
       <div className="relative isolate z-10 h-full pb-11 md:pb-14 xl:pb-20">
         <div aria-hidden="true" className="absolute inset-x-0 top-[-20%] z-0 h-[150%] overflow-hidden bg-black">
-          <div className="dot-wave-bg absolute inset-0 opacity-60" />
+          <video autoPlay loop muted playsInline className="absolute top-0 right-0 h-full w-full object-cover md:w-4/6">
+            <source src={`${BASE}/video/dot-wave-16x10-c.mp4`} type="video/mp4" />
+          </video>
           <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black to-black/0" />
           <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-black to-black/0" />
         </div>
@@ -90,7 +92,7 @@ function MediaManagementSection() {
         <div className="hidden w-[40%] md:block">
           <div className="relative box-border w-full overflow-hidden rounded-2xl border border-neutral-700 md:aspect-[294/430] xl:aspect-[1/1]">
             <img
-              src={oohMediaServices[activeIndex].image}
+              src={oohMediaServices[activeIndex]?.image ?? oohMediaServices[0].image}
               alt="Media Management"
               className="h-full w-full object-cover transition-transform duration-700"
             />
@@ -136,7 +138,7 @@ function ProductionHouseSection() {
           <div className="hidden w-[40%] md:block">
             <div className="relative box-border w-full overflow-hidden rounded-2xl border border-neutral-700 md:aspect-[294/430] xl:aspect-[1/1]">
               <img
-                src={oohProductionServices[activeIndex].image}
+                src={oohProductionServices[activeIndex]?.image ?? oohProductionServices[0].image}
                 alt="Production House"
                 className="h-full w-full object-cover transition-transform duration-700"
               />

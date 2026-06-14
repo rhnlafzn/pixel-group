@@ -70,7 +70,7 @@ function HeroSection() {
         <div className="relative isolate z-10 h-[390px] md:h-[490px]">
           <div aria-hidden="true" className="absolute inset-x-0 top-[-30%] z-0 h-[120%] overflow-hidden bg-black md:h-[150%]">
             <video autoPlay loop muted playsInline className="absolute top-0 right-0 h-full w-4/6 object-cover">
-              <source src="/video/dot-wave-16x10-c.mp4" type="video/mp4" />
+              <source src={`${BASE}/video/dot-wave-16x10-c.mp4`} type="video/mp4" />
             </video>
             <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black to-black/0" />
             <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-black to-black/0" />
