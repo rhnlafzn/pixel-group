@@ -11,46 +11,46 @@ const BASE = 'https://pixelgroup.id';
 const whyUsStaticData = [
   {
     number: '01',
-    image: `${BASE}/uploads/large_DPS_Inter_Arrival_Walkway_241024_3894_e96cde30e4.jpg`,
+    image: `/images/about/whyus_1.png`,
   },
   {
     number: '02',
-    image: `${BASE}/uploads/large_CGK_3_Inter_Departure_Pillar_201224_9337_3ce87f440f.jpg`,
+    image: `/images/about/whyus_2.png`,
   },
   {
     number: '03',
-    image: `${BASE}/uploads/large_LRT_Train_Le_Mineral_211124_5249_ff22b2f7dd.jpg`,
+    image: `/images/about/whyus_3.png`,
   },
   {
     number: '04',
-    image: `${BASE}/uploads/large_CGK_3_Inter_Giant_LED_210125_00930_39202e33fb.jpg`,
+    image: `/images/about/whyus_4.png`,
   },
   {
     number: '05',
-    image: `${BASE}/uploads/large_Copy_of_Pixel_1087_SO_cb22894e56.jpg`,
+    image: `/images/about/whyus_5.png`,
   },
 ];
 
 const visionItem = {
-  image: `${BASE}/uploads/large_TMII_Gate_03_270924_00704_9c70b38b0e.jpg`,
+  image: `/images/about/vision_tmii.jpg`,
 };
 
 const missionItems = [
   {
     number: '01',
-    image: `${BASE}/uploads/large_CGK_3_Inter_Giant_LED_210125_00930_3a938a7030.jpg`,
+    image: `/images/about/mission_1.jpg`,
   },
   {
     number: '02',
-    image: `${BASE}/uploads/large_Still_2024_11_13_100243_1_15_1_e50178550e.jpg`,
+    image: `/images/about/mission_2.jpg`,
   },
   {
     number: '03',
-    image: `${BASE}/uploads/large_HSR_HLM_Boarding_Pillar_Warp_051224_7408_aa907be6c4.jpg`,
+    image: `/images/about/mission_3.jpg`,
   },
   {
     number: '04',
-    image: `${BASE}/uploads/large_GBK_Runner_Asia_Afrika_100225_2272_51a2c90401.jpg`,
+    image: `/images/about/mission_4.jpg`,
   },
 ];
 

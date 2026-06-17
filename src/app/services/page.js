@@ -7,30 +7,51 @@ import { useLanguage } from '@/context/LanguageContext';
 const BASE = 'https://pixelgroup.id';
 
 const block1Images = [
-  `${BASE}/uploads/large_Copy_of_Pixel_1503_SO_1_53757bd66c.jpg`,
-  `${BASE}/uploads/large_IMG_20250411_103839_3acbf2b5d6.jpg`,
-  `${BASE}/uploads/large_CGK_3_Inter_Giant_LED_210125_00930_39202e33fb.jpg`
+  `/images/services/production_1.png`,
+  `/images/services/production_2.png`,
+  `/images/services/production_3.png`
 ];
 
 const block2Images = [
-  `${BASE}/uploads/large_Whats_App_Image_2025_03_06_at_4_08_39_PM_19043b85f3.jpeg`,
-  `${BASE}/uploads/large_DPS_Inter_Arrival_Walkway_241024_3894_e96cde30e4.jpg`,
-  `${BASE}/uploads/large_LRT_Train_Le_Mineral_211124_5249_ff22b2f7dd.jpg`
+  `/images/services/specialist_1.png`,
+  `/images/services/specialist_2.png`,
+  `/images/services/specialist_3.png`
 ];
 
 const block3Images = [
-  `/images/services/consultation.png`,
-  `/images/services/consultation.png`,
-  `/images/services/consultation.png`
+  `/images/services/consultation_1.png`,
+  `/images/services/consultation_2.png`,
+  `/images/services/consultation_3.png`
 ];
 
 const block4Images = [
-  `/images/services/research.png`,
-  `/images/services/research.png`,
-  `/images/services/research.png`
+  `/images/services/research_1.png`,
+  `/images/services/research_2.png`,
+  `/images/services/research_3.png`
 ];
 
 export default function ServicesPage() {
+  useEffect(() => {
+    const handleScroll = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const targetId = hash.substring(1);
+        const element = document.getElementById(targetId);
+        if (element) {
+          setTimeout(() => {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 300);
+        }
+      }
+    };
+
+    handleScroll();
+    window.addEventListener('hashchange', handleScroll);
+    return () => {
+      window.removeEventListener('hashchange', handleScroll);
+    };
+  }, []);
+
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <main className="flex-1 pt-24" id="page-scroll-container">

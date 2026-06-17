@@ -238,25 +238,25 @@ function OurServiceSection() {
       key: 'production',
       title: t('home.servicesNew.items.production.title'),
       desc: t('home.servicesNew.items.production.desc'),
-      image: `${BASE}/uploads/large_Copy_of_Pixel_1503_SO_1_53757bd66c.jpg`,
+      image: `/images/services/production_1.png`,
     },
     {
       key: 'specialist',
       title: t('home.servicesNew.items.specialist.title'),
       desc: t('home.servicesNew.items.specialist.desc'),
-      image: `${BASE}/uploads/large_Whats_App_Image_2025_03_06_at_4_08_39_PM_19043b85f3.jpeg`,
+      image: `/images/services/specialist_1.png`,
     },
     {
       key: 'consultation',
       title: t('home.servicesNew.items.consultation.title'),
       desc: t('home.servicesNew.items.consultation.desc'),
-      image: `${BASE}/uploads/large_CGK_3_Inter_Giant_LED_210125_00930_39202e33fb.jpg`,
+      image: `/images/services/consultation_1.png`,
     },
     {
       key: 'research',
       title: t('home.servicesNew.items.research.title'),
       desc: t('home.servicesNew.items.research.desc'),
-      image: `${BASE}/uploads/large_CGK_T3_Domestik_Security_Check_Border_091024_1769_34e08c6650.jpg`,
+      image: `/images/services/research_1.png`,
     },
   ];
 
@@ -264,22 +264,22 @@ function OurServiceSection() {
     {
       title: 'Fokus Production I',
       subtitle: '1995 - 2002',
-      image: `${BASE}/uploads/large_Still_2024_11_13_100243_1_15_1_e50178550e.jpg`,
+      image: `/images/about/mission_2.jpg`,
     },
     {
       title: lang === 'ID' ? 'Kemitraan LKC' : 'LKC Partnership',
       subtitle: '2018 - 2023',
-      image: `${BASE}/uploads/large_HSR_HLM_Boarding_Pillar_Warp_051224_7408_aa907be6c4.jpg`,
+      image: `/images/about/mission_3.jpg`,
     },
     {
       title: 'PT. IDEA KREASI MEDIA',
       subtitle: lang === 'ID' ? '2023 - Sekarang' : '2023 - Present',
-      image: `${BASE}/uploads/large_Whats_App_Image_2025_03_06_at_4_08_39_PM_19043b85f3.jpeg`,
+      image: `/images/services/specialist_1.png`,
     },
     {
       title: lang === 'ID' ? 'Branding Tiang Jalan' : 'Street Pole Branding',
       subtitle: lang === 'ID' ? 'Inovasi & Estetika' : 'Innovation & Aesthetics',
-      image: `${BASE}/uploads/large_GBK_Runner_Asia_Afrika_100225_2272_51a2c90401.jpg`,
+      image: `/images/about/mission_4.jpg`,
     },
   ];
 
@@ -392,29 +392,29 @@ function OurSolutionSection() {
       title: 'OOH Production House',
       heading: t('home.services.production.heading'),
       desc: t('home.services.production.desc'),
-      image: `${BASE}/uploads/large_Copy_of_Pixel_1503_SO_1_53757bd66c.jpg`,
-      link: '/services',
+      image: `/images/services/production_1.png`,
+      link: '/services#ooh-production-house',
     },
     {
       title: 'OOH Media Specialist',
       heading: t('home.services.specialist.heading'),
       desc: t('home.services.specialist.desc'),
-      image: `${BASE}/uploads/large_Whats_App_Image_2025_03_06_at_4_08_39_PM_19043b85f3.jpeg`,
-      link: '/services',
+      image: `/images/services/specialist_1.png`,
+      link: '/services#ooh-media-specialist',
     },
     {
       title: 'OOH Consultation',
       heading: t('home.services.consultation.heading'),
       desc: t('home.services.consultation.desc'),
-      image: `${BASE}/uploads/large_CGK_3_Inter_Giant_LED_210125_00930_39202e33fb.jpg`,
-      link: '/services',
+      image: `/images/services/consultation_1.png`,
+      link: '/services#ooh-consultation',
     },
     {
       title: 'OOH Research',
       heading: t('home.services.research.heading'),
       desc: t('home.services.research.desc'),
-      image: `${BASE}/uploads/large_CGK_T3_Domestik_Security_Check_Border_091024_1769_34e08c6650.jpg`,
-      link: '/services',
+      image: `/images/services/research_1.png`,
+      link: '/services#ooh-research',
     },
   ];
 
