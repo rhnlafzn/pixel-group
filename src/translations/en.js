@@ -159,11 +159,11 @@ const enTranslations = {
   about: {
     hero: {
       title: 'About Us',
-      desc: 'Pixel Group is a leading Out-of-Home (OOH) advertising company in Indonesia, specializing in providing high‑impact advertising spaces through billboards and digital displays across major urban and suburban areas.',
+      desc: 'PT Idea Kreasi Media is a pioneer in the Out-Of-Home (OOH) media industry in Indonesia. We engineer high-impact advertising spaces that effectively drive conversions through the transformation of public utilities and premium media in the heart of megapolitan cities.',
     },
     expertise: {
       title: 'Our Expertise',
-      desc: 'With a focus on helping brands increase their visibility, Pixel Group offers tailored solutions that maximize audience reach and engagement. At Pixel Group, we tackle advertising challenges with a strategic, data-driven approach, ensuring that brands achieve maximum visibility and impact.',
+      desc: 'With a focus on helping brands increase their visibility, PT Idea Kreasi Media offers tailored solutions that maximize audience reach and engagement. We tackle advertising challenges with a strategic, data-driven approach, ensuring that brands achieve maximum visibility and impact.',
       cards: {
         comp: {
           title: 'Comprehensive OOH Solutions',
@@ -185,53 +185,53 @@ const enTranslations = {
     },
     whyUs: {
       title: 'Why Us',
-      desc: 'Pixel Group stands out in Indonesia\'s OOH advertising landscape due to its comprehensive approach to brand visibility. With an extensive network of billboards and digital displays strategically placed in high-traffic areas across Indonesia, Pixel ensures maximum exposure for its client\'s campaigns.',
+      desc: 'PT Idea Kreasi Media dominates the OOH advertising landscape through a comprehensive conversion-based approach. Controlling the outdoor media infrastructure network at Super-Megapolitan arterial points, we guarantee maximum exposure that captures the attention of hundreds of millions of audience members every day.',
       items: [
         {
-          title: 'Wide Coverage',
-          desc: 'Extensive reach in major urban and suburban areas connects businesses with broad audiences at premium locations.',
+          title: 'Massive Reach',
+          desc: 'Directly connected with hundreds of millions of daily mobilities in special zones and primary arterial areas of Jabodetabek for limitless exposure penetration.',
         },
         {
-          title: 'High-Quality Media',
-          desc: 'From billboards to digital screens, Pixel\'s visually impactful media captures attention and leaves a lasting impression.',
+          title: 'Premium Media Innovation',
+          desc: 'Combining LED/Neon Box technology, Solar Panels, and aesthetic architecture to produce sharp visuals that dominate public spaces.',
         },
         {
-          title: 'Customized Solutions',
-          desc: 'Flexible, tailored strategies ensure effective campaigns for all business sizes and budgets, maximizing ROI.',
+          title: 'Holistic OOH Solutions',
+          desc: 'Providing total execution from Digital Out-Of-Home (DOOH), conventional billboards, to transit media specially calibrated with your target market.',
         },
         {
-          title: 'Strategic Placement',
-          desc: 'Key locations across business and transit hubs enhance targeted audience engagement.',
+          title: 'Strategic Arterial Points',
+          desc: 'Monopolizing economic centers ("Central Gravity") and the most dynamic traffic in Indonesia, ensuring your brand becomes the primary center of attention.',
         },
         {
-          title: 'Expertise and Experience',
-          desc: 'Pixel\'s industry experience enables successful, resource-efficient campaigns aligned with market trends.',
+          title: 'Authority & Experience',
+          desc: 'Equipped with a historical track record since 1995, our specialist team has been trusted to design and execute giant campaigns for various multinational corporations.',
         }
       ]
     },
     vision: {
       title: 'Vision & Mission',
-      desc: 'PT. IDEA KREASI MEDIA is guided by a strong vision to modernize the outdoor advertising industry by prioritizing concepts, creativity, and the preservation of local cultural values and historical ornaments.',
+      desc: 'PT Idea Kreasi Media is driven by an absolute ambition to modernize the outdoor advertising landscape. We combine limitless creativity, cutting-edge technology, and the preservation of cultural architectural values to create visual masterpieces at the center of urban spatial layout.',
       items: [
         {
           title: 'Corporate Vision',
-          desc: 'Realizing and building the corporate professionalism spirit and performance that is expected to continue to grow and develop in the field of outdoor media advertising industry services, demanding the construction of concepts, ideas, creativity & innovation along with the pace of progress and renewal of technology, infrastructure and spatial layout in the modern megapolitan city landscape development regionally and nationally.',
+          desc: 'To become the most dominant and professional OOH advertising corporation at the national level. We continue to grow by designing concepts, creativity, and visual innovations that synergize perfectly with the pace of infrastructure modernization and the spatial layout of Super-Megapolitan cities.',
         },
         {
-          title: 'Mission 1: Innovation & Creativity',
-          desc: 'With the increasingly fierce and high level of competitiveness, the factors of demanding new ideas, creativity, and innovation in outdoor media products have become a relied-upon priority.',
+          title: 'Mission 1: Innovation & Visual Creativity',
+          desc: 'Facing a fierce competitive climate, we make breakthroughs in ideas, creativity, and outdoor media design innovation an absolute priority to dominate the market.',
         },
         {
-          title: 'Mission 2: Cultural Architectural Preservation',
-          desc: 'Reconstructing a more holistic form of OOH media service that encompasses the philosophy of preserving architectural and cultural values, history, and positive environmental benefits that symbiotically interact with the progress of modern megapolitan city spatial infrastructure.',
+          title: 'Mission 2: Cultural Architectural Reconstruction',
+          desc: 'Delivering holistic OOH services that synergize the philosophy of historical ornament preservation with the progress of modern megapolitan city spatial infrastructure sustainably.',
         },
         {
-          title: 'Mission 3: Government & Private Partnership',
-          desc: 'Realizing the improvement of efficiency and effectiveness of OOH media product results based on a professional spirit and performance, collaborating with all parties, both government and private institutions.',
+          title: 'Mission 3: Government & Private Synergy',
+          desc: 'Enhancing the efficiency and effectiveness of OOH campaigns through professional performance and building solid strategic partnerships with government institutions and the private sector.',
         },
         {
-          title: 'Mission 4: Mutual Welfare',
-          desc: 'Achieving adequate profit-taking to continue increasing corporate income, attaining progress and success for stakeholders and employees.',
+          title: 'Mission 4: Macro Profitability Growth',
+          desc: 'Generating exponential profits to ensure corporate business expansion, while realizing comprehensive welfare for all stakeholders and our team.',
         }
       ]
     }
@@ -239,38 +239,78 @@ const enTranslations = {
   services: {
     hero: {
       title: 'Services',
-      management: 'OOH Media Management',
-      desc: 'From conventional roadside Static & Digital Billboard, Transit to Airport Advertising, which are located at premium areas & key major Indonesian airports.',
+      management: 'Integrated OOH Services',
+      desc: 'End-to-end integrated outdoor media solutions. We blend premium production, strategic placement, expert consultation, and data-driven research.',
     },
-    mediaManagement: [
-      {
-        title: 'Improve Marketing with OOH Media Management',
-        desc: 'Optimizing and enhancing the effectiveness of outdoor advertising campaigns through strategic planning, placement, and measurement of out-of-home (OOH) media',
-      },
-      {
-        title: 'High Visibility',
-        desc: 'Ensuring your brand is seen by the right audience at the right time in high-traffic locations.',
-      },
-      {
-        title: 'Improved Targeting',
-        desc: 'Leveraging data to place ads where your target demographics are most likely to see them.',
-      }
-    ],
-    production: {
+    block1: {
       title: 'OOH Production House',
-      desc: 'Full-service digital printing company dedicated to providing high-quality, vibrant, and impactful printing solutions for businesses.',
+      desc: 'Executing outdoor media infrastructure with precision. From traditional billboards and DOOH to the revitalization of public utilities powered by cutting-edge technology.',
       items: [
         {
-          title: 'Transform Outdoor Ads with Our OOH Expertise',
-          desc: 'Our OOH production house offers specialized services and state-of-the-art technology to create, execute, and manage impactful outdoor advertising campaigns that effectively engage and captivate audiences.',
+          title: 'Public Utility Transformation',
+          desc: 'Revitalizing street name signage into premium commercial assets that merge local cultural aesthetics with modern LED technology.'
         },
         {
-          title: 'Creative Expertise',
-          desc: 'Bringing your brand vision to life with innovative designs and high-quality production.',
+          title: 'Premium Quality Infrastructure',
+          desc: 'Utilizing the finest production materials to ensure your visual masterpiece prints perfectly, stays sharp, and dominates the cityscape in any weather.'
         },
         {
-          title: 'Advanced Technology',
-          desc: 'Utilizing the latest digital printing and LED display technology for stunning visual results.',
+          title: 'DOOH & Conventional Execution',
+          desc: 'Total fabrication solutions for all media formats, from interactive Digital Out-Of-Home (DOOH) to macro-scale giant billboards.'
+        }
+      ]
+    },
+    block2: {
+      title: 'OOH Media Specialist',
+      desc: 'Dominating integrated primary arterial zones. We convert hundreds of millions of daily commuter mobilities into massive exposure and real conversion.',
+      items: [
+        {
+          title: 'Primary Arterial Dominance',
+          desc: 'Strategic ad placement along the transport veins of the Jabodetabek Super-Megapolitan to monopolize the attention of millions of daily viewers.'
+        },
+        {
+          title: 'Macro-Scale Visibility',
+          desc: 'Guaranteeing absolute exposure through a projection of over 159 million views annually, ensuring unmatched brand awareness.'
+        },
+        {
+          title: 'Experiential Marketing',
+          desc: 'Designing Point of Sales placements and Ambient Displays that integrate organically with your target audience\'s daily routine.'
+        }
+      ]
+    },
+    block3: {
+      title: 'OOH Consultation',
+      desc: 'Our professional team designs perfectly calibrated marketing blueprints. We dissect your brand needs holistically for absolute results.',
+      items: [
+        {
+          title: 'Conversion-Based Strategy',
+          desc: 'Beyond just renting ad space, we formulate campaign architectures tailored specifically to trigger action and optimize Return on Investment (ROI).'
+        },
+        {
+          title: 'Message & Location Synergy',
+          desc: 'Marrying your brand\'s visual identity with specific demographic characteristics at each placement point to create sharp relevance.'
+        },
+        {
+          title: 'Strategic Partnership',
+          desc: 'Acting as visibility architects who support your corporate growth through the sustainable expansion of out-of-home media networks.'
+        }
+      ]
+    },
+    block4: {
+      title: 'OOH Research',
+      desc: 'Marketing decisions must be backed by objective data. We dissect audience analytics and mobility projections to ensure your investment hits the mark.',
+      items: [
+        {
+          title: 'Precision Demographic Analysis',
+          desc: 'Analyzing target market segments based on interests and demographic profiles to ensure your campaign message reaches the right audience.'
+        },
+        {
+          title: 'Traffic Mobility Mapping',
+          desc: 'Leveraging daily vehicle volume data in special zones to provide mathematical calculations of your brand\'s exposure potential.'
+        },
+        {
+          title: 'Budget Efficiency Calculation',
+          desc: 'Designing media placement investment schemes (budget plans) with maximum efficiency without sacrificing the visual impact of your campaign.'
         }
       ]
     }
@@ -278,12 +318,12 @@ const enTranslations = {
   ourWorks: {
     hero: {
       title: 'Portfolio',
-      heading: 'Branding that Reaches the Target Market',
-      desc: 'Portfolio of outdoor advertising, street name signage, and spatial revitalization projects in Jakarta and Cirebon.',
+      heading: 'Visibility that Disrupts the Megapolitan Market',
+      desc: 'A showcase of outdoor media execution masterpieces, from premium billboard innovations to mega-projects revitalizing street name signage across primary arterial zones.',
     },
     section: {
-      heading: 'Conceptual Design, Strategic Placement',
-      desc: 'With a continuously growing network of outdoor advertising assets, we ensure your brand message is delivered in the right locations.',
+      heading: 'Visual Construction, Arterial Penetration',
+      desc: 'Through the command of the most strategic and integrated locations, we guarantee your brand message absolutely dominates the urban spatial landscape.',
     },
     items: {
       types: {
@@ -311,13 +351,13 @@ const enTranslations = {
     hero: {
       title: 'Contact Us',
       heading: 'Connecting Brand With Target Market',
-      desc: 'Contact our professional team to discuss the most effective outdoor advertising solutions for your brand campaign.',
+      desc: 'Schedule an exclusive discussion with our visual architects. Let\'s design the blueprint for your OOH dominance or join the mega-projects revitalizing the Jabodetabek region.',
     },
     findUs: 'Find Us Here:',
     form: {
       title: 'Contact',
       titleSuffix: ' Us',
-      subtitle: 'Contact us anytime',
+      subtitle: 'Send us the details of your requirements. We will respond with a solution blueprint.',
       placeholders: {
         name: 'Name',
         company: 'Company Name',
@@ -325,8 +365,8 @@ const enTranslations = {
         phone: 'Phone Number',
         message: 'Message',
       },
-      submit: 'SEND',
-      submitting: 'SENDING...',
+      submit: 'INITIATE PROJECT',
+      submitting: 'INITIATING...',
     },
     success: {
       title: 'Message',

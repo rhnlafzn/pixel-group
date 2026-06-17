@@ -131,13 +131,21 @@ function ContactSection({ formData, setFormData, handleSubmit, isSubmitting }) {
               <h2 className={`mt-4 text-[40px] md:text-[50px] lg:text-[68px] max-w-[500px] leading-[120%] transition-all duration-1000 delay-200 ${mounted ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
                 {lang === 'ID' ? (
                   <>
-                    <span className="text-accent">Menghubungkan</span> <span className="font-ramillas italic">Brand</span> Dengan{' '}
-                    <strong className="font-bold text-foreground">Target Pasar</strong>
+                    <span className="text-accent inline-block">Inisiasi</span>
+                    <br />
+                    <span className="font-ramillas italic font-normal text-foreground inline-block">Kemitraan</span>{' '}
+                    <span className="text-foreground inline-block">Strategis</span>
+                    <br />
+                    <span className="font-bold text-foreground inline-block">Megapolitan.</span>
                   </>
                 ) : (
                   <>
-                    <span className="text-accent">Connecting</span> <span className="font-ramillas italic">Brand</span> With{' '}
-                    <strong className="font-bold text-foreground">Target Market</strong>
+                    <span className="text-accent inline-block">Initiate</span>
+                    <br />
+                    <span className="font-ramillas italic font-normal text-foreground inline-block">Strategic</span>{' '}
+                    <span className="text-foreground inline-block">Partnership</span>
+                    <br />
+                    <span className="font-bold text-foreground inline-block">Megapolitan.</span>
                   </>
                 )}
               </h2>

@@ -159,11 +159,11 @@ const idTranslations = {
   about: {
     hero: {
       title: 'Tentang Kami',
-      desc: 'Pixel Group adalah perusahaan periklanan Out-of-Home (OOH) terkemuka di Indonesia, yang berspesialisasi dalam menyediakan ruang iklan berdampak tinggi melalui billboard dan tampilan digital di berbagai area perkotaan dan pinggiran kota utama.',
+      desc: 'PT Idea Kreasi Media adalah pelopor industri Media Out-Of-Home (OOH) di Indonesia. Kami merekayasa ruang iklan berdampak tinggi yang efektif mencetak konversi melalui transformasi utilitas publik dan media premium di jantung kota megapolitan',
     },
     expertise: {
       title: 'Keahlian Kami',
-      desc: 'Dengan fokus untuk membantu brand meningkatkan visibilitas mereka, Pixel Group menawarkan solusi khusus yang memaksimalkan jangkauan dan keterlibatan audiens. Di Pixel Group, kami mengatasi tantangan periklanan dengan pendekatan strategis dan berbasis data, memastikan brand Anda mencapai dampak visual maksimal.',
+      desc: 'Dengan fokus untuk membantu brand meningkatkan visibilitas mereka, PT Idea Kreasi Media menawarkan solusi khusus yang memaksimalkan jangkauan dan keterlibatan audiens. Kami mengatasi tantangan periklanan dengan pendekatan strategis dan berbasis data, memastikan brand Anda mencapai dampak visual maksimal.',
       cards: {
         comp: {
           title: 'Solusi OOH Komprehensif',
@@ -185,53 +185,53 @@ const idTranslations = {
     },
     whyUs: {
       title: 'Mengapa Kami',
-      desc: 'Pixel Group menonjol dalam lanskap periklanan OOH di Indonesia karena pendekatan komprehensifnya terhadap visibilitas brand. Dengan jaringan billboard dan tampilan digital yang luas yang ditempatkan secara strategis di area dengan lalu lintas tinggi di seluruh Indonesia, Pixel memastikan paparan maksimal untuk kampanye klien.',
+      desc: 'PT Idea Kreasi Media mendominasi lanskap periklanan OOH melalui pendekatan komprehensif berbasis konversi. Menguasai jaringan infrastruktur media luar ruang di titik arteri Super-Megapolitan, kami menggaransi eksposur maksimal yang meretas atensi ratusan juta audiens setiap harinya.',
       items: [
         {
-          title: 'Cakupan Luas',
-          desc: 'Jangkauan luas di area perkotaan dan pinggiran kota utama menghubungkan bisnis dengan audiens yang luas di lokasi premium.',
+          title: 'Jangkauan Masif',
+          desc: 'Terkoneksi langsung dengan ratusan juta mobilitas harian di kawasan khusus dan arteri primer Jabodetabek untuk penetrasi eksposur tanpa batas.',
         },
         {
-          title: 'Media Berkualitas Tinggi',
-          desc: 'Dari billboard hingga layar digital, media Pixel yang berdampak visual menangkap perhatian dan meninggalkan kesan mendalam.',
+          title: 'Inovasi Media Premium',
+          desc: 'Memadukan teknologi LED/Neon Box, Solar Panel, dan arsitektur estetika untuk menghasilkan visual tajam yang mendominasi ruang publik.',
         },
         {
-          title: 'Solusi Kustom',
-          desc: 'Strategi fleksibel yang disesuaikan memastikan kampanye efektif untuk semua ukuran bisnis dan anggaran, memaksimalkan ROI.',
+          title: 'Solusi OOH Holistik',
+          desc: 'Menyediakan eksekusi total dari Digital Out-Of-Home (DOOH), papan reklame konvensional, hingga media transit yang terkalibrasi khusus dengan target pasar Anda.',
         },
         {
-          title: 'Penempatan Strategis',
-          desc: 'Lokasi-lokasi penting di seluruh pusat bisnis dan transit meningkatkan keterlibatan audiens yang ditargetkan.',
+          title: 'Titik Arteri Strategis',
+          desc: 'Memonopoli pusat perekonomian ("Central Gravity") dan lalu lintas paling dinamis di Indonesia, memastikan brand Anda menjadi pusat perhatian utama.',
         },
         {
-          title: 'Keahlian dan Pengalaman',
-          desc: 'Pengalaman industri Pixel memungkinkan kampanye yang sukses dan efisien sumber daya yang selaras dengan tren pasar.',
+          title: 'Otoritas & Pengalaman',
+          desc: 'Berbekal rekam jejak historis sejak 1995, tim spesialis kami telah dipercaya merancang dan mengeksekusi kampanye raksasa berbagai korporasi multinasional.',
         }
       ]
     },
     vision: {
       title: 'Visi & Misi',
-      desc: 'PT. IDEA KREASI MEDIA dipandu oleh visi kuat untuk memodernisasi industri periklanan luar ruang dengan mengedepankan konsep, kreativitas, serta kelestarian nilai budaya lokal dan ornamen sejarah.',
+      desc: 'PT Idea Kreasi Media digerakkan oleh ambisi absolut untuk memodernisasi lanskap periklanan luar ruang. Kami memadukan kreativitas tanpa batas, teknologi mutakhir, dan pelestarian nilai arsitektur budaya untuk menciptakan mahakarya visual di pusat tata ruang kota.',
       items: [
         {
           title: 'Visi Korporasi',
-          desc: 'Mewujudkan dan membangun semangat dan kinerja profesionalisasi korporasi yang diharapkan akan terus bertumbuh dan berkembang di bidang layanan industri periklanan media luar ruang menuntut adanya konstruksi konsep, ide, kreativitas & inovasi seiring laju kemajuan dan pembaharuan teknologi, infrastruktur dan tata ruang dalam perkembangan landscape modernisasi kota megapolitan di daerah maupun nasional.',
+          desc: 'Menjadi korporasi periklanan OOH paling dominan dan profesional di tingkat nasional. Kami terus bertumbuh dengan merancang konsep, kreativitas, dan inovasi visual yang bersinergi sempurna dengan laju modernisasi infrastruktur serta tata ruang kota Super-Megapolitan.',
         },
         {
-          title: 'Misi 1: Inovasi & Kreativitas',
-          desc: 'Semakin begitu sengit dan tingginya tingkat competitiveness maka faktor tuntutan ide, kreativitas dan inovasi baru produk media luar ruang sangat menjadi andalan prioritas.',
+          title: 'Misi 1: Inovasi & Kreativitas Visual',
+          desc: 'Menghadapi iklim kompetisi yang ketat, kami menjadikan terobosan ide, kreativitas, dan inovasi desain media luar ruang sebagai prioritas mutlak untuk mendominasi pasar.',
         },
         {
-          title: 'Misi 2: Kelestarian Arsitektur Budaya',
-          desc: 'Merekonstruksi bentuk layanan media OOH yang lebih holistik mencakup pada filosofi nilai pelestarian arsitektur dan ornamen budaya, sejarah dan paduan kemanfaatan lingkungan berdampak positif yang bersimbiosis dengan kemajuan infrastruktur tata ruang modern kota megapolitan.',
+          title: 'Misi 2: Rekonstruksi Arsitektur Budaya',
+          desc: 'Menghadirkan layanan OOH holistik yang mensinergikan filosofi pelestarian ornamen sejarah dengan kemajuan infrastruktur tata ruang kota megapolitan modern secara berkelanjutan.',
         },
         {
-          title: 'Misi 3: Kemitraan Pemerintah & Swasta',
-          desc: 'Mewujudkan peningkatan efisiensi dan efektivitas hasil produk media OOH berlandaskan semangat dan kinerja profesionalitas menjalin kerjasama dengan semua pihak baik institusi pemerintah maupun swasta.',
+          title: 'Misi 3: Sinergi Pemerintah & Swasta',
+          desc: 'Meningkatkan efisiensi dan efektivitas kampanye OOH melalui kinerja profesional, serta membangun kemitraan strategis yang solid dengan institusi pemerintah maupun sektor swasta.',
         },
         {
-          title: 'Misi 4: Kesejahteraan Bersama',
-          desc: 'Mencetak profit taking yang memadai untuk terus meningkatkan laba income korporasi meraih kemajuan dan kesuksesan para pemangku kepentingan dan karyawannya.',
+          title: 'Misi 4: Pertumbuhan Profitabilitas Makro',
+          desc: 'Mencetak profit eksponensial untuk memastikan ekspansi bisnis korporasi, sekaligus mewujudkan kesejahteraan komprehensif bagi seluruh pemangku kepentingan dan tim kami.',
         }
       ]
     }
@@ -239,38 +239,78 @@ const idTranslations = {
   services: {
     hero: {
       title: 'Layanan',
-      management: 'OOH Media Management',
-      desc: 'Mulai dari Papan Reklame Statis & Digital konvensional di pinggir jalan, Transit hingga Iklan Bandara, yang terletak di area premium & bandara-bandara utama utama di Indonesia.',
+      management: 'Layanan OOH Terintegrasi',
+      desc: 'Solusi media luar ruang terintegrasi dari hulu ke hilir. Kami memadukan produksi premium, penempatan strategis, konsultasi ahli, dan riset berbasis data.',
     },
-    mediaManagement: [
-      {
-        title: 'Tingkatkan Pemasaran dengan OOH Media Management',
-        desc: 'Mengoptimalkan dan meningkatkan efektivitas kampanye iklan luar ruang melalui perencanaan strategis, penempatan, dan pengukuran media out-of-home (OOH)',
-      },
-      {
-        title: 'Visibilitas Tinggi',
-        desc: 'Memastikan brand Anda terlihat oleh audiens yang tepat pada waktu yang tepat di lokasi dengan lalu lintas padat.',
-      },
-      {
-        title: 'Target Sasaran Lebih Baik',
-        desc: 'Memanfaatkan data untuk menempatkan iklan di mana demografi target Anda kemungkinan besar akan melihatnya.',
-      }
-    ],
-    production: {
+    block1: {
       title: 'OOH Production House',
-      desc: 'Perusahaan pencetakan digital layanan lengkap yang didedikasikan untuk menyediakan solusi pencetakan berkualitas tinggi, dinamis, dan berdampak bagi bisnis.',
+      desc: 'Eksekusi infrastruktur media luar ruang secara presisi. Dari reklame tradisional, DOOH, hingga revitalisasi utilitas publik komersial berteknologi mutakhir.',
       items: [
         {
-          title: 'Transformasikan Iklan Luar Ruang dengan Keahlian OOH Kami',
-          desc: 'OOH production house kami menawarkan layanan khusus dan teknologi mutakhir untuk membuat, melaksanakan, dan mengelola kampanye periklanan luar ruang berdampak tinggi yang secara efektif menarik dan memikat audiens.',
+          title: 'Transformasi Utilitas Publik',
+          desc: 'Merevitalisasi tiang nama jalan menjadi aset komersial premium yang memadukan estetika budaya dan teknologi LED modern.'
         },
         {
-          title: 'Keahlian Kreatif',
-          desc: 'Menghidupkan visi brand Anda dengan desain inovatif dan produksi berkualitas tinggi.',
+          title: 'Infrastruktur Kualitas Premium',
+          desc: 'Menggunakan material produksi terbaik untuk memastikan mahakarya visual Anda tercetak sempurna, tajam, dan mendominasi lanskap kota dalam segala cuaca.'
         },
         {
-          title: 'Teknologi Canggih',
-          desc: 'Memanfaatkan teknologi pencetakan digital dan tampilan LED terbaru untuk hasil visual yang menakjubkan.',
+          title: 'Eksekusi DOOH & Konvensional',
+          desc: 'Solusi pabrikasi total untuk berbagai format media, dari Digital Out-Of-Home (DOOH) interaktif hingga papan reklame raksasa berskala makro.'
+        }
+      ]
+    },
+    block2: {
+      title: 'OOH Media Specialist',
+      desc: 'Menguasai kawasan arteri primer yang terintegrasi. Kami mengubah ratusan juta mobilitas harian audiens menjadi tingkat eksposur masif dan konversi nyata.',
+      items: [
+        {
+          title: 'Dominasi Arteri Primer',
+          desc: 'Penempatan titik iklan strategis di sepanjang urat nadi transportasi Super-Megapolitan Jabodetabek untuk memonopoli pandangan jutaan audiens harian.'
+        },
+        {
+          title: 'Visibilitas Skala Makro',
+          desc: 'Menggaransi eksposur absolut melalui proyeksi lebih dari 159 juta titik pandang per tahun, memastikan brand awareness yang tak tertandingi.'
+        },
+        {
+          title: 'Pemasaran Eksperiensial',
+          desc: 'Merancang penempatan Point of Sales dan Ambient Display yang menyatu secara organik dengan rutinitas target pasar Anda.'
+        }
+      ]
+    },
+    block3: {
+      title: 'OOH Consultation',
+      desc: 'Tim profesional kami merancang cetak biru pemasaran yang terkalibrasi sempurna. Kami membedah kebutuhan brand Anda secara holistik untuk hasil yang absolut.',
+      items: [
+        {
+          title: 'Strategi Berbasis Konversi',
+          desc: 'Tidak sekadar menyewakan ruang iklan, kami merumuskan arsitektur kampanye yang dirancang khusus untuk memicu tindakan dan Return on Investment (ROI) optimal.'
+        },
+        {
+          title: 'Sinergi Pesan & Lokasi',
+          desc: 'Mengawinkan identitas visual brand Anda dengan karakteristik demografis spesifik di setiap titik penempatan untuk menciptakan relevansi yang tajam.'
+        },
+        {
+          title: 'Kemitraan Strategis',
+          desc: 'Bertindak sebagai arsitek visibilitas yang mendampingi pertumbuhan korporasi Anda melalui ekspansi jaringan media luar ruang yang berkelanjutan.'
+        }
+      ]
+    },
+    block4: {
+      title: 'OOH Research',
+      desc: 'Keputusan pemasaran harus didukung oleh data objektif. Kami membedah analitik audiens dan proyeksi mobilitas untuk memastikan investasi Anda tepat sasaran.',
+      items: [
+        {
+          title: 'Analisis Demografi Presisi',
+          desc: 'Membedah segmentasi target pasar berdasarkan minat dan profil demografis untuk memastikan pesan kampanye Anda menembus audiens yang tepat.'
+        },
+        {
+          title: 'Pemetaan Mobilitas Lalu Lintas',
+          desc: 'Memanfaatkan data statistik volume kendaraan harian di kawasan khusus untuk menyajikan kalkulasi matematis dari potensi eksposur brand Anda.'
+        },
+        {
+          title: 'Kalkulasi Efisiensi Anggaran',
+          desc: 'Merancang skema investasi penempatan media (budget plan) dengan biaya paling efisien tanpa mengorbankan daya ledak visual kampanye.'
         }
       ]
     }
@@ -278,12 +318,12 @@ const idTranslations = {
   ourWorks: {
     hero: {
       title: 'Portofolio',
-      heading: 'Branding yang Menjangkau Target Pasar',
-      desc: 'Portofolio proyek periklanan luar ruang, tiang nama jalan, dan revitalisasi tata ruang di Jakarta dan Cirebon.',
+      heading: 'Visibilitas yang Meretas Pasar Megapolitan',
+      desc: 'Etalase mahakarya eksekusi media luar ruang, dari inovasi papan reklame premium hingga mega-proyek revitalisasi tiang nama jalan di berbagai kawasan arteri primer.',
     },
     section: {
-      heading: 'Desain Konseptual, Penempatan Strategis',
-      desc: 'Dengan jaringan aset periklanan luar ruang yang terus berkembang, kami memastikan pesan brand Anda tersampaikan di lokasi yang tepat.',
+      heading: 'Konstruksi Visual, Penetrasi Arteri',
+      desc: 'Melalui penguasaan titik lokasi paling strategis dan terintegrasi, kami menggaransi pesan brand Anda mendominasi lanskap tata ruang kota secara absolut.',
     },
     items: {
       types: {
@@ -311,13 +351,13 @@ const idTranslations = {
     hero: {
       title: 'Hubungi Kami',
       heading: 'Menghubungkan Brand Dengan Target Pasar',
-      desc: 'Hubungi tim profesional kami untuk mendiskusikan solusi periklanan luar ruang yang paling efektif bagi kampanye brand Anda.',
+      desc: 'Jadwalkan diskusi eksklusif bersama tim arsitek visual kami. Mari merancang cetak biru dominasi OOH Anda atau bergabung dalam mega-proyek revitalisasi kawasan Jabodetabek.',
     },
     findUs: 'Temukan Kami Di Sini:',
     form: {
       title: 'Hubungi',
       titleSuffix: ' Kami',
-      subtitle: 'Hubungi kami kapan saja',
+      subtitle: 'Kirimkan detail kebutuhan Anda. Kami akan merespons dengan cetak biru solusi.',
       placeholders: {
         name: 'Nama',
         company: 'Nama Perusahaan',
@@ -325,8 +365,8 @@ const idTranslations = {
         phone: 'Nomor Telepon',
         message: 'Pesan',
       },
-      submit: 'KIRIM',
-      submitting: 'MENGIRIM...',
+      submit: 'INISIASI PROYEK',
+      submitting: 'MENGINISIASI...',
     },
     success: {
       title: 'Pesan',

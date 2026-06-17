@@ -176,15 +176,15 @@ function HeroSection() {
             >
               {lang === 'ID' ? (
                 <>
-                  <span className="text-accent">Branding</span> yang
-                  <br className="md:hidden" />
-                  {' '}<span>Menjangkau</span> <span className="font-bold">Target Pasar</span>
+                  <span className="text-accent">Visibilitas</span> yang
+                  <br />
+                  <span>Meretas Pasar</span> <span className="font-bold">Megapolitan</span>
                 </>
               ) : (
                 <>
-                  <span className="text-accent">Branding</span> that
-                  <br className="md:hidden" />
-                  {' '}<span>Reaches the</span> <span className="font-bold">Target Market</span>
+                  <span className="text-accent">Visibility</span> that
+                  <br />
+                  <span>Disrupts the</span> <span className="font-bold">Megapolitan Market</span>
                 </>
               )}
             </h2>
@@ -208,14 +208,15 @@ function HeroSection() {
               }`}
             >
               {lang === 'ID' ? (
-                <span className="block font-bold text-accent">Desain <span className="italic">Kon</span>septual,</span>
+                <>
+                  <span className="block font-bold text-accent">Konstruksi <span className="italic">Vi</span>sual,</span>
+                  <span>Penetrasi <span className="font-bold">Arteri</span></span>
+                </>
               ) : (
-                <span className="block font-bold text-accent">Conceptual <span className="italic">De</span>sign,</span>
-              )}
-              {lang === 'ID' ? (
-                <>Penempatan <span className="font-bold">Strategis</span></>
-              ) : (
-                <>Strategic <span className="font-bold">Placement</span></>
+                <>
+                  <span className="block font-bold text-accent">Visual <span className="italic">Con</span>struction,</span>
+                  <span>Arterial <span className="font-bold">Penetration</span></span>
+                </>
               )}
             </h3>
           </div>

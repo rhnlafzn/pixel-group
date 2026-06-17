@@ -71,7 +71,7 @@ export default function AboutPage() {
 function HeroSection() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => { const t = setTimeout(() => setMounted(true), 100); return () => clearTimeout(t); }, []);
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
 
   return (
     <section className="relative isolate z-10 flex items-center pt-16 md:pt-20">
@@ -97,22 +97,45 @@ function HeroSection() {
               </h1>
               
               <h2 className={`mt-4 text-[40px] leading-tight md:text-[50px] md:leading-[81.6px] lg:text-[68px] whitespace-pre-line transition-all duration-1000 delay-200 ${mounted ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
-                <span className="text-accent inline-block">
-                  Am
-                </span>
-                <span className="text-accent font-tt-ramillas italic inline-block">
-                  plifying
-                </span>{' '}
-                <span className="text-accent inline-block">
-                  Business
-                </span>{' '}
-                <span className="font-bold inline-block">
-                  Impact
-                </span>{' '}
-                Through{' '}
-                <span className="font-bold inline-block">
-                  Visual Connections
-                </span>
+                {lang === 'ID' ? (
+                  <>
+                    <span className="text-accent inline-block">
+                      Meng
+                    </span>
+                    <span className="text-accent font-tt-ramillas italic inline-block">
+                      ubah
+                    </span>{' '}
+                    <span className="text-accent inline-block">
+                      Ruang
+                    </span>{' '}
+                    <span className="font-bold inline-block">
+                      Publik
+                    </span>{' '}
+                    Menjadi{' '}
+                    <span className="font-bold inline-block">
+                      Aset Konversi
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <span className="text-accent inline-block">
+                      Am
+                    </span>
+                    <span className="text-accent font-tt-ramillas italic inline-block">
+                      plifying
+                    </span>{' '}
+                    <span className="text-accent inline-block">
+                      Business
+                    </span>{' '}
+                    <span className="font-bold inline-block">
+                      Impact
+                    </span>{' '}
+                    Through{' '}
+                    <span className="font-bold inline-block">
+                      Visual Connections
+                    </span>
+                  </>
+                )}
               </h2>
               
               <p className={`mt-6 text-[16px] md:mt-8 md:text-[18px] lg:text-[20px] font-lato transition-all duration-1000 delay-400 ${mounted ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
@@ -386,26 +409,26 @@ function HistoryTimelineSection() {
     {
       year: '1995',
       period: '1995 - 2002',
-      title: 'Fokus Production I',
+      title: lang === 'ID' ? 'Inisiasi Visi Revitalisasi' : 'Revitalization Vision Initiation',
       desc: lang === 'ID' 
-        ? 'Bermula dari inisiasi ide murni Program Revitalisasi yang pertama kali dilaksanakan di Cirebon, berjalan sukses dari tahun 1995 sampai dengan 2002.'
-        : 'Began from the initiation of the pure Revitalization Program idea first implemented in Cirebon, running successfully from 1995 to 2002.'
+        ? 'Tonggak sejarah bermula dari eksekusi murni Program Revitalisasi di Cirebon di bawah bendera Fokus Production. Sebuah inisiasi awal yang sukses meletakkan fondasi transformasi media luar ruang dari tahun 1995 hingga 2002.'
+        : 'The historical milestone began with the execution of the pure Revitalization Program in Cirebon under the banner of Fokus Production. An early initiation that successfully laid the foundation for outdoor media transformation from 1995 to 2002.'
     },
     {
       year: '2018',
       period: '2018 - 2023',
-      title: lang === 'ID' ? 'Kemitraan LKC' : 'LKC Partnership',
+      title: lang === 'ID' ? 'Sinergi Budaya & Komersial' : 'Cultural & Commercial Synergy',
       desc: lang === 'ID'
-        ? 'Kemitraan strategis Fokus Production dengan Lembaga Kebudayaan Cirebon (LKC) dalam menghadirkan media luar ruang yang menyatu dengan nilai kelestarian budaya lokal.'
-        : 'Strategic partnership of Fokus Production with the Cirebon Cultural Institution (LKC) to deliver out-of-home media aligned with local cultural preservation values.'
+        ? 'Kami menjalin kemitraan strategis dengan Lembaga Kebudayaan Cirebon (LKC). Fase ini melahirkan terobosan OOH holistik yang mengawinkan filosofi pelestarian arsitektur budaya lokal dengan visibilitas komersial.'
+        : 'We established a strategic partnership with the Cirebon Cultural Institution (LKC). This phase birthed a holistic OOH breakthrough marrying the philosophy of local cultural architecture preservation with commercial visibility.'
     },
     {
       year: '2023',
-      period: '2023 - Sekarang',
-      title: 'PT. IDEA KREASI MEDIA',
+      period: '2023 - SEKARANG',
+      title: lang === 'ID' ? 'Dominasi Super-Megapolitan' : 'Super-Megapolitan Dominance',
       desc: lang === 'ID'
-        ? 'Dalam rangka ekspansi dan pengembangan bisnis yang lebih luas di Jakarta, Fokus Production bertransformasi secara legal menjadi PT. IDEA KREASI MEDIA.'
-        : 'In the context of wider business expansion and development in Jakarta, Fokus Production legally transformed into PT. IDEA KREASI MEDIA.'
+        ? 'Didorong oleh eskalasi pengembangan bisnis berskala makro di Jakarta, entitas ini bertransformasi secara legal menjadi PT Idea Kreasi Media. Evolusi ini menandai era baru dominasi kami di pusat perekonomian Jabodetabek.'
+        : 'Driven by the escalation of macro-scale business development in Jakarta, this entity legally transformed into PT Idea Kreasi Media. This evolution marks a new era of our dominance in the Jabodetabek economic center.'
     }
   ];
 

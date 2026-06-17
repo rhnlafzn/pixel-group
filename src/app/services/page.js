@@ -6,154 +6,74 @@ import { useLanguage } from '@/context/LanguageContext';
 
 const BASE = 'https://pixelgroup.id';
 
-const oohMediaStaticData = [
-  {
-    image: `${BASE}/uploads/large_IMG_20250411_103911_38db06e4de.jpg`,
-  },
-  {
-    image: `${BASE}/uploads/large_IMG_20250411_103911_38db06e4de.jpg`,
-  },
-  {
-    image: `${BASE}/uploads/large_IMG_20250411_103911_38db06e4de.jpg`,
-  },
+const block1Images = [
+  `${BASE}/uploads/large_Copy_of_Pixel_1503_SO_1_53757bd66c.jpg`,
+  `${BASE}/uploads/large_IMG_20250411_103839_3acbf2b5d6.jpg`,
+  `${BASE}/uploads/large_CGK_3_Inter_Giant_LED_210125_00930_39202e33fb.jpg`
 ];
 
-const oohProductionStaticData = [
-  {
-    image: `${BASE}/uploads/large_IMG_20250411_103839_3acbf2b5d6.jpg`,
-  },
-  {
-    image: `${BASE}/uploads/large_IMG_20250411_103839_3acbf2b5d6.jpg`,
-  },
-  {
-    image: `${BASE}/uploads/large_IMG_20250411_103839_3acbf2b5d6.jpg`,
-  },
+const block2Images = [
+  `${BASE}/uploads/large_Whats_App_Image_2025_03_06_at_4_08_39_PM_19043b85f3.jpeg`,
+  `${BASE}/uploads/large_DPS_Inter_Arrival_Walkway_241024_3894_e96cde30e4.jpg`,
+  `${BASE}/uploads/large_LRT_Train_Le_Mineral_211124_5249_ff22b2f7dd.jpg`
+];
+
+const block3Images = [
+  `/images/services/consultation.png`,
+  `/images/services/consultation.png`,
+  `/images/services/consultation.png`
+];
+
+const block4Images = [
+  `/images/services/research.png`,
+  `/images/services/research.png`,
+  `/images/services/research.png`
 ];
 
 export default function ServicesPage() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <main className="flex-1" id="page-scroll-container">
-        <HeroSection />
-        <MediaManagementSection />
-        <ProductionHouseSection />
+      <main className="flex-1 pt-24" id="page-scroll-container">
+        <Block1Section />
+        <Block2Section />
+        <Block3Section />
+        <Block4Section />
         <CTASection />
       </main>
     </div>
   );
 }
 
-function HeroSection() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => { const t = setTimeout(() => setMounted(true), 100); return () => clearTimeout(t); }, []);
+// BLOCK 1: OOH Production House (Left Aligned Header, Image Left, Accordion Right)
+function Block1Section() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const resolvedActiveIndex = activeIndex === -1 ? 0 : activeIndex;
+  const [ref, isVisible] = useScrollAnimation({ threshold: 0.1 });
   const { t } = useLanguage();
 
+  const services = block1Images.map((img, i) => ({
+    image: img,
+    title: t(`services.block1.items.${i}.title`),
+    desc: t(`services.block1.items.${i}.desc`),
+  }));
+
   return (
-    <section className="relative z-10 pt-28 pb-20" id="ooh-media-management">
-      <div className="relative isolate z-10 h-full pb-11 md:pb-14 xl:pb-20">
-        <div aria-hidden="true" className="absolute inset-x-0 top-[-20%] z-0 h-[150%] overflow-hidden bg-background">
-          <div className="blue-dot-grid opacity-30">
-            <div className="dot-layer dot-layer-1" />
-            <div className="dot-layer dot-layer-2" />
-            <div className="dot-layer dot-layer-3" />
-          </div>
-          <div className="blue-glow-top opacity-50" />
-          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-background/0" />
-          <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-background to-background/0" />
-        </div>
-        <div
-          className="container relative z-10 font-helvetica"
-        >
-          <h1 className={`font-bold text-2xl text-foreground transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
-            {t('services.hero.title')}
-          </h1>
-          <h2 className={`mt-4 max-w-[536px] text-[40px] leading-[1.2] md:text-[50px] xl:text-[68px] transition-all duration-1000 delay-200 ${mounted ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
-            <span className="text-accent">OOH</span> <span>M</span><span className="font-ramillas italic">edia</span> <span className="font-bold">Management</span>
+    <section className="relative z-10 py-10 lg:py-16" id="ooh-production-house">
+      <div className="relative isolate z-10" ref={ref}>
+        <div className="container relative z-10 font-helvetica text-left">
+          <h2 className={`mt-4 max-w-[600px] text-[40px] leading-[1.2] md:text-[50px] xl:text-[68px] transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
+            <span className="text-accent">OOH</span> <span>Pro</span><span className="font-ramillas italic font-normal text-accent">ductio</span>n <span className="font-bold">House</span>
           </h2>
-          <p className={`mt-4 text-base font-lato md:pl-[30%] md:text-lg lg:pl-[41%] lg:text-right xl:text-xl transition-all duration-1000 delay-400 ${mounted ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
-            {t('services.hero.desc')}
+          <p className={`mt-4 max-w-[640px] text-base font-lato md:text-lg xl:text-xl transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
+            {t('services.block1.desc')}
           </p>
         </div>
       </div>
-    </section>
-  );
-}
-
-function MediaManagementSection() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const resolvedActiveIndex = activeIndex === -1 ? 0 : activeIndex;
-  const { t } = useLanguage();
-
-  const oohMediaServices = oohMediaStaticData.map((item, i) => ({
-    ...item,
-    title: t(`services.mediaManagement.${i}.title`),
-    desc: t(`services.mediaManagement.${i}.desc`),
-  }));
-
-  return (
-    <div className="relative z-10 py-6">
-      <div className="container flex md:gap-x-4 xl:gap-x-20">
-        <div className="hidden w-[40%] md:block">
-          <div className="relative box-border w-full overflow-hidden rounded-2xl border border-border md:aspect-[294/430] xl:aspect-[1/1]">
-            {oohMediaServices.map((service, i) => (
-              <img
-                key={i}
-                src={service.image}
-                alt={service.title}
-                className={`absolute inset-0 h-full w-full object-cover transition-all duration-700 ${resolvedActiveIndex === i ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
-              />
-            ))}
-          </div>
-        </div>
-        <div className="flex-1">
-          {oohMediaServices.map((service, i) => (
-            <AccordionItem
-              key={i}
-              number={`0${i + 1}`}
-              title={service.title}
-              desc={service.desc}
-              image={service.image}
-              isOpen={activeIndex === i}
-              onToggle={() => setActiveIndex(activeIndex === i ? -1 : i)}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ProductionHouseSection() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const resolvedActiveIndex = activeIndex === -1 ? 0 : activeIndex;
-  const [prodRef, prodVisible] = useScrollAnimation({ threshold: 0.1 });
-  const { t } = useLanguage();
-
-  const oohProductionServices = oohProductionStaticData.map((item, i) => ({
-    ...item,
-    title: t(`services.production.items.${i}.title`),
-    desc: t(`services.production.items.${i}.desc`),
-  }));
-
-  return (
-    <section className="relative z-10 pt-10 pb-20" id="ooh-production-house">
-      <div className="relative isolate z-10" ref={prodRef}>
-        <div className="container relative z-10 font-helvetica">
-          <div className="flex justify-end">
-            <h2 className={`mt-4 max-w-[536px] text-right text-[40px] leading-[1.2] md:text-[50px] xl:text-[68px] transition-all duration-1000 ${prodVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
-              <span className="text-accent">OOH</span> <span>Pro</span><span className="font-ramillas italic font-normal text-accent">ductio</span>n <span className="font-bold">House</span>
-            </h2>
-          </div>
-          <p className={`mt-4 max-w-[640px] text-base font-lato md:text-lg xl:text-xl transition-all duration-1000 delay-200 ${prodVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px] ml-auto text-right'}`}>
-            {t('services.production.desc')}
-          </p>
-        </div>
-      </div>
-      <div className="relative z-10 mt-14">
-        <div className="container flex md:gap-x-4 xl:gap-x-20 flex-row-reverse">
-          <div className="hidden w-[40%] md:block">
-            <div className="relative box-border w-full overflow-hidden rounded-2xl border border-border md:aspect-[294/430] xl:aspect-[1/1]">
-              {oohProductionServices.map((service, i) => (
+      <div className="relative z-10 mt-10">
+        <div className="container flex flex-col md:flex-row md:gap-x-8 xl:gap-x-20">
+          <div className="w-full md:w-[40%] mb-6 md:mb-0">
+            <div className="relative box-border w-full overflow-hidden rounded-2xl border border-border aspect-[4/3] md:aspect-[294/430] xl:aspect-[1/1]">
+              {services.map((service, i) => (
                 <img
                   key={i}
                   src={service.image}
@@ -164,7 +84,181 @@ function ProductionHouseSection() {
             </div>
           </div>
           <div className="flex-1">
-            {oohProductionServices.map((service, i) => (
+            {services.map((service, i) => (
+              <AccordionItem
+                key={i}
+                number={`0${i + 1}`}
+                title={service.title}
+                desc={service.desc}
+                image={service.image}
+                isOpen={activeIndex === i}
+                onToggle={() => setActiveIndex(activeIndex === i ? -1 : i)}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// BLOCK 2: OOH Media Specialist (Right Aligned Header, Image Right, Accordion Left)
+function Block2Section() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const resolvedActiveIndex = activeIndex === -1 ? 0 : activeIndex;
+  const [ref, isVisible] = useScrollAnimation({ threshold: 0.1 });
+  const { t } = useLanguage();
+
+  const services = block2Images.map((img, i) => ({
+    image: img,
+    title: t(`services.block2.items.${i}.title`),
+    desc: t(`services.block2.items.${i}.desc`),
+  }));
+
+  return (
+    <section className="relative z-10 py-10 lg:py-16 bg-card/10" id="ooh-media-specialist">
+      <div className="relative isolate z-10" ref={ref}>
+        <div className="container relative z-10 font-helvetica text-right flex flex-col items-end">
+          <h2 className={`mt-4 max-w-[600px] text-[40px] leading-[1.2] md:text-[50px] xl:text-[68px] transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
+            <span className="text-accent">OOH</span> <span>M</span><span className="font-ramillas italic font-normal text-accent">edia</span> <span className="font-bold">Specialist</span>
+          </h2>
+          <p className={`mt-4 max-w-[640px] text-base font-lato md:text-lg xl:text-xl transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px] text-right'}`}>
+            {t('services.block2.desc')}
+          </p>
+        </div>
+      </div>
+      <div className="relative z-10 mt-10">
+        <div className="container flex flex-col md:flex-row-reverse md:gap-x-8 xl:gap-x-20">
+          <div className="w-full md:w-[40%] mb-6 md:mb-0">
+            <div className="relative box-border w-full overflow-hidden rounded-2xl border border-border aspect-[4/3] md:aspect-[294/430] xl:aspect-[1/1]">
+              {services.map((service, i) => (
+                <img
+                  key={i}
+                  src={service.image}
+                  alt={service.title}
+                  className={`absolute inset-0 h-full w-full object-cover transition-all duration-700 ${resolvedActiveIndex === i ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="flex-1">
+            {services.map((service, i) => (
+              <AccordionItem
+                key={i}
+                number={`0${i + 1}`}
+                title={service.title}
+                desc={service.desc}
+                image={service.image}
+                isOpen={activeIndex === i}
+                onToggle={() => setActiveIndex(activeIndex === i ? -1 : i)}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// BLOCK 3: OOH Consultation (Left Aligned Header, Image Left, Accordion Right)
+function Block3Section() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const resolvedActiveIndex = activeIndex === -1 ? 0 : activeIndex;
+  const [ref, isVisible] = useScrollAnimation({ threshold: 0.1 });
+  const { t } = useLanguage();
+
+  const services = block3Images.map((img, i) => ({
+    image: img,
+    title: t(`services.block3.items.${i}.title`),
+    desc: t(`services.block3.items.${i}.desc`),
+  }));
+
+  return (
+    <section className="relative z-10 py-10 lg:py-16" id="ooh-consultation">
+      <div className="relative isolate z-10" ref={ref}>
+        <div className="container relative z-10 font-helvetica text-left">
+          <h2 className={`mt-4 max-w-[600px] text-[40px] leading-[1.2] md:text-[50px] xl:text-[68px] transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
+            <span className="text-accent">OOH</span> <span>Con</span><span className="font-ramillas italic font-normal text-accent">sultati</span>on
+          </h2>
+          <p className={`mt-4 max-w-[640px] text-base font-lato md:text-lg xl:text-xl transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
+            {t('services.block3.desc')}
+          </p>
+        </div>
+      </div>
+      <div className="relative z-10 mt-10">
+        <div className="container flex flex-col md:flex-row md:gap-x-8 xl:gap-x-20">
+          <div className="w-full md:w-[40%] mb-6 md:mb-0">
+            <div className="relative box-border w-full overflow-hidden rounded-2xl border border-border aspect-[4/3] md:aspect-[294/430] xl:aspect-[1/1]">
+              {services.map((service, i) => (
+                <img
+                  key={i}
+                  src={service.image}
+                  alt={service.title}
+                  className={`absolute inset-0 h-full w-full object-cover transition-all duration-700 ${resolvedActiveIndex === i ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="flex-1">
+            {services.map((service, i) => (
+              <AccordionItem
+                key={i}
+                number={`0${i + 1}`}
+                title={service.title}
+                desc={service.desc}
+                image={service.image}
+                isOpen={activeIndex === i}
+                onToggle={() => setActiveIndex(activeIndex === i ? -1 : i)}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// BLOCK 4: OOH Research (Right Aligned Header, Image Right, Accordion Left)
+function Block4Section() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const resolvedActiveIndex = activeIndex === -1 ? 0 : activeIndex;
+  const [ref, isVisible] = useScrollAnimation({ threshold: 0.1 });
+  const { t } = useLanguage();
+
+  const services = block4Images.map((img, i) => ({
+    image: img,
+    title: t(`services.block4.items.${i}.title`),
+    desc: t(`services.block4.items.${i}.desc`),
+  }));
+
+  return (
+    <section className="relative z-10 py-10 lg:py-16 bg-card/10" id="ooh-research">
+      <div className="relative isolate z-10" ref={ref}>
+        <div className="container relative z-10 font-helvetica text-right flex flex-col items-end">
+          <h2 className={`mt-4 max-w-[600px] text-[40px] leading-[1.2] md:text-[50px] xl:text-[68px] transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
+            <span className="text-accent">OOH</span> <span>Re</span><span className="font-ramillas italic font-normal text-accent">searc</span>h
+          </h2>
+          <p className={`mt-4 max-w-[640px] text-base font-lato md:text-lg xl:text-xl transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px] text-right'}`}>
+            {t('services.block4.desc')}
+          </p>
+        </div>
+      </div>
+      <div className="relative z-10 mt-10">
+        <div className="container flex flex-col md:flex-row-reverse md:gap-x-8 xl:gap-x-20">
+          <div className="w-full md:w-[40%] mb-6 md:mb-0">
+            <div className="relative box-border w-full overflow-hidden rounded-2xl border border-border aspect-[4/3] md:aspect-[294/430] xl:aspect-[1/1]">
+              {services.map((service, i) => (
+                <img
+                  key={i}
+                  src={service.image}
+                  alt={service.title}
+                  className={`absolute inset-0 h-full w-full object-cover transition-all duration-700 ${resolvedActiveIndex === i ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="flex-1">
+            {services.map((service, i) => (
               <AccordionItem
                 key={i}
                 number={`0${i + 1}`}
@@ -188,7 +282,7 @@ function AccordionItem({ number, title, desc, image, isOpen, onToggle }) {
       <span className={`w-7 font-bold font-lato text-sm md:text-base mt-[4px] transition-colors ${isOpen ? 'text-primary' : 'text-accent group-hover:text-primary'}`}>
         {number}
       </span>
-      <div className="flex-1">
+      <div className="flex-1 text-left">
         <div className="flex gap-x-1 mb-4">
           <h3 className={`flex-1 font-helvetica text-[24px] leading-[1.1] md:text-[28px] xl:text-[32px] transition-colors ${isOpen ? 'text-primary font-bold' : 'text-foreground group-hover:text-primary'}`}>
             {title}
