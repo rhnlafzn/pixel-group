@@ -325,12 +325,11 @@
   }
 }
 
-/* Mobile menu — light glass */
+/* Mobile menu — premium dark slate matching footer */
 .mobile-menu {
   position: fixed;
   inset: 0;
-  background: rgba(220, 231, 240, 0.85); /* Premium ice-blue translucent glass */
-  backdrop-filter: blur(24px);
+  background: #0d1c2a; /* Premium midnight/slate blue matching footer */
   z-index: 40;
   transform: translateX(100%);
   transition: transform 0.3s ease;

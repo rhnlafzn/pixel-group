@@ -35,14 +35,14 @@ export default function Navbar() {
   }, []);
 
   const isHome = pathname === '/';
-  const headerTextColor = 'text-foreground';
+  const headerTextColor = mobileOpen ? 'text-white' : 'text-foreground';
   const scrollBgColor = scrolled 
     ? 'bg-background/45 backdrop-blur-[2px]' 
     : 'bg-transparent';
 
   return (
     <>
-      <header className={`navbar fixed inset-x-0 top-0 z-[999] h-[108px] max-w-[100dvw] md:h-[120px] landscape:h-[70px] transition-all duration-300 ease-in-out ${scrollBgColor} ${headerTextColor} ${
+      <header className={`navbar fixed inset-x-0 top-0 z-[999] h-[88px] max-w-[100dvw] md:h-24 landscape:h-[60px] transition-all duration-300 ease-in-out ${scrollBgColor} ${headerTextColor} ${
         showNavbar ? 'translate-y-0' : '-translate-y-full shadow-none'
       } ${
         mounted ? 'opacity-100 blur-none' : 'opacity-0 -translate-y-[20px] blur-[5px]'
@@ -89,7 +89,7 @@ export default function Navbar() {
           <div className="flex items-center gap-x-4 md:gap-x-6">
             <Link href="/" className="z-50">
               <div>
-                <PixelLogo className="h-[52px] md:h-[72px]" />
+                <PixelLogo className="h-[38px] md:h-[50px]" />
               </div>
             </Link>
             <div className="relative">
@@ -125,12 +125,12 @@ export default function Navbar() {
 
       {/* Mobile Menu (moved outside header to prevent transform clip issues) */}
       <div className={`mobile-menu ${mobileOpen ? 'open' : ''} md:hidden`}>
-        <div className="flex flex-col items-center justify-start min-h-full py-28 gap-y-8">
+        <div className="flex flex-col items-center justify-center min-h-full py-28 gap-y-12">
           {navItems.map((item) => (
             <Link
               key={item.href}
-              className={`nav-link text-2xl font-semibold transition-colors ${
-                pathname === item.href ? 'active' : ''
+              className={`nav-link text-3xl font-semibold transition-colors text-white/95 hover:text-accent ${
+                pathname === item.href ? 'active text-accent' : ''
               }`}
               href={item.href}
               onClick={() => setMobileOpen(false)}
@@ -138,21 +138,6 @@ export default function Navbar() {
               {t(`navbar.${item.key}`)}
             </Link>
           ))}
-          {/* Mobile Language Switcher */}
-          <div className="flex gap-x-6 mt-4">
-            <button
-              onClick={() => { setLang('ID'); setMobileOpen(false); }}
-              className={`px-4 py-2 border-b-2 text-xl font-semibold cursor-pointer transition-colors bg-transparent border-t-0 border-x-0 ${lang === 'ID' ? 'border-accent text-accent' : 'border-transparent text-foreground/60 hover:text-foreground'}`}
-            >
-              ID
-            </button>
-            <button
-              onClick={() => { setLang('EN'); setMobileOpen(false); }}
-              className={`px-4 py-2 border-b-2 text-xl font-semibold cursor-pointer transition-colors bg-transparent border-t-0 border-x-0 ${lang === 'EN' ? 'border-accent text-accent' : 'border-transparent text-foreground/60 hover:text-foreground'}`}
-            >
-              EN
-            </button>
-          </div>
         </div>
       </div>
     </>
