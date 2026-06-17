@@ -6,6 +6,7 @@ import CTASection from '@/components/CTASection';
 import { useState, useEffect } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { getDirectDriveLink } from '@/utils/drive';
 
 const BASE = 'https://pixelgroup.id';
 
@@ -43,15 +44,128 @@ const clientLogosRow2 = [
   { src: `${BASE}/images/home/our-clients/wuling%20new.png`, alt: 'Wuling' },
 ];
 
-const portfolioItems = [
-  { title: 'Monas Design Signage', image: `${BASE}/uploads/HSR_TGR_Tunnel_Branding_051224_7082_9e2e81582a.jpg` },
-  { title: 'Sudirman Street Branding', image: `${BASE}/uploads/CGK_T3_Domestik_Welcome_Vision_091024_2036_4f906f0647.jpg` },
-  { title: 'Revitalisasi Cirebon 1995', image: `${BASE}/uploads/TMII_Gate_03_270924_00704_2bff8653f1.jpg` },
-  { title: 'Cirebon Heritage (LKC)', image: `${BASE}/uploads/LRT_657a75f690.jpg` },
-  { title: 'Jakarta Expansion 2023', image: `${BASE}/uploads/GBK_Gerbang_Pemuda_140125_00635_6e68be9684.jpg` },
-  { title: 'Concept Signage & Ambient', image: `${BASE}/uploads/CGK_3_Inter_Gojek_191224_8549_688936bb55.jpg` },
-  { title: 'Traditional Billboards', image: `${BASE}/uploads/Bus_Shelter_Menara_Astra_070225_2049_3b40aed375.jpg` },
-  { title: 'Point of Sales Media', image: `${BASE}/uploads/DPS_OOH_Welcome_Bali_231024_3301_d828ae8dab.jpg` },
+const initialWorksData = [
+  {
+    title: 'Street Signage Jl. Imam Bonjol',
+    location: 'Jl. Imam Bonjol, Jakarta',
+    image: 'https://drive.google.com/file/d/1Na-af_ODOf-RBkk2ZbY2TyOK8w82JCcn/view?usp=sharing',
+    typeKey: 'street',
+    size: 'Double Sided - 120cm x 80cm',
+    latitude: '-6.199407',
+    longitude: '106.829107',
+    position: '1',
+    objectPosition: 'left',
+  },
+  {
+    title: 'Street Signage Jl. Metro Pondok Indah',
+    location: 'Jl. Metro Pondok Indah, Jakarta',
+    image: 'https://drive.google.com/file/d/1eNUEwM23lG7GTRQ9jaIznbfNFB9125v6/view?usp=sharing',
+    typeKey: 'street',
+    size: 'Double Sided - 120cm x 80cm',
+    latitude: '-6.269781',
+    longitude: '106.782436',
+    position: '2',
+    objectPosition: 'left',
+  },
+  {
+    title: 'Street Signage Jl. Prof. Dr. Satrio',
+    location: 'Jl. Prof. Dr. Satrio, Jakarta',
+    image: 'https://drive.google.com/file/d/10BcOyEhxbRJwBVIYvN_zlalXfs5dp-ks/view?usp=sharing',
+    typeKey: 'street',
+    size: 'Double Sided - 120cm x 80cm',
+    latitude: '-6.224431',
+    longitude: '106.822839',
+    position: '3',
+    objectPosition: 'left',
+  },
+  {
+    title: 'Street Signage Jl. Panglima Polim',
+    location: 'Jl. Panglima Polim, Jakarta',
+    image: 'https://drive.google.com/file/d/1fjTvz0Q5_gxR2BedoJeCZL-TL5iDUpBz/view?usp=sharing',
+    typeKey: 'street',
+    size: 'Double Sided - 120cm x 80cm',
+    latitude: '-6.252636',
+    longitude: '106.801579',
+    position: '4',
+    objectPosition: 'left',
+  },
+  {
+    title: 'Street Signage Jl. H.R. Rasuna Said',
+    location: 'Jl. H.R. Rasuna Said, Jakarta',
+    image: 'https://drive.google.com/file/d/1Usqafu4pD7jGGiTsaOQdnv8TsgDyr4KT/view?usp=sharing',
+    typeKey: 'street',
+    size: 'Double Sided - 120cm x 80cm',
+    latitude: '-6.222718',
+    longitude: '106.829462',
+    position: '5',
+    objectPosition: 'left',
+  },
+  {
+    title: 'Street Signage Jl. Menteng Raya',
+    location: 'Jl. Menteng Raya, Jakarta',
+    image: 'https://drive.google.com/file/d/16637rP0GFkg31w9q4QDxlD0WZnyASGjv/view?usp=sharing',
+    typeKey: 'street',
+    size: 'Double Sided - 120cm x 80cm',
+    latitude: '-6.185202',
+    longitude: '106.832789',
+    position: '6',
+    objectPosition: 'left',
+  },
+  {
+    title: 'Street Signage Jl. KH. Wahid Hasyim',
+    location: 'Jl. KH. Wahid Hasyim, Jakarta',
+    image: 'https://drive.google.com/file/d/1uklOrk9gvlLYifqhwNifCcALiv4xlhCE/view?usp=sharing',
+    typeKey: 'street',
+    size: 'Double Sided - 120cm x 80cm',
+    latitude: '-6.188448',
+    longitude: '106.827361',
+    position: '7',
+    objectPosition: 'left',
+  },
+  {
+    title: 'Street Signage Jl. R.A. Kartini',
+    location: 'Jl. R.A. Kartini, Jakarta',
+    image: 'https://drive.google.com/file/d/1eT1q0OhQsPEpgIDEU5HP8EqHSkVFOEhG/view?usp=sharing',
+    typeKey: 'street',
+    size: 'Double Sided - 120cm x 80cm',
+    latitude: '-6.291733',
+    longitude: '106.772922',
+    position: '8',
+    objectPosition: 'left',
+  },
+  {
+    title: 'Street Signage Jl. H.R. Rasuna Said (VinFast)',
+    location: 'Jl. H.R. Rasuna Said, Jakarta',
+    image: 'https://drive.google.com/file/d/1K1R6PlqvCihiqzkH3UvVm_79I061INZh/view?usp=sharing',
+    typeKey: 'street',
+    size: 'Double Sided - 120cm x 80cm',
+    latitude: '-6.220500',
+    longitude: '106.828500',
+    position: '9',
+    objectPosition: 'left',
+  },
+  {
+    title: 'Street Signage Jl. Pintu Satu Senayan',
+    location: 'Jl. Pintu Satu Senayan, Jakarta',
+    image: 'https://drive.google.com/file/d/18Fr6_QvW78wXBXnPg2UdNyWL6TD5vmyZ/view?usp=sharing',
+    typeKey: 'street',
+    size: 'Double Sided - 120cm x 80cm',
+    latitude: '-6.222534',
+    longitude: '106.802319',
+    position: '10',
+    objectPosition: 'left',
+  },
+  {
+    title: 'Street Signage Jl. Adityawarman',
+    location: 'Jl. Adityawarman, Jakarta',
+    image: 'https://drive.google.com/file/d/1dfr_xsBXRKAx6SJdGrSjdzo4ySKRnD9e/view?usp=sharing',
+    typeKey: 'street',
+    size: 'Double Sided - 120cm x 80cm',
+    latitude: '-6.242318',
+    longitude: '106.801625',
+    position: '11',
+    objectPosition: 'left',
+  },
 ];
 
 export default function HomePage() {
@@ -70,40 +184,42 @@ export default function HomePage() {
 
 function HeroSection() {
   const [mounted, setMounted] = useState(false);
-  useEffect(() => { const t = setTimeout(() => setMounted(true), 100); return () => clearTimeout(t); }, []);
+  const { t } = useLanguage();
+  useEffect(() => { const timer = setTimeout(() => setMounted(true), 100); return () => clearTimeout(timer); }, []);
 
   return (
     <section className="min-h-screen hero relative isolate snap-start">
       <div className="absolute inset-x-0 h-screen overflow-hidden">
         <div className="inset-0 absolute z-0">
           <picture>
-            <source media="(min-width:768px)" srcSet={`${BASE}/uploads/CGK_3_Inter_Giant_LED_210125_00929_copy_2f3df2c064.webp`} />
+            <source media="(min-width:768px)" srcSet="/hero.png" />
             <img
-              src={`${BASE}/uploads/202505_ZOG_PIXEL_BG_Asset_Home_Section_Potrait_af5b68db1a.webp`}
+              src="/hero.png"
               alt="Hero Image"
               className="w-full h-full object-cover object-center"
             />
           </picture>
         </div>
+        <div className="absolute inset-0 bg-white/30 z-[1] pointer-events-none" />
         <div className="absolute inset-0 preloader" />
       </div>
       <div className="shadow" />
       <div className="container relative z-10 h-screen">
         <div className="flex flex-col justify-end md:items-end h-full overflow-hidden">
           <div className="relative pb-10 text w-fit">
-            <h2 className={`font-helvetica text-white text-[58px] md:text-[76px] lg:text-[120px] leading-[1.2] text-right transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
-              ID<span className="font-helvetica-italic">EA</span>
+            <h2 className={`font-helvetica text-foreground text-[58px] md:text-[76px] lg:text-[120px] leading-[1.2] text-right transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
+              {t('home.hero.part1')}<span className="font-helvetica-italic">{t('home.hero.part2')}</span>
             </h2>
             <div className={`flex flex-col md:flex-row-reverse items-start md:items-center md:gap-x-8 lg:gap-x-20 mt-2 transition-all duration-1000 delay-200 ${mounted ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
-              <h2 className="font-tt-ramillas text-[#38BDF8] text-[58px] md:text-[76px] lg:text-[120px] leading-[1.2]">
-                OOH
+              <h2 className="font-tt-ramillas text-accent text-[58px] md:text-[76px] lg:text-[120px] leading-[1.2]">
+                {t('home.hero.ooh')}
               </h2>
               <div className="relative px-6 lg:px-8 py-4 h-fit">
-                <div className="h-auto w-40 md:w-[215px]">
-                  <p className="text-base md:text-lg lg:text-xl text-center text-white">OUT OF HOME MEDIA</p>
+                <div className="h-auto w-40 md:w-[240px]">
+                  <p className="text-base md:text-lg lg:text-xl text-center text-foreground/80 font-semibold uppercase">{t('home.hero.media')}</p>
                 </div>
-                <span className="absolute top-0 left-0 size-[34px] border-l-2 border-t-2 border-white rounded-tl" />
-                <span className="absolute bottom-0 right-0 size-[34px] border-r-2 border-b-2 border-white rounded-br" />
+                <span className="absolute top-0 left-0 size-[34px] border-l-2 border-t-2 border-foreground rounded-tl" />
+                <span className="absolute bottom-0 right-0 size-[34px] border-r-2 border-b-2 border-foreground rounded-br" />
               </div>
             </div>
           </div>
@@ -168,7 +284,7 @@ function OurServiceSection() {
   ];
 
   return (
-    <section className="relative isolate bg-[#1D4ED8] text-white py-20 snap-start overflow-hidden border-b border-white/10">
+    <section className="relative isolate bg-surface text-foreground py-20 snap-start overflow-hidden border-b border-border">
       {/* Background visual graphics */}
       <div className="absolute inset-0 z-0">
         <div className="blue-dot-grid">
@@ -182,10 +298,10 @@ function OurServiceSection() {
       <div className="container relative z-10 mx-auto px-6" ref={ref}>
         {/* Header Our Service */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="font-helvetica text-[40px] md:text-[50px] xl:text-[68px] leading-tight font-bold text-white mb-6">
-            Our <span className="font-ramillas italic font-normal text-primary">Service</span>
+          <h2 className="font-helvetica text-[40px] md:text-[50px] xl:text-[68px] leading-tight font-bold text-foreground mb-6">
+            Our <span className="font-ramillas italic font-normal text-accent">Service</span>
           </h2>
-          <p className="font-lato text-base md:text-lg xl:text-xl text-blue-100 leading-relaxed">
+          <p className="font-lato text-base md:text-lg xl:text-xl text-foreground/70 leading-relaxed">
             {t('home.servicesNew.subtitle')}
           </p>
         </div>
@@ -200,21 +316,21 @@ function OurServiceSection() {
               }`}
             >
               {/* Outer Circular Frame */}
-              <div className="relative w-44 h-44 md:w-52 md:h-52 rounded-full border border-white/15 overflow-hidden shadow-2xl transition-all duration-500 group-hover:border-[#60A5FA] group-hover:scale-105 bg-[#1E40AF]/20 backdrop-blur-sm">
+              <div className="relative w-44 h-44 md:w-52 md:h-52 rounded-full border border-border overflow-hidden shadow-2xl transition-all duration-500 group-hover:border-accent group-hover:scale-105 bg-card/20 backdrop-blur-sm">
                 <img
                   src={item.image}
                   alt={item.title}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 filter brightness-90 group-hover:brightness-100"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1E40AF]/80 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
               </div>
               
               {/* Text underneath circle */}
-              <h3 className="font-helvetica text-xl font-bold mt-6 text-white text-center group-hover:text-primary transition-colors">
+              <h3 className="font-helvetica text-xl font-bold mt-6 text-foreground text-center group-hover:text-accent transition-colors">
                 {item.title}
               </h3>
-              <p className="font-lato text-sm text-blue-200 text-center px-2 mt-2 leading-relaxed">
+              <p className="font-lato text-sm text-foreground/60 text-center px-2 mt-2 leading-relaxed">
                 {item.desc}
               </p>
             </div>
@@ -223,10 +339,10 @@ function OurServiceSection() {
 
         {/* Header Our Experience */}
         <div className="text-center max-w-3xl mx-auto mb-16 pt-10">
-          <h2 className="font-helvetica text-[40px] md:text-[50px] xl:text-[68px] leading-tight font-bold text-white mb-6">
-            Our <span className="font-ramillas italic font-normal text-primary">Experience</span>
+          <h2 className="font-helvetica text-[40px] md:text-[50px] xl:text-[68px] leading-tight font-bold text-foreground mb-6">
+            Our <span className="font-ramillas italic font-normal text-accent">Experience</span>
           </h2>
-          <p className="font-lato text-base md:text-lg xl:text-xl text-blue-100 leading-relaxed">
+          <p className="font-lato text-base md:text-lg xl:text-xl text-foreground/70 leading-relaxed">
             {t('home.servicesNew.experienceSubtitle')}
           </p>
         </div>
@@ -241,21 +357,21 @@ function OurServiceSection() {
               }`}
             >
               {/* Outer Circular Frame */}
-              <div className="relative w-44 h-44 md:w-52 md:h-52 rounded-full border border-white/15 overflow-hidden shadow-2xl transition-all duration-500 group-hover:border-[#60A5FA] group-hover:scale-105 bg-[#1E40AF]/20 backdrop-blur-sm">
+              <div className="relative w-44 h-44 md:w-52 md:h-52 rounded-full border border-border overflow-hidden shadow-2xl transition-all duration-500 group-hover:border-accent group-hover:scale-105 bg-card/20 backdrop-blur-sm">
                 <img
                   src={item.image}
                   alt={item.title}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 filter brightness-90 group-hover:brightness-100"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1E40AF]/80 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
               </div>
               
               {/* Text underneath circle */}
-              <h3 className="font-helvetica text-xl font-bold mt-6 text-white text-center group-hover:text-primary transition-colors">
+              <h3 className="font-helvetica text-xl font-bold mt-6 text-foreground text-center group-hover:text-accent transition-colors">
                 {item.title}
               </h3>
-              <p className="font-lato text-sm text-blue-200 text-center px-2 mt-2 leading-relaxed font-semibold">
+              <p className="font-lato text-sm text-foreground/60 text-center px-2 mt-2 leading-relaxed font-semibold">
                 {item.subtitle}
               </p>
             </div>
@@ -267,141 +383,149 @@ function OurServiceSection() {
 }
 
 function OurSolutionSection() {
-  const [ref, isVisible] = useScrollAnimation({ threshold: 0.05 });
+  const [activeSlide, setActiveSlide] = useState(0);
   const { lang, t } = useLanguage();
+  const [ref, isVisible] = useScrollAnimation({ threshold: 0.05 });
 
-  const processes = [
+  const services = [
     {
-      key: 'analyze',
-      title: t('home.solutionsNew.process.analyze.title'),
-      desc: t('home.solutionsNew.process.analyze.desc'),
-      icon: (
-        <svg className="mx-auto size-14 text-primary mb-4 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <line x1="18" y1="20" x2="18" y2="10" />
-          <line x1="12" y1="20" x2="12" y2="4" />
-          <line x1="6" y1="20" x2="6" y2="14" />
-          <circle cx="17" cy="7" r="3" />
-          <line x1="21" y1="11" x2="19" y2="9" />
-        </svg>
-      )
+      title: 'OOH Production House',
+      heading: t('home.services.production.heading'),
+      desc: t('home.services.production.desc'),
+      image: `${BASE}/uploads/large_Copy_of_Pixel_1503_SO_1_53757bd66c.jpg`,
+      link: '/services',
     },
     {
-      key: 'identify',
-      title: t('home.solutionsNew.process.identify.title'),
-      desc: t('home.solutionsNew.process.identify.desc'),
-      icon: (
-        <svg className="mx-auto size-14 text-primary mb-4 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="10" />
-          <circle cx="12" cy="12" r="6" />
-          <circle cx="12" cy="12" r="2" />
-          <line x1="22" y1="22" x2="16" y2="16" />
-        </svg>
-      )
+      title: 'OOH Media Specialist',
+      heading: t('home.services.specialist.heading'),
+      desc: t('home.services.specialist.desc'),
+      image: `${BASE}/uploads/large_Whats_App_Image_2025_03_06_at_4_08_39_PM_19043b85f3.jpeg`,
+      link: '/services',
     },
     {
-      key: 'calculating',
-      title: t('home.solutionsNew.process.calculating.title'),
-      desc: t('home.solutionsNew.process.calculating.desc'),
-      icon: (
-        <svg className="mx-auto size-14 text-primary mb-4 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
-          <line x1="8" y1="6" x2="16" y2="6" />
-          <line x1="16" y1="14" x2="16" y2="18" />
-          <line x1="12" y1="14" x2="12" y2="18" />
-          <line x1="8" y1="14" x2="8" y2="18" />
-          <line x1="16" y1="10" x2="16" y2="10.01" />
-          <line x1="12" y1="10" x2="12" y2="10.01" />
-          <line x1="8" y1="10" x2="8" y2="10.01" />
-        </svg>
-      )
-    }
-  ];
-
-  const pillars = [
-    {
-      title: t('home.solutionsNew.pillars.0.title'),
-      desc: t('home.solutionsNew.pillars.0.desc'),
-      num: '01'
+      title: 'OOH Consultation',
+      heading: t('home.services.consultation.heading'),
+      desc: t('home.services.consultation.desc'),
+      image: `${BASE}/uploads/large_CGK_3_Inter_Giant_LED_210125_00930_39202e33fb.jpg`,
+      link: '/services',
     },
     {
-      title: t('home.solutionsNew.pillars.1.title'),
-      desc: t('home.solutionsNew.pillars.1.desc'),
-      num: '02'
+      title: 'OOH Research',
+      heading: t('home.services.research.heading'),
+      desc: t('home.services.research.desc'),
+      image: `${BASE}/uploads/large_CGK_T3_Domestik_Security_Check_Border_091024_1769_34e08c6650.jpg`,
+      link: '/services',
     },
-    {
-      title: t('home.solutionsNew.pillars.2.title'),
-      desc: t('home.solutionsNew.pillars.2.desc'),
-      num: '03'
-    },
-    {
-      title: t('home.solutionsNew.pillars.3.title'),
-      desc: t('home.solutionsNew.pillars.3.desc'),
-      num: '04'
-    }
   ];
 
   return (
-    <section className="relative isolate bg-[#1E40AF] text-white py-20 snap-start overflow-hidden border-b border-white/10">
-      {/* Background layers */}
-      <div className="absolute inset-0 z-0">
-        <div className="blue-dot-grid">
+    <section ref={ref} className="our-services relative isolate bg-background text-foreground snap-start">
+      <h2 className="sr-only">Our Services</h2>
+      <div className="absolute inset-x-0 top-0 z-0 h-[120%] overflow-hidden bg-background">
+        <div className="blue-dot-grid opacity-30">
           <div className="dot-layer dot-layer-1" />
           <div className="dot-layer dot-layer-2" />
+          <div className="dot-layer dot-layer-3" />
         </div>
-        <div className="blue-glow-top opacity-50" />
-        <div className="blue-glow-bottom opacity-50" />
+        <div className="blue-glow-top opacity-40" />
+        <div className="blue-glow-bottom opacity-30" />
       </div>
 
-      <div className="container relative z-10 mx-auto px-6" ref={ref}>
-        {/* Header Solutions */}
-        <div className="text-center max-w-4xl mx-auto mb-16">
-          <h2 className="font-helvetica text-[40px] md:text-[50px] xl:text-[68px] leading-tight font-bold text-white mb-6">
-            Our <span className="font-ramillas italic font-normal text-primary">Solution</span>
-          </h2>
-          <p className="font-lato text-base md:text-lg xl:text-xl text-blue-100 leading-relaxed font-semibold italic">
-            "{t('home.solutionsNew.tagline')}"
-          </p>
-        </div>
-
-        {/* 3 columns: Analyze, Identify, Calculating */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-          {processes.map((item, i) => (
-            <div 
-              key={i}
-              className={`group bg-[#1D4ED8]/40 backdrop-blur-md border border-white/10 rounded-2xl p-8 text-center transition-all duration-500 hover:scale-[1.03] hover:bg-[#1D4ED8]/60 hover:border-[#60A5FA]/30 shadow-xl duration-1000 delay-${i * 150} ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[40px]'
-              }`}
-            >
-              {item.icon}
-              <h3 className="font-helvetica text-2xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
-                {item.title}
-              </h3>
-              <p className="font-lato text-blue-200">
-                {item.desc}
+      {/* Title & Tabs at bottom */}
+      <div className={`absolute inset-x-0 bottom-6 z-20 md:bottom-20 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px]'}`}>
+        <div className="container relative mx-auto h-fit w-full">
+          <div className="flex flex-wrap items-end justify-start gap-x-20 gap-y-8">
+            <div className="w-full xl:w-fit">
+              <p
+                className={`inline-block cursor-pointer whitespace-nowrap font-bold font-helvetica text-[28px] leading-normal md:text-[32px] xl:text-[40px] transition-colors ${activeSlide === 0 ? 'text-foreground' : 'text-foreground/40 hover:text-foreground'}`}
+                onClick={() => setActiveSlide(0)}
+              >
+                {lang === 'ID' ? 'Solusi Kami' : 'Our Solution'}
               </p>
             </div>
-          ))}
+            <div className="step flex flex-1 flex-nowrap items-end gap-x-2 sm:gap-x-4 md:gap-x-6 text-xs sm:text-sm md:text-base xl:text-xl">
+              {services.map((s, i) => (
+                <button
+                  key={i}
+                  className={`flex-1 text-center pb-3 border-b-2 transition-all cursor-pointer ${
+                    activeSlide === i + 1 ? 'border-accent text-foreground font-semibold' : 'border-border text-foreground/40 hover:text-foreground'
+                  }`}
+                  onClick={() => setActiveSlide(i + 1)}
+                >
+                  {s.title}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="hidden border-border border-b md:block" />
         </div>
+      </div>
 
-        {/* 4 solution pillars grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {pillars.map((item, i) => (
-            <div 
-              key={i}
-              className={`bg-[#1D4ED8]/25 border border-white/10 rounded-xl p-6 relative overflow-hidden group hover:border-[#60A5FA]/20 transition-all duration-300 shadow-md duration-1000 delay-${i * 150} ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[40px]'
-              }`}
-            >
-              {/* Corner bracket/number decoration */}
-              <div className="absolute top-4 right-4 text-xs font-bold font-helvetica text-primary/40 group-hover:text-primary transition-colors">
-                {item.num}
+      {/* Slider container */}
+      <div className="h-screen min-h-[600px] overflow-hidden md:h-[90svh] xl:h-screen relative z-10">
+        <div
+          className="flex w-fit justify-start transition-transform ease-in"
+          style={{ transform: `translateX(-${activeSlide * 100}svw)`, transitionDuration: '400ms' }}
+        >
+          {/* Slide 1: Tagline */}
+          <div className="w-[100svw]">
+            <div className="container px-6">
+              <div className={`pt-[128px] xl:pt-[100px] transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[45px] blur-[10px]'}`}>
+                {lang === 'ID' ? (
+                  <p className="max-w-[1113px] font-helvetica text-[48px] sm:text-[58px] leading-[1.1] md:text-[76px] xl:text-[120px] [&_span]:inline-block">
+                    <span>
+                      Domi<span className="italic font-ramillas">nasi</span>
+                    </span>{' '}
+                    Visual{' '}
+                    <span className="font-bold tracking-wide">Absolut</span>{' '}
+                    di{' '}
+                    <span className="font-bold text-accent tracking-wide">Jantung</span>{' '}
+                    <span className="font-bold text-accent tracking-wide">Megapolitan</span>
+                  </p>
+                ) : (
+                  <p className="max-w-[1113px] font-helvetica text-[48px] sm:text-[58px] leading-[1.1] md:text-[76px] xl:text-[120px] [&_span]:inline-block">
+                    <span>
+                      Abso<span className="italic font-ramillas">lute</span>
+                    </span>{' '}
+                    Visual{' '}
+                    <span className="font-bold tracking-wide">Dominance</span>{' '}
+                    in the{' '}
+                    <span className="font-bold text-accent tracking-wide">Heart</span>{' '}
+                    of the{' '}
+                    <span className="font-bold text-accent tracking-wide">Megapolitan</span>
+                  </p>
+                )}
               </div>
-              <h4 className="font-helvetica text-lg font-bold text-white mb-3 pr-6 group-hover:text-primary transition-colors">
-                {item.title}
-              </h4>
-              <p className="font-lato text-sm text-blue-200 leading-relaxed">
-                {item.desc}
-              </p>
+            </div>
+          </div>
+
+          {/* Dynamic Service Slides */}
+          {services.map((service, idx) => (
+            <div key={idx} className="w-[100svw]">
+              <div className="container flex flex-col gap-4 px-6 pt-[5rem] md:pt-24 xl:flex-row xl:gap-10">
+                <div className={`relative aspect-[350/252] flex-1 overflow-hidden rounded-2xl border border-neutral-300 md:aspect-[782/357] xl:aspect-[644/503] transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[5px]'}`}>
+                  <img
+                    src={service.image}
+                    alt={service.heading}
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div className={`flex-1 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[5px]'}`}>
+                  <div className="pr-5 text-foreground">
+                    <h3 className="text-[32px] leading-[1.1] md:text-[40px] xl:text-[52px] font-helvetica text-foreground">
+                      {service.heading}
+                    </h3>
+                    <p className="mt-4 line-clamp-3 font-lato text-base md:text-lg xl:mt-6 xl:text-xl text-foreground/60">
+                      {service.desc}
+                    </p>
+                    <div className="mt-6 xl:mt-12">
+                      <AnimatedButton text={t('home.services.readMore')} href={service.link} srText={`About ${service.title}`} />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -411,13 +535,66 @@ function OurSolutionSection() {
 }
 
 function PortfolioSection() {
+  const [portfolioItems, setPortfolioItems] = useState([]);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    let stored = localStorage.getItem('custom_portfolio_works');
+    let needsReset = false;
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        if (
+          !Array.isArray(parsed) ||
+          parsed.length !== 11 ||
+          parsed.some((item) => item.title === 'Monas Design Signage') ||
+          !parsed.every((item) => item.objectPosition)
+        ) {
+          needsReset = true;
+        }
+      } catch (e) {
+        needsReset = true;
+      }
+    } else {
+      needsReset = true;
+    }
+
+    if (needsReset) {
+      const seedData = initialWorksData.map((item, idx) => ({
+        id: `seed-${idx}`,
+        title: item.title,
+        location: item.location,
+        image: item.image,
+        typeKey: item.typeKey,
+        customType: '',
+        size: item.size,
+        latitude: item.latitude || '',
+        longitude: item.longitude || '',
+        position: item.position || (idx + 1).toString(),
+        objectPosition: item.objectPosition || 'left',
+        isCustom: true
+      }));
+      localStorage.setItem('custom_portfolio_works', JSON.stringify(seedData));
+      setPortfolioItems(seedData);
+    } else {
+      try {
+        const parsed = JSON.parse(stored);
+        setPortfolioItems(parsed.sort((a, b) => (parseInt(a.position) || 999) - (parseInt(b.position) || 999)));
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  }, []);
+
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: 'center',
     loop: true,
-    startIndex: portfolioItems.length - 1,
+    startIndex: portfolioItems.length > 0 ? portfolioItems.length - 1 : 0,
   });
-  const [selectedIndex, setSelectedIndex] = useState(portfolioItems.length - 1);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [portfolioRef, portfolioVisible] = useScrollAnimation({ threshold: 0.1 });
+  const [carouselRef, carouselVisible] = useScrollAnimation({ threshold: 0.1 });
   const { lang, t } = useLanguage();
 
   useEffect(() => {
@@ -427,6 +604,15 @@ function PortfolioSection() {
       setSelectedIndex(emblaApi.selectedScrollSnap());
     });
   }, [emblaApi]);
+
+  useEffect(() => {
+    if (emblaApi && portfolioItems.length > 0) {
+      emblaApi.reInit({
+        startIndex: portfolioItems.length - 1,
+      });
+      setSelectedIndex(emblaApi.selectedScrollSnap());
+    }
+  }, [emblaApi, portfolioItems]);
 
   const next = () => {
     if (emblaApi) emblaApi.scrollNext();
@@ -441,74 +627,74 @@ function PortfolioSection() {
       <div className="container relative flex flex-col-reverse xl:flex-row">
         {/* Carousel */}
         <div
-          className="overflow-visible xl:w-[800px] xl:h-screen relative flex xl:block justify-center pt-[2vh] md:pt-14 xl:pt-0 snap-start"
+          ref={carouselRef}
+          className={`overflow-visible xl:w-[800px] xl:h-screen relative flex xl:block justify-center pt-[2vh] md:pt-14 xl:pt-0 snap-start transition-all duration-1000 ${carouselVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[50px] blur-[5px]'}`}
         >
-          <div className="flex justify-center px-5 w-[800px] md:w-[1200px] relative xl:h-full">
-            <div className="relative h-full w-full xl:w-[150%] flex items-center">
-              <div className="overflow-hidden w-full" ref={emblaRef}>
-                <div className="flex -ml-4 select-none">
-                  {portfolioItems.map((item, i) => {
-                    const nextIndex = (selectedIndex + 1) % portfolioItems.length;
-                    const prevIndex = (selectedIndex - 1 + portfolioItems.length) % portfolioItems.length;
+          {mounted && portfolioItems.length > 0 && (
+            <div className="flex justify-center px-5 w-[800px] md:w-[1200px] relative xl:h-full">
+              <div className="relative h-full w-full xl:w-[150%] flex items-center">
+                <div className="overflow-hidden w-full" ref={emblaRef}>
+                  <div className="flex -ml-4 select-none">
+                    {portfolioItems.map((item, i) => {
+                      const nextIndex = (selectedIndex + 1) % portfolioItems.length;
+                      const prevIndex = (selectedIndex - 1 + portfolioItems.length) % portfolioItems.length;
 
-                    const isActive = selectedIndex === i;
-                    const isNext = nextIndex === i;
-                    const isPrev = prevIndex === i;
+                      const isActive = selectedIndex === i;
+                      const isNext = nextIndex === i;
+                      const isPrev = prevIndex === i;
 
-                    let scale = 0.6;
-                    let translateX = '20%';
-                    if (isActive) {
-                      scale = 1;
-                      translateX = '0%';
-                    } else if (isNext || isPrev) {
-                      scale = 0.8;
-                      translateX = '0%';
-                    }
-
-                    return (
-                      <div
-                        key={i}
-                        onClick={() => {
-                          if (emblaApi) emblaApi.scrollTo(i);
-                        }}
-                        className="min-w-0 shrink-0 grow-0 pl-4 h-full w-fit basis-1/3 xl:basis-1/5 flex items-center cursor-pointer"
-                      >
-                        <div className="w-fit relative xl:h-[610px] flex flex-col items-center">
-                          <div
-                            className="ring-1 ring-white/20 box-border rounded-lg relative overflow-clip h-[50vh] min-h-[350px] max-h-[400px] md:max-h-[unset] xl:h-[540px]"
-                            style={{
-                              aspectRatio: '2/3',
-                              transition: 'all .5s',
-                              transform: `scale(${scale}) translateX(${translateX})`,
-                            }}
-                          >
-                            <img
-                              src={item.image}
-                              alt={item.title}
-                              loading="lazy"
-                              decoding="async"
-                              draggable="false"
-                              className="select-none touch-none border border-white/20 rounded-lg object-cover w-full h-full absolute top-0 left-0 pointer-events-none"
-                            />
+                      return (
+                        <div
+                          key={item.id || i}
+                          onClick={() => {
+                            if (emblaApi) emblaApi.scrollTo(i);
+                          }}
+                          className="min-w-0 shrink-0 grow-0 pl-4 h-full w-fit basis-1/3 xl:basis-1/5 flex items-center cursor-pointer"
+                        >
+                          <div className="w-fit relative xl:h-[610px] flex flex-col items-center">
+                            <div
+                              className={`box-border rounded-lg relative overflow-clip h-[50vh] min-h-[350px] max-h-[400px] md:max-h-[unset] xl:h-[540px] transition-all duration-500 ${
+                                isActive
+                                  ? 'scale-100 z-10 ring-2 ring-accent shadow-[0_0_25px_rgba(26,83,208,0.25)]'
+                                  : isNext || isPrev
+                                  ? 'scale-[0.8] translate-x-[0%] z-0 ring-1 ring-border'
+                                  : 'scale-[0.6] translate-x-[20%] z-0 ring-1 ring-border'
+                              }`}
+                              style={{
+                                aspectRatio: '2/3',
+                              }}
+                            >
+                              <img
+                                src={getDirectDriveLink(item.image)}
+                                alt={item.title}
+                                loading="lazy"
+                                decoding="async"
+                                draggable="false"
+                                className="select-none touch-none border border-border rounded-lg object-cover w-full h-full absolute top-0 left-0 pointer-events-none"
+                                style={{ objectPosition: item.objectPosition || 'left' }}
+                              />
+                            </div>
+                            {isActive && (
+                              <div className="w-full text-center pt-2">
+                                <p className="font-semibold text-xl md:text-2xl text-foreground line-clamp-1">
+                                  {item.location}
+                                </p>
+                              </div>
+                            )}
                           </div>
-                          {isActive && (
-                            <h4 className="font-semibold text-xl md:text-2xl w-full text-center text-foreground pt-2 line-clamp-2">
-                              {item.title}
-                            </h4>
-                          )}
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
 
           {/* Nav buttons */}
           <button
             onClick={prev}
-            className="bg-[#1E40AF] rounded-md border border-white/20 hover:scale-95 transition-transform size-14 xl:size-16 grid place-content-center absolute z-10 top-1/2 left-0 -translate-y-1/2 xl:hidden rotate-180 cursor-pointer hover:border-white/50 transition-colors text-white"
+            className="bg-card rounded-md border border-border hover:scale-95 transition-transform size-14 xl:size-16 grid place-content-center absolute z-10 top-1/2 left-0 -translate-y-1/2 xl:hidden rotate-180 cursor-pointer hover:border-accent transition-colors text-foreground"
           >
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M16.171 4.39L27.359 15.577M27.359 15.577L16.171 26.765M27.359 15.577L5.034 15.577" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="round" />
@@ -516,7 +702,7 @@ function PortfolioSection() {
           </button>
           <button
             onClick={next}
-            className="bg-[#1E40AF] rounded-md border border-white/20 hover:scale-95 transition-transform size-14 xl:size-16 grid place-content-center absolute z-10 top-1/2 right-0 -translate-y-1/2 xl:hidden cursor-pointer hover:border-white/50 transition-colors text-white"
+            className="bg-card rounded-md border border-border hover:scale-95 transition-transform size-14 xl:size-16 grid place-content-center absolute z-10 top-1/2 right-0 -translate-y-1/2 xl:hidden cursor-pointer hover:border-accent transition-colors text-foreground"
           >
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M16.171 4.39L27.359 15.577M27.359 15.577L16.171 26.765M27.359 15.577L5.034 15.577" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="round" />
@@ -529,34 +715,36 @@ function PortfolioSection() {
           <div className="flex-1 text-right xl:max-w-[471px] ml-auto flex flex-col items-end justify-center">
             {lang === 'ID' ? (
               <h2 className={`text-[40px] md:text-[50px] xl:text-[68px] text-foreground leading-[1.2] max-w-[442px] xl:max-w-none font-helvetica [&_span]:inline-block transition-all duration-1000 ${portfolioVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
-                <span>Ha</span>
-                <span className="italic font-ramillas">dir</span>{' '}
+                <span>Sim</span>
+                <span className="italic font-ramillas">bol</span>{' '}
+                <span>Prestise</span>{' '}
                 <span>di</span>{' '}
-                <span className="text-primary">Setiap</span>{' '}
-                <span className="text-primary">Perjalanan</span>{' '}
-                <span className="font-semibold text-primary">yang</span>{' '}
-                <span className="font-semibold text-primary">Berarti</span>
+                <span className="text-accent">Pusat</span>{' '}
+                <span className="text-accent">Modernisasi</span>{' '}
+                <span className="font-semibold text-accent">Kota</span>
               </h2>
             ) : (
               <h2 className={`text-[40px] md:text-[50px] xl:text-[68px] text-foreground leading-[1.2] max-w-[442px] xl:max-w-none font-helvetica [&_span]:inline-block transition-all duration-1000 ${portfolioVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
-                <span>Pr</span>
-                <span className="italic font-ramillas">ese</span>
-                <span>nt</span>{' '}
-                <span>in</span>{' '}
-                <span className="text-primary">Every</span>{' '}
-                <span className="text-primary">Journey</span>{' '}
-                <span className="font-semibold text-primary">that</span>{' '}
-                <span className="font-semibold text-primary">Matters</span>
+                <span>Sym</span>
+                <span className="italic font-ramillas">bol</span>{' '}
+                <span>of</span>{' '}
+                <span>Prestige</span>{' '}
+                <span>at</span>{' '}
+                <span>the</span>{' '}
+                <span className="text-accent">Center</span>{' '}
+                <span className="text-accent">of</span>{' '}
+                <span className="text-accent">City</span>{' '}
+                <span className="font-semibold text-accent">Modernization</span>
               </h2>
             )}
-            <p className={`text-xl md:text-2xl font-medium mt-[1vh] xl:mt-10 max-w-[664px] xl:max-w-none text-white/70 transition-all duration-1000 delay-200 ${portfolioVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
+            <p className={`text-xl md:text-2xl font-medium mt-[1vh] xl:mt-10 max-w-[664px] xl:max-w-none text-foreground/60 transition-all duration-1000 delay-200 ${portfolioVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
               {t('home.portfolio.desc')}
             </p>
             {/* Nav buttons for desktop */}
             <div className="hidden xl:flex gap-4 mt-8">
               <button
                 onClick={prev}
-                className="bg-[#1E40AF] rounded-md border border-white/20 hover:scale-95 transition-transform size-14 xl:size-16 grid place-content-center cursor-pointer hover:border-white/50 transition-colors rotate-180 text-white"
+                className="bg-card rounded-md border border-border hover:scale-95 transition-transform size-14 xl:size-16 grid place-content-center cursor-pointer hover:border-accent transition-colors rotate-180 text-foreground"
               >
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M16.171 4.39L27.359 15.577M27.359 15.577L16.171 26.765M27.359 15.577L5.034 15.577" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="round" />
@@ -564,7 +752,7 @@ function PortfolioSection() {
               </button>
               <button
                 onClick={next}
-                className="bg-[#1E40AF] rounded-md border border-white/20 hover:scale-95 transition-transform size-14 xl:size-16 grid place-content-center cursor-pointer hover:border-white/50 transition-colors text-white"
+                className="bg-card rounded-md border border-border hover:scale-95 transition-transform size-14 xl:size-16 grid place-content-center cursor-pointer hover:border-accent transition-colors text-foreground"
               >
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M16.171 4.39L27.359 15.577M27.359 15.577L16.171 26.765M27.359 15.577L5.034 15.577" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="round" />
@@ -585,7 +773,7 @@ function AboutSection() {
 
   return (
     <section className="relative min-h-screen snap-start">
-      <div className="absolute inset-0 w-full h-full bg-[#1D4ED8]">
+      <div className="absolute inset-0 w-full h-full bg-surface">
         <div className="blue-dot-grid">
           <div className="dot-layer dot-layer-1" />
           <div className="dot-layer dot-layer-2" />
@@ -598,67 +786,65 @@ function AboutSection() {
       <div className="shadow-bottom" />
       <div
         ref={aboutRef}
-        className="z-10 container min-h-screen py-16 relative font-helvetica flex flex-col justify-start md:justify-between text-white"
+        className="z-10 container min-h-screen py-16 relative font-helvetica flex flex-col justify-start md:justify-between text-foreground"
       >
         <div>
           <h2 className={`text-[48px] md:text-[62px] xl:text-[90px] transition-all duration-1000 ${aboutVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
             {lang === 'ID' ? (
               <>
-                <span className="text-primary">
+                <span className="text-accent">
                   Tent<span className="italic">an</span>g
                 </span>{' '}
                 Kami
               </>
             ) : (
               <>
-                <span className="text-primary">
+                <span className="text-accent">
                   Ab<span className="italic">ou</span>t
                 </span>{' '}
                 Us
               </>
             )}
           </h2>
-          <span className={`text-[28px] md:text-[32px] xl:text-[52px] leading-tight block mt-2 transition-all duration-1000 delay-200 text-[#BFDBFE] ${aboutVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`} style={{ letterSpacing: '0.15px' }}>
+          <span className={`text-[28px] md:text-[32px] xl:text-[52px] leading-tight block mt-2 transition-all duration-1000 delay-200 text-primary ${aboutVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`} style={{ letterSpacing: '0.15px' }}>
             {lang === 'ID' ? (
               <>
                 <span className="inline-block">
-                  Perusahaan<span className="italic font-ramillas"> OOH Media</span>
+                  Katalis <span className="italic font-ramillas">Konversi</span>
                 </span>{' '}
-                <span className="inline-block">Pengalaman</span>
+                <span className="inline-block">Utama</span>{' '}
+                <span className="inline-block">di</span>{' '}
+                <span className="font-bold inline-block">Jantung</span>
                 <br />
-                <span className="font-bold inline-block">& Inovasi</span>{' '}
-                <span className="inline-block">Solusi</span>{' '}
-                <span className="font-bold inline-block">Iklan</span>
-                <br />
-                <span className="font-bold inline-block">Luar Ruang</span>
+                <span className="font-bold text-accent inline-block">Super-Megapolitan</span>
               </>
             ) : (
               <>
                 <span className="inline-block">
-                  <span className="italic font-ramillas">OOH Media</span> Company
+                  Ultimate <span className="italic font-ramillas">Conversion</span>
                 </span>{' '}
-                <span className="inline-block">Experience</span>
+                <span className="inline-block">Catalyst</span>{' '}
+                <span className="inline-block">in</span>{' '}
+                <span className="inline-block">the</span>{' '}
+                <span className="font-bold inline-block">Heart</span>{' '}
+                <span className="inline-block">of</span>
                 <br />
-                <span className="font-bold inline-block">& Innovation</span>{' '}
-                <span className="inline-block">Outdoor</span>{' '}
-                <span className="font-bold inline-block">Advertising</span>
-                <br />
-                <span className="font-bold inline-block">Solutions</span>
+                <span className="font-bold text-accent inline-block">Super-Megapolitan</span>
               </>
             )}
           </span>
         </div>
         <div className="md:self-end">
-          <div className="relative hidden md:block">
-            <div className="h-auto md:w-[586px] xl:w-[700px] py-4 px-8 bg-[#1E40AF]/70 backdrop-blur-md rounded-2xl border border-white/15">
-              <p className="md:text-lg xl:text-xl leading-relaxed text-white/80">
+          <div className={`relative hidden md:block transition-all duration-1000 delay-300 ${aboutVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[5px]'}`}>
+            <div className="h-auto md:w-[586px] xl:w-[700px] py-4 px-8 bg-card/70 backdrop-blur-md rounded-2xl border border-border">
+              <p className="md:text-lg xl:text-xl leading-relaxed text-foreground/70">
                 {t('home.about.desc')}
               </p>
             </div>
-            <span className="absolute top-0 left-0 size-[34px] border-l-2 border-t-2 border-[#93C5FD] rounded-tl" />
-            <span className="absolute bottom-0 right-0 size-[34px] border-r-2 border-b-2 border-[#93C5FD] rounded-br" />
+            <span className="absolute top-0 left-0 size-[34px] border-l-2 border-t-2 border-primary rounded-tl" />
+            <span className="absolute bottom-0 right-0 size-[34px] border-r-2 border-b-2 border-primary rounded-br" />
           </div>
-          <div className={`flex md:justify-end mt-4 xl:mt-6 md:hidden xl:flex transition-all duration-1000 delay-500 ${aboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[40px]'}`}>
+          <div className={`flex md:justify-end mt-4 xl:mt-6 transition-all duration-1000 delay-400 ${aboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[40px]'}`}>
             <AnimatedButton text={t('home.about.seeMore')} href="/about" />
           </div>
         </div>
@@ -672,61 +858,65 @@ function ClientsSection() {
   const { lang, t } = useLanguage();
 
   return (
-    <section className="flex flex-col py-[158px] bg-background snap-start">
-      <div className="order-1 w-full overflow-hidden">
+    <section ref={clientsRef} className={`flex flex-col py-[158px] bg-background snap-start transition-all duration-1000 ${clientsVisible ? 'opacity-100' : 'opacity-0'}`}>
+      <div className={`order-1 w-full overflow-hidden transition-all duration-1000 delay-100 ${clientsVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[-30px] blur-[5px]'}`}>
         <MarqueeRow images={clientLogosRow1} duration="40s" reverse />
       </div>
 
-      <div ref={clientsRef} className="container order-2 my-24 flex flex-col items-center justify-between gap-y-8 text-center md:my-[128px] md:flex-row md:gap-x-[100px] md:text-left xl:my-40 xl:items-end xl:gap-x-[198px]">
-        <h2 className={`text-[48px] leading-[1.1] md:text-[62px] xl:text-[90px] font-helvetica transition-all duration-1000 ${clientsVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
+      <div className={`container order-2 my-24 flex flex-col items-center justify-between gap-y-8 text-center md:my-[128px] md:flex-row md:gap-x-[100px] md:text-left xl:my-40 xl:items-end xl:gap-x-[198px] transition-all duration-1000 delay-200 ${clientsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[35px]'}`}>
+        <h2 className="text-[48px] leading-[1.1] md:text-[62px] xl:text-[90px] font-helvetica">
           {lang === 'ID' ? (
             <>
-              <span className="text-primary italic">Klien</span>{' '}
+              <span className="text-accent italic">Klien</span>{' '}
               <span>Kami</span>
             </>
           ) : (
             <>
-              <span className="text-primary italic">Our</span>{' '}
+              <span className="text-accent italic">Our</span>{' '}
               <span>Clients</span>
             </>
           )}
         </h2>
-        <p className={`text-[28px] leading-[1.1] md:text-[32px] xl:text-[40px] whitespace-pre-line font-helvetica text-white/70 transition-all duration-1000 delay-200 ${clientsVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
+        <p className="text-[28px] leading-[1.1] md:text-[32px] xl:text-[40px] whitespace-pre-line font-helvetica text-foreground/60">
           {lang === 'ID' ? (
             <>
-              <span className="inline-block">Lebih</span>{' '}
-              <span className="inline-block">Dari</span>{' '}
-              <span className="inline-block">Ser<i>atus</i></span>
+              <span className="inline-block">Jaringan</span>{' '}
+              <span className="inline-block">Elit</span>{' '}
+              <span className="inline-block">Ra<i>tusan</i></span>
               {'\n'}
-              <span className="inline-block">Bisnis</span>{' '}
-              <span className="inline-block">T<i>elah</i></span>
+              <span className="inline-block">Multinasional</span>{' '}
+              <span className="inline-block">T<i>elah</i></span>{' '}
+              <span className="inline-block">Menikmati</span>
               {'\n'}
               <b>
-                <span className="inline-block">Kami Hubungkan</span>{' '}
-                <span className="inline-block">Dengan</span>{' '}
-                <span className="inline-block">Dampak Nyata</span>
+                <span className="inline-block">Presensi</span>{' '}
+                <span className="inline-block">Premium</span>{' '}
+                <span className="inline-block">Kami</span>
               </b>
             </>
           ) : (
             <>
-              <span className="inline-block">Over</span>{' '}
-              <span className="inline-block">One</span>{' '}
-              <span className="inline-block">Hu<i>ndred</i></span>
+              <span className="inline-block">Elite</span>{' '}
+              <span className="inline-block">Network</span>{' '}
+              <span className="inline-block">of</span>{' '}
+              <span className="inline-block">Hu<i>ndreds</i></span>
               {'\n'}
-              <span className="inline-block">Businesses</span>{' '}
-              <span className="inline-block">We<i>&apos;ve</i></span>
+              <span className="inline-block">of</span>{' '}
+              <span className="inline-block">Multinationals</span>{' '}
+              <span className="inline-block">H<i>as</i></span>
               {'\n'}
               <b>
-                <span className="inline-block">Connected</span>{' '}
-                <span className="inline-block">with</span>{' '}
-                <span className="inline-block">Impact</span>
+                <span className="inline-block">Enjoyed</span>{' '}
+                <span className="inline-block">Our</span>{' '}
+                <span className="inline-block">Premium</span>{' '}
+                <span className="inline-block">Presence</span>
               </b>
             </>
           )}
         </p>
       </div>
 
-      <div className="order-3 w-full overflow-hidden">
+      <div className={`order-3 w-full overflow-hidden transition-all duration-1000 delay-300 ${clientsVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[30px] blur-[5px]'}`}>
         <MarqueeRow images={clientLogosRow2} duration="35s" />
       </div>
     </section>
@@ -736,17 +926,68 @@ function ClientsSection() {
 function ProjectsSection() {
   const [ref, isVisible] = useScrollAnimation({ threshold: 0.1 });
   const { lang, t } = useLanguage();
+  const [displayProjects, setDisplayProjects] = useState([]);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    let customWorks = [];
+    if (typeof window !== 'undefined') {
+      let stored = localStorage.getItem('custom_portfolio_works');
+      let needsReset = false;
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          if (
+            !Array.isArray(parsed) ||
+            parsed.length !== 11 ||
+            parsed.some((item) => item.title === 'Monas Design Signage') ||
+            !parsed.every((item) => item.objectPosition)
+          ) {
+            needsReset = true;
+          }
+        } catch (e) {
+          needsReset = true;
+        }
+      } else {
+        needsReset = true;
+      }
+
+      if (needsReset) {
+        const seedData = initialWorksData.map((item, idx) => ({
+          id: `seed-${idx}`,
+          title: item.title,
+          location: item.location,
+          image: item.image,
+          typeKey: item.typeKey,
+          customType: '',
+          size: item.size,
+          latitude: item.latitude || '',
+          longitude: item.longitude || '',
+          objectPosition: item.objectPosition || 'left',
+          isCustom: true
+        }));
+        localStorage.setItem('custom_portfolio_works', JSON.stringify(seedData));
+        customWorks = seedData;
+      } else {
+        customWorks = JSON.parse(stored);
+      }
+
+      // Shuffle and pick exactly 8 random items for display
+      const shuffled = [...customWorks].sort(() => 0.5 - Math.random());
+      setDisplayProjects(shuffled.slice(0, 8));
+    }
+  }, []);
+
+  const activeProjects = displayProjects && displayProjects.length > 0
+    ? displayProjects
+    : initialWorksData.slice(0, 8);
 
   return (
-    <section className="snap-start bg-background min-h-screen py-16">
-      <div
-        ref={ref}
-        className={`container pb-4 text-foreground transition-all duration-1000 ${
-          isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-10 blur-[10px]'
-        }`}
-      >
-        <div className="snap-start pt-8 pb-6 md:pt-16 md:pb-7 xl:pb-10">
-          <h2 className="flex-1 text-primary whitespace-pre-line text-[32px] sm:text-[48px] md:text-[62px] xl:text-[90px] font-helvetica">
+    <section ref={ref} className="snap-start bg-background min-h-screen py-16">
+      <div className="container pb-4 text-foreground">
+        <div className={`snap-start pt-8 pb-6 md:pt-16 md:pb-7 xl:pb-10 transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[5px]'}`}>
+          <h2 className="flex-1 text-accent whitespace-pre-line text-[32px] sm:text-[48px] md:text-[62px] xl:text-[90px] font-helvetica">
             {lang === 'ID' ? (
               <>Proyek <span className="italic">K</span>ami</>
             ) : (
@@ -754,28 +995,24 @@ function ProjectsSection() {
             )}
           </h2>
           <div className="flex flex-col md:flex-row md:justify-between mt-4 xl:mt-10 gap-6">
-            <span className="whitespace-pre-line text-[20px] sm:text-[28px] md:text-[32px] xl:text-[40px] font-helvetica leading-tight text-[#BFDBFE]">
+            <span className="whitespace-pre-line text-[20px] sm:text-[28px] md:text-[32px] xl:text-[40px] font-helvetica leading-tight text-primary">
               {lang === 'ID' ? (
                 <>
-                  Inovasi<span className="italic"> & Solusi</span> Iklan
+                  Mengubah<span className="italic"> Ruang Publik</span>
                   <br />
-                  <span className="font-bold">Luar Ruang</span> Efektif <span className="font-bold">Menghasilkan</span>
-                  <br />
-                  <span className="font-bold">Konversi</span>
+                  Menjadi <span className="font-bold">Aset Konversi</span>
                 </>
               ) : (
                 <>
-                  Effective<span className="italic"> Outdoor</span> Advertising
+                  Transforming<span className="italic"> Public Spaces</span>
                   <br />
-                  <span className="font-bold">Innovation &</span> Solutions <span className="font-bold">Generating</span>
-                  <br />
-                  <span className="font-bold">Conversions</span>
+                  into <span className="font-bold">Conversion Assets</span>
                 </>
               )}
             </span>
             <div className="flex h-full flex-col justify-between md:mt-0 md:max-w-[50%] xl:max-w-[489px] mt-6">
               <div className="flex flex-grow items-center">
-                <p className="text-white/70 text-lg sm:text-xl md:text-2xl font-lato leading-relaxed">
+                <p className="text-foreground/60 text-lg sm:text-xl md:text-2xl font-lato leading-relaxed">
                   {t('home.projects.desc')}
                 </p>
               </div>
@@ -788,146 +1025,173 @@ function ProjectsSection() {
 
         {/* Masonry / Grid Layout of Images */}
         <div className="w-full snap-start text-white pt-6 md:pt-7 xl:pt-10">
-          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-            
-            {/* Card 1 */}
-            <div className="group relative overflow-hidden rounded-2xl border border-white/15 h-64 sm:h-80 lg:h-96">
-              <img
-                src={`${BASE}/uploads/large_TMII_Gate_03_270924_00704_9c70b38b0e.jpg`}
-                alt="Tiang Nama Jalan Monas Design"
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                loading="lazy"
-              />
-              <div className="absolute inset-x-0 bottom-0 translate-y-full bg-[#1E40AF]/90 p-4 transition-transform duration-500 group-hover:translate-y-0 backdrop-blur-sm">
-                <h3 className="font-bold text-base uppercase font-helvetica text-white">Monas Design Signage</h3>
-                <div className="inline-flex flex-wrap gap-x-2 text-[13px] text-gray-200 font-lato mt-1">
-                  <span>• {t('home.projects.sizes.monas')}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Col 2 */}
-            <div className="col-span-1 space-y-4">
-              {/* Card 2 */}
-              <div className="group relative overflow-hidden rounded-2xl border border-white/15 h-32 sm:h-40 lg:h-48">
-                <img
-                  src={`${BASE}/uploads/large_CGK_3_Inter_Giant_LED_210125_00930_3a938a7030.jpg`}
-                  alt="Sudirman Street Branding"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-x-0 bottom-0 translate-y-full bg-[#1E40AF]/90 p-4 transition-transform duration-500 group-hover:translate-y-0 backdrop-blur-sm">
-                  <h3 className="font-bold text-base uppercase font-helvetica text-white">Sudirman Street Branding</h3>
-                  <div className="inline-flex flex-wrap gap-x-2 text-[13px] text-gray-200 font-lato mt-1">
-                    <span>• {t('home.projects.sizes.sudirman')}</span>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Nested grid inside Col 2 */}
-              <div className="grid grid-cols-2 gap-4">
-                {/* Card 3 */}
-                <div className="group relative overflow-hidden rounded-2xl border border-white/15 h-28 sm:h-36 lg:h-44">
+          {mounted && activeProjects.length >= 8 && (
+            <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+              {/* Column 1: Tall Single Image */}
+              {activeProjects[0] && (
+                <div className={`group relative overflow-hidden rounded-2xl border border-border h-64 sm:h-80 lg:h-[400px] xl:h-[448px] w-full bg-card shadow-sm hover:shadow-md transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[5px]'}`}>
                   <img
-                    src={`${BASE}/uploads/large_Still_2024_11_13_100243_1_15_1_e50178550e.jpg`}
-                    alt="Revitalisasi Cirebon 1995"
+                    src={getDirectDriveLink(activeProjects[0].image)}
+                    alt={activeProjects[0].title || 'Project'}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
-                  <div className="absolute inset-x-0 bottom-0 translate-y-full bg-[#1E40AF]/90 p-3 transition-transform duration-500 group-hover:translate-y-0 backdrop-blur-sm">
-                    <h3 className="font-bold text-xs uppercase font-helvetica text-white line-clamp-2">Revitalisasi Cirebon 1995</h3>
-                    <div className="text-[11px] text-gray-200 font-lato mt-0.5">
-                      <span>• {t('home.projects.sizes.cirebon95')}</span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1E3A8A]/90 via-[#1E3A8A]/45 to-transparent p-5 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <h3 className="font-bold text-base uppercase font-helvetica text-white">{activeProjects[0].title}</h3>
+                    {activeProjects[0].size && (
+                      <span className="text-xs text-white/85 mt-2 font-lato border-t border-white/20 pt-1">
+                        {activeProjects[0].size}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Column 2: 1 Wide Image on top, 2 small images side-by-side below */}
+              <div className={`col-span-1 space-y-4 transition-all duration-1000 delay-350 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[5px]'}`}>
+                {activeProjects[1] && (
+                  <div className="group relative overflow-hidden rounded-2xl border border-border h-32 sm:h-40 lg:h-[200px] xl:h-[216px] w-full bg-card shadow-sm hover:shadow-md transition-all duration-300">
+                    <img
+                      src={getDirectDriveLink(activeProjects[1].image)}
+                      alt={activeProjects[1].title || 'Project'}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1E3A8A]/90 via-[#1E3A8A]/45 to-transparent p-4 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <h3 className="font-bold text-sm uppercase font-helvetica text-white">{activeProjects[1].title}</h3>
+                      {activeProjects[1].size && (
+                        <span className="text-xs text-white/85 mt-1 font-lato border-t border-white/20 pt-0.5">
+                          {activeProjects[1].size}
+                        </span>
+                      )}
                     </div>
                   </div>
+                )}
+                
+                <div className="grid grid-cols-2 gap-4">
+                  {activeProjects[2] && (
+                    <div className="group relative overflow-hidden rounded-2xl border border-border h-28 sm:h-36 lg:h-[184px] xl:h-[216px] w-full bg-card shadow-sm hover:shadow-md transition-all duration-300">
+                      <img
+                        src={getDirectDriveLink(activeProjects[2].image)}
+                        alt={activeProjects[2].title || 'Project'}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#1E3A8A]/90 via-[#1E3A8A]/45 to-transparent p-3 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <h3 className="font-bold text-xs uppercase font-helvetica text-white line-clamp-2">{activeProjects[2].title}</h3>
+                        {activeProjects[2].size && (
+                          <span className="text-[10px] text-white/85 mt-1 font-lato border-t border-white/20 pt-0.5 block truncate">
+                            {activeProjects[2].size}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {activeProjects[3] && (
+                    <div className="group relative overflow-hidden rounded-2xl border border-border h-28 sm:h-36 lg:h-[184px] xl:h-[216px] w-full bg-card shadow-sm hover:shadow-md transition-all duration-300">
+                      <img
+                        src={getDirectDriveLink(activeProjects[3].image)}
+                        alt={activeProjects[3].title || 'Project'}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#1E3A8A]/90 via-[#1E3A8A]/45 to-transparent p-3 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <h3 className="font-bold text-xs uppercase font-helvetica text-white line-clamp-2">{activeProjects[3].title}</h3>
+                        {activeProjects[3].size && (
+                          <span className="text-[10px] text-white/85 mt-1 font-lato border-t border-white/20 pt-0.5 block truncate">
+                            {activeProjects[3].size}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
-                {/* Card 4 */}
-                <div className="group relative overflow-hidden rounded-2xl border border-white/15 h-28 sm:h-36 lg:h-44">
-                  <img
-                    src={`${BASE}/uploads/large_HSR_HLM_Boarding_Pillar_Warp_051224_7408_aa907be6c4.jpg`}
-                    alt="Cirebon Heritage LKC"
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-x-0 bottom-0 translate-y-full bg-[#1E40AF]/90 p-3 transition-transform duration-500 group-hover:translate-y-0 backdrop-blur-sm">
-                    <h3 className="font-bold text-xs uppercase font-helvetica text-white line-clamp-2">Cirebon Heritage (LKC)</h3>
-                    <div className="text-[11px] text-gray-200 font-lato mt-0.5">
-                      <span>• {t('home.projects.sizes.lkc')}</span>
+              </div>
+
+              {/* Column 3: 2 Stacked Images */}
+              <div className={`col-span-1 hidden space-y-4 sm:block transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[5px]'}`}>
+                {activeProjects[4] && (
+                  <div className="group relative overflow-hidden rounded-2xl border border-border h-28 sm:h-32 lg:h-[168px] xl:h-[200px] w-full bg-card shadow-sm hover:shadow-md transition-all duration-300">
+                    <img
+                      src={getDirectDriveLink(activeProjects[4].image)}
+                      alt={activeProjects[4].title || 'Project'}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1E3A8A]/90 via-[#1E3A8A]/45 to-transparent p-4 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <h3 className="font-bold text-sm uppercase font-helvetica text-white">{activeProjects[4].title}</h3>
+                      {activeProjects[4].size && (
+                        <span className="text-xs text-white/85 mt-1 font-lato border-t border-white/20 pt-0.5">
+                          {activeProjects[4].size}
+                        </span>
+                      )}
                     </div>
                   </div>
-                </div>
+                )}
+
+                {activeProjects[5] && (
+                  <div className="group relative overflow-hidden rounded-2xl border border-border h-40 sm:h-44 lg:h-[216px] xl:h-[232px] w-full bg-card shadow-sm hover:shadow-md transition-all duration-300">
+                    <img
+                      src={getDirectDriveLink(activeProjects[5].image)}
+                      alt={activeProjects[5].title || 'Project'}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1E3A8A]/90 via-[#1E3A8A]/45 to-transparent p-4 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <h3 className="font-bold text-sm uppercase font-helvetica text-white">{activeProjects[5].title}</h3>
+                      {activeProjects[5].size && (
+                        <span className="text-xs text-white/85 mt-1 font-lato border-t border-white/20 pt-0.5">
+                          {activeProjects[5].size}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Column 4: 2 Stacked Images */}
+              <div className={`col-span-1 hidden space-y-4 lg:block transition-all duration-1000 delay-650 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[5px]'}`}>
+                {activeProjects[6] && (
+                  <div className="group relative overflow-hidden rounded-2xl border border-border h-32 sm:h-40 lg:h-[200px] xl:h-[216px] w-full bg-card shadow-sm hover:shadow-md transition-all duration-300">
+                    <img
+                      src={getDirectDriveLink(activeProjects[6].image)}
+                      alt={activeProjects[6].title || 'Project'}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1E3A8A]/90 via-[#1E3A8A]/45 to-transparent p-4 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <h3 className="font-bold text-sm uppercase font-helvetica text-white">{activeProjects[6].title}</h3>
+                      {activeProjects[6].size && (
+                        <span className="text-xs text-white/85 mt-1 font-lato border-t border-white/20 pt-0.5">
+                          {activeProjects[6].size}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {activeProjects[7] && (
+                  <div className="group relative overflow-hidden rounded-2xl border border-border h-28 sm:h-36 lg:h-[184px] xl:h-[216px] w-full bg-card shadow-sm hover:shadow-md transition-all duration-300">
+                    <img
+                      src={getDirectDriveLink(activeProjects[7].image)}
+                      alt={activeProjects[7].title || 'Project'}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1E3A8A]/90 via-[#1E3A8A]/45 to-transparent p-4 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <h3 className="font-bold text-sm uppercase font-helvetica text-white">{activeProjects[7].title}</h3>
+                      {activeProjects[7].size && (
+                        <span className="text-xs text-white/85 mt-1 font-lato border-t border-white/20 pt-0.5">
+                          {activeProjects[7].size}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
-
-            {/* Col 3 */}
-            <div className="col-span-1 hidden space-y-4 sm:block">
-              {/* Card 5 */}
-              <div className="group relative overflow-hidden rounded-2xl border border-white/15 h-28 sm:h-32 lg:h-40">
-                <img
-                  src={`${BASE}/uploads/large_GBK_Runner_Asia_Afrika_100225_2272_51a2c90401.jpg`}
-                  alt="Jakarta Expansion 2023"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-x-0 bottom-0 translate-y-full bg-[#1E40AF]/90 p-4 transition-transform duration-500 group-hover:translate-y-0 backdrop-blur-sm">
-                  <h3 className="font-bold text-base uppercase font-helvetica text-white">Jakarta Expansion 2023</h3>
-                  <div className="inline-flex flex-wrap gap-x-2 text-[13px] text-gray-200 font-lato mt-1">
-                    <span>• {t('home.projects.sizes.expansion')}</span>
-                  </div>
-                </div>
-              </div>
-              {/* Card 6 */}
-              <div className="group relative overflow-hidden rounded-2xl border border-white/15 h-40 sm:h-44 lg:h-52">
-                <img
-                  src={`${BASE}/uploads/large_CGK_T3_Domestik_Security_Check_Border_091024_1769_34e08c6650.jpg`}
-                  alt="Concept Signage & Ambient"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-x-0 bottom-0 translate-y-full bg-[#1E40AF]/90 p-4 transition-transform duration-500 group-hover:translate-y-0 backdrop-blur-sm">
-                  <h3 className="font-bold text-base uppercase font-helvetica text-white">Concept Signage & Ambient</h3>
-                  <div className="inline-flex flex-wrap gap-x-2 text-[13px] text-gray-200 font-lato mt-1">
-                    <span>• {t('home.projects.sizes.concept')}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Col 4 */}
-            <div className="col-span-1 hidden space-y-4 lg:block">
-              {/* Card 7 */}
-              <div className="group relative overflow-hidden rounded-2xl border border-white/15 h-32 sm:h-40 lg:h-48">
-                <img
-                  src={`${BASE}/uploads/large_LRT_Collagena_Train_201224_9198_bc5a4fd24f.jpg`}
-                  alt="Traditional Billboards"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-x-0 bottom-0 translate-y-full bg-[#1E3A8A]/90 p-4 transition-transform duration-500 group-hover:translate-y-0 backdrop-blur-sm">
-                  <h3 className="font-bold text-base uppercase font-helvetica text-white">Traditional Billboards</h3>
-                  <div className="inline-flex flex-wrap gap-x-2 text-[13px] text-gray-200 font-lato mt-1">
-                    <span>• {t('home.projects.sizes.billboards')}</span>
-                  </div>
-                </div>
-              </div>
-              {/* Card 8 */}
-              <div className="group relative overflow-hidden rounded-2xl border border-white/15 h-28 sm:h-36 lg:h-44">
-                <img
-                  src={`${BASE}/uploads/large_LRT_Valday_Activation_Oppo_140225_4023_9809d0baaa.jpg`}
-                  alt="Point of Sales Media"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-x-0 bottom-0 translate-y-full bg-[#1E40AF]/90 p-4 transition-transform duration-500 group-hover:translate-y-0 backdrop-blur-sm">
-                  <h3 className="font-bold text-base uppercase font-helvetica text-white">Point of Sales Media</h3>
-                  <div className="inline-flex flex-wrap gap-x-2 text-[13px] text-gray-200 font-lato mt-1">
-                    <span>• {t('home.projects.sizes.pos')}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
+          )}
         </div>
       </div>
     </section>

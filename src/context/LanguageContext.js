@@ -6,8 +6,8 @@ import enTranslations from '../translations/en';
 const LanguageContext = createContext();
 
 export function LanguageProvider({ children }) {
-  // Default to ID as requested by the user previously
-  const [lang, setLang] = useState('ID');
+  // Default to EN (English)
+  const [lang, setLang] = useState('EN');
 
   useEffect(() => {
     // Sync with localStorage if present to persist preference

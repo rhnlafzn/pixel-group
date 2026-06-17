@@ -2,7 +2,7 @@
 
 export default function AnimatedButton({ text, href = '#', className = '', srText = '' }) {
   return (
-    <a className={`animated-link inline-flex rounded-lg bg-white text-[#1A56DB] hover:bg-[#EBF5FF] transition-colors ${className}`} href={href}>
+    <a className={`animated-link inline-flex rounded-lg bg-foreground text-white transition-all duration-300 shadow-md group ${className}`} href={href}>
       <div className="flex-1 h-[38px] md:h-[49px] px-6 flex items-center">
         <div className="h-[1.25em] max-h-[1.25em] overflow-hidden whitespace-nowrap text-[14px] md:text-[20px] leading-[1.25em] font-semibold mb-[0.1em]">
           <div className="text">
@@ -17,7 +17,7 @@ export default function AnimatedButton({ text, href = '#', className = '', srTex
           </div>
         </div>
       </div>
-      <div className="icon-wrapper h-[38px] md:h-[49px] aspect-[1/1] overflow-hidden flex items-center justify-end rounded-lg">
+      <div className="icon-wrapper h-[38px] md:h-[49px] aspect-[1/1] overflow-hidden flex items-center justify-end rounded-lg bg-accent text-white transition-all duration-300">
         <div className="flex gap-3 px-3 icon">
           <span className="size-6">
             <svg viewBox="0 0 24 24" style={{ width: '100%', height: '100%' }}>

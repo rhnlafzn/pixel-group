@@ -7,21 +7,27 @@ const enTranslations = {
     contactUs: 'Contact Us',
   },
   footer: {
-    unlockTitle: 'Unlock',
-    potentialTitle: 'Your Potential',
-    workWithUs: 'WORK WITH US',
+    unlockTitle: 'Dominate the Pace',
+    potentialTitle: 'Megapolitan',
+    workWithUs: 'PARTNER WITH US',
     phone: 'Phone',
     whatsapp: 'WhatsApp',
     email: 'Email',
   },
   cta: {
     answer: 'The Answer',
-    subtitle: 'To ',
+    subtitle: 'For ',
     subtitleItalic: 'All ',
-    subtitleItalic2: 'Your Marketing Needs.',
+    subtitleItalic2: 'Your OOH Campaigns.',
     buttonText: "LET'S CONNECT",
   },
   home: {
+    hero: {
+      part1: 'DOMI',
+      part2: 'NATE',
+      ooh: 'STREETS',
+      media: 'REACH 159M ATTENTIONS',
+    },
     solutionsTitle: 'Our Solutions',
     solutionsTagline: {
       presence: 'Unmatched',
@@ -32,44 +38,45 @@ const enTranslations = {
       destination: 'destination',
     },
     services: {
-      management: {
-        title: 'OOH Media Management',
-        heading: 'Integrated & Comprehensive OOH Solutions',
-        desc: 'We offer comprehensive out-of-home advertising solutions ranging from traditional billboards, DOOH, experiential marketing to ambient displays in premium locations.',
-      },
       production: {
-        title: 'Street Name Signage Pioneer',
-        heading: 'High-Aesthetic Branding on Protocol Streets',
-        desc: 'Innovative out-of-home advertising media concept that blends architectural beauty and local cultural ornaments with modern megapolitan spatial planning.',
+        title: 'OOH Production House',
+        heading: 'Premium Quality OOH Production & Construction',
+        desc: 'Executing outdoor media infrastructure with precision. From traditional billboards, DOOH, to the revitalization of commercial street name signage powered by LED and solar panels.',
+      },
+      specialist: {
+        title: 'OOH Media Specialist',
+        heading: 'OOH Placement Specialist & Megapolitan Dominance',
+        desc: 'Providing comprehensive solutions from point of sales to experiential marketing. We distribute your campaigns in primary arterial zones with a reach of hundreds of millions of attentions.',
+      },
+      consultation: {
+        title: 'OOH Consultation',
+        heading: 'Conversion-Based Campaign Strategy Consultation',
+        desc: 'The architect of your marketing campaigns. Our professional team designs OOH media blueprints perfectly calibrated to your target market to maximize message delivery effectiveness.',
+      },
+      research: {
+        title: 'OOH Research',
+        heading: 'Precision Targeting Based on Data & Demographics',
+        desc: 'Your decisions are backed by objective analysis. We dissect audience segmentation, vehicle volume statistics, and traffic visibility projections to ensure your investment hits the mark.',
       },
       readMore: 'READ MORE',
     },
     portfolio: {
-      heading: {
-        part1: 'Pr',
-        part2: 'ese',
-        part3: 'nt',
-        part4: 'in',
-        part5: 'Every',
-        part6: 'Journey',
-        part7: 'that Matters',
-      },
-      desc: 'We create unique visual pieces and artistic digital content. Our dedicated creative team will help you decide what will give your business more impact.',
+      desc: 'Leave conventional methods behind. Make your brand an integral part of the city\'s spatial beauty. We present high-value advertising points that marry the historical heritage of streets with premium commercial visibility.',
     },
     about: {
       title: 'About Us',
-      subheading: 'OOH Media Company\nExperience & Innovation\nOutdoor Advertising Solutions',
-      desc: 'IDEA KREASI MEDIA is an Out Of Home Media company that aims to deliver effective Advertising & Branding campaigns to reach our Clients\' Target Market and generate Conversions. Our Experience and Innovation, combined with the execution of Advertising Solutions, has made us a Pioneer of Street Name Signage Advertising.',
+      subheading: 'Ultimate Conversion Catalyst in the Heart of Super-Megapolitan',
+      desc: 'We are the architects of your visibility. As OOH media specialists, PT Idea Kreasi Media revolutionizes the industry through innovative branding design. We align the effectiveness of commercial advertising with the pace of spatial infrastructure modernization in the Jabodetabek metropolitan area, securing your market dominance in the most dynamic region.',
       seeMore: 'SEE MORE',
     },
     clients: {
       title: 'Our Clients',
-      subheading: 'Over\nOne Hundred\nBusinesses We\'ve\nConnected with Impact',
+      subheading: 'Elite Network of Hundreds\nof Multinationals Has Enjoyed\nOur Premium Presence',
     },
     projects: {
       title: 'Our Projects',
       subtitle: 'Effective Outdoor Advertising\nInnovation & Solutions Generating\nConversions',
-      desc: 'We provide total OOH media solutions ranging from traditional billboards, DOOH, Experiential Marketing to Non-Traditional or Concept-Based OOH such as Street Name Signage, Point of Sales Media, and Ambient Display.',
+      desc: 'Our portfolio is tangible proof of our pioneering role in the OOH industry. We distribute your campaigns across the most premium points—turning audience mobility into maximum Return on Investment (ROI) through non-stop visual exposure.',
       seeMore: 'SEE MORE',
       sizes: {
         monas: 'Size: 350cm x 150cm with LED',
@@ -81,82 +88,82 @@ const enTranslations = {
         billboards: 'OOH Billboard Placement',
         pos: 'Ambient Display',
       },
-      servicesNew: {
-        title: 'Our Service',
-        subtitle: 'We provide comprehensive OOH media solutions. We are equipped with a Dedicated Professional Team to maximize your marketing goals through effective OOH media solutions.',
-        items: {
-          production: {
-            title: 'OOH Production House',
-            desc: 'Complete high-quality fabrication & digital printing services.'
-          },
-          specialist: {
-            title: 'OOH Media Specialist',
-            desc: 'Premium static billboards & DOOH media placements.'
-          },
-          consultation: {
-            title: 'OOH Consultation',
-            desc: 'Strategic consultation and marketing campaign planning.'
-          },
-          research: {
-            title: 'OOH Research',
-            desc: 'Audience research, demographics, & data-driven insights.'
-          }
+    },
+    servicesNew: {
+      title: 'Our Service',
+      subtitle: 'We provide comprehensive OOH media solutions. We are equipped with a Dedicated Professional Team to maximize your marketing goals through effective OOH media solutions.',
+      items: {
+        production: {
+          title: 'OOH Production House',
+          desc: 'Complete high-quality fabrication & digital printing services.'
         },
-        experienceTitle: 'Our Experience',
-        experienceSubtitle: 'We offer total OOH solutions ranging from traditional billboards, Digital OOH (DOOH), Experiential Marketing to Non-Traditional or Concept-Based OOH such as Signage, Point of Sales Media, and Ambient Display.',
-        experienceItems: [
-          { title: 'Fokus Production I', year: '1995 - 2002' },
-          { title: 'LKC Partnership', year: '2018 - 2023' },
-          { title: 'PT. IDEA KREASI MEDIA', year: '2023 - Present' },
-          { title: 'Street Pole Branding', year: 'Innovation & Aesthetics' }
-        ]
+        specialist: {
+          title: 'OOH Media Specialist',
+          desc: 'Premium static billboards & DOOH media placements.'
+        },
+        consultation: {
+          title: 'OOH Consultation',
+          desc: 'Strategic consultation and marketing campaign planning.'
+        },
+        research: {
+          title: 'OOH Research',
+          desc: 'Audience research, demographics, & data-driven insights.'
+        }
       },
-      solutionsNew: {
-        title: 'Our Solution',
-        tagline: 'How Idea Kreasi Media made this proposal to becoming your best OOH Company partner',
-        process: {
-          analyze: {
-            title: 'ANALYZE',
-            desc: 'Analyzing the opportunities objectively.'
-          },
-          identify: {
-            title: 'IDENTIFY',
-            desc: 'Identifying the right audience precisely.'
-          },
-          calculating: {
-            title: 'CALCULATING',
-            desc: 'Calculating the best budget plan of the investment.'
-          }
+      experienceTitle: 'Our Experience',
+      experienceSubtitle: 'We offer total OOH solutions ranging from traditional billboards, Digital OOH (DOOH), Experiential Marketing to Non-Traditional or Concept-Based OOH such as Signage, Point of Sales Media, and Ambient Display.',
+      experienceItems: [
+        { title: 'Fokus Production I', year: '1995 - 2002' },
+        { title: 'LKC Partnership', year: '2018 - 2023' },
+        { title: 'PT. IDEA KREASI MEDIA', year: '2023 - Present' },
+        { title: 'Street Pole Branding', year: 'Innovation & Aesthetics' }
+      ]
+    },
+    solutionsNew: {
+      title: 'Our Solution',
+      tagline: 'How Idea Kreasi Media made this proposal to becoming your best OOH Company partner',
+      process: {
+        analyze: {
+          title: 'ANALYZE',
+          desc: 'Analyzing the opportunities objectively.'
         },
-        pillars: [
-          {
-            title: 'Creative & Integrated Branding',
-            desc: 'Helping raise the level of branding with a creative and integrated approach.'
-          },
-          {
-            title: 'High-Impact Visuals',
-            desc: 'Presenting media visualization that has high visual impact for the audience.'
-          },
-          {
-            title: 'Complete Compliance Solutions',
-            desc: 'Providing complete outdoor media licensing solutions with official guarantees.'
-          },
-          {
-            title: 'Budget Efficiency',
-            desc: 'Supporting the optimization of marketing campaign media budget with high efficiency.'
-          }
-        ]
-      }
+        identify: {
+          title: 'IDENTIFY',
+          desc: 'Identifying the right audience precisely.'
+        },
+        calculating: {
+          title: 'CALCULATING',
+          desc: 'Calculating the best budget plan of the investment.'
+        }
+      },
+      pillars: [
+        {
+          title: 'Creative & Integrated Branding',
+          desc: 'Helping raise the level of branding with a creative and integrated approach.'
+        },
+        {
+          title: 'High-Impact Visuals',
+          desc: 'Presenting media visualization that has high visual impact for the audience.'
+        },
+        {
+          title: 'Complete Compliance Solutions',
+          desc: 'Providing complete outdoor media licensing solutions with official guarantees.'
+        },
+        {
+          title: 'Budget Efficiency',
+          desc: 'Supporting the optimization of marketing campaign media budget with high efficiency.'
+        }
+      ]
     }
   },
   about: {
     hero: {
       title: 'About Us',
-      desc: 'PT. IDEA KREASI MEDIA is an Out Of Home Media company that aims to deliver effective Advertising & Branding campaigns to reach our Clients\' Target Market and generate Conversions.',
+      desc: 'Pixel Group is a leading Out-of-Home (OOH) advertising company in Indonesia, specializing in providing high‑impact advertising spaces through billboards and digital displays across major urban and suburban areas.',
     },
     expertise: {
       title: 'Our Expertise',
-      desc: 'With a focus on helping brands increase their visibility, PT. IDEA KREASI MEDIA offers customized solutions that maximize audience reach and engagement. We address advertising challenges with strategic, data-driven approaches, ensuring your brand achieves maximum visual impact.',
+      desc: 'With a focus on helping brands increase their visibility, Pixel Group offers tailored solutions that maximize audience reach and engagement. At Pixel Group, we tackle advertising challenges with a strategic, data-driven approach, ensuring that brands achieve maximum visibility and impact.',
       cards: {
         comp: {
           title: 'Comprehensive OOH Solutions',
@@ -174,7 +181,33 @@ const enTranslations = {
     },
     map: {
       title: 'Development Map',
-      desc: 'Starting from the pure initiation idea of the Revitalization Program implemented in Cirebon by Fokus Production (1995–2002), continuing with the partnership with the Cirebon Cultural Institution (LKC) (2018–2023), our outdoor media points continue to expand in Jakarta since 2023 under the auspices of PT. IDEA KREASI MEDIA.',
+      desc: 'From Jakarta to Bali, Sumatra to Papua, from the busiest spot on the found on the biggest cities to a rural area—our OOH is everywhere! Reach your audience anytime, anywhere across Indonesia.',
+    },
+    whyUs: {
+      title: 'Why Us',
+      desc: 'Pixel Group stands out in Indonesia\'s OOH advertising landscape due to its comprehensive approach to brand visibility. With an extensive network of billboards and digital displays strategically placed in high-traffic areas across Indonesia, Pixel ensures maximum exposure for its client\'s campaigns.',
+      items: [
+        {
+          title: 'Wide Coverage',
+          desc: 'Extensive reach in major urban and suburban areas connects businesses with broad audiences at premium locations.',
+        },
+        {
+          title: 'High-Quality Media',
+          desc: 'From billboards to digital screens, Pixel\'s visually impactful media captures attention and leaves a lasting impression.',
+        },
+        {
+          title: 'Customized Solutions',
+          desc: 'Flexible, tailored strategies ensure effective campaigns for all business sizes and budgets, maximizing ROI.',
+        },
+        {
+          title: 'Strategic Placement',
+          desc: 'Key locations across business and transit hubs enhance targeted audience engagement.',
+        },
+        {
+          title: 'Expertise and Experience',
+          desc: 'Pixel\'s industry experience enables successful, resource-efficient campaigns aligned with market trends.',
+        }
+      ]
     },
     vision: {
       title: 'Vision & Mission',
@@ -207,37 +240,37 @@ const enTranslations = {
     hero: {
       title: 'Services',
       management: 'OOH Media Management',
-      desc: 'Offering total OOH solutions ranging from traditional billboards, Digital OOH (DOOH), Experiential Marketing to Non-Traditional Media.',
+      desc: 'From conventional roadside Static & Digital Billboard, Transit to Airport Advertising, which are located at premium areas & key major Indonesian airports.',
     },
     mediaManagement: [
       {
-        title: 'Traditional Billboard & DOOH',
-        desc: 'We offer total OOH solutions ranging from conventional static billboards to Digital OOH (DOOH) at strategic protocol road points with high visibility.',
+        title: 'Improve Marketing with OOH Media Management',
+        desc: 'Optimizing and enhancing the effectiveness of outdoor advertising campaigns through strategic planning, placement, and measurement of out-of-home (OOH) media',
       },
       {
-        title: 'Street Name Signage (Tiang Nama Jalan)',
-        desc: 'Outdoor advertising concept that combines architectural beauty and local cultural ornaments with modern megapolitan spatial planning. We design highly aesthetic and informative street name signage media constructions.',
+        title: 'High Visibility',
+        desc: 'Ensuring your brand is seen by the right audience at the right time in high-traffic locations.',
       },
       {
-        title: 'Concept-Based OOH & Ambient Display',
-        desc: 'Special concept-based outdoor advertising media services (ambient media), point of sales (POS) displays, and creative conceptual signage to create direct interactions and unique brand experiences for the audience.',
+        title: 'Improved Targeting',
+        desc: 'Leveraging data to place ads where your target demographics are most likely to see them.',
       }
     ],
     production: {
       title: 'OOH Production House',
-      desc: 'Complete digital printing services and high-quality outdoor billboard construction to support your brand\'s styling and identity.',
+      desc: 'Full-service digital printing company dedicated to providing high-quality, vibrant, and impactful printing solutions for businesses.',
       items: [
         {
-          title: 'Production Expertise & Experience',
-          desc: 'PT. IDEA KREASI MEDIA brings long-standing experience since 1995 in designing, producing, and managing outdoor advertising campaigns and city-scale revitalization projects.',
+          title: 'Transform Outdoor Ads with Our OOH Expertise',
+          desc: 'Our OOH production house offers specialized services and state-of-the-art technology to create, execute, and manage impactful outdoor advertising campaigns that effectively engage and captivate audiences.',
         },
         {
-          title: 'Material Technology & Quality',
-          desc: 'Utilizing the latest digital printing technology and high-quality materials (such as acrylic, sticker cutting, LED lights, and Alcompond) to produce durable and precise advertising media.',
+          title: 'Creative Expertise',
+          desc: 'Bringing your brand vision to life with innovative designs and high-quality production.',
         },
         {
-          title: 'Professional Construction & Installation',
-          desc: 'Supported by an experienced production team that ensures construction safety, licensing, and field installation run according to city spatial planning standards.',
+          title: 'Advanced Technology',
+          desc: 'Utilizing the latest digital printing and LED display technology for stunning visual results.',
         }
       ]
     }

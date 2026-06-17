@@ -1,8 +1,8 @@
 import { Inter, Lato, Playfair_Display } from 'next/font/google';
 import './globals.css';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import PageLayoutWrapper from '@/components/PageLayoutWrapper';
 import { LanguageProvider } from '@/context/LanguageContext';
+import { CompanyProvider } from '@/context/CompanyContext';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -53,11 +53,11 @@ export default function RootLayout({ children }) {
         suppressHydrationWarning
       >
         <LanguageProvider>
-          <Navbar />
-          <main className="flex-1" id="page-scroll-container">
-            {children}
-          </main>
-          <Footer />
+          <CompanyProvider>
+            <PageLayoutWrapper>
+              {children}
+            </PageLayoutWrapper>
+          </CompanyProvider>
         </LanguageProvider>
       </body>
     </html>

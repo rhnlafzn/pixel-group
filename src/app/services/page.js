@@ -4,17 +4,17 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import CTASection from '@/components/CTASection';
 import { useLanguage } from '@/context/LanguageContext';
 
-const BASE = 'https://cms.pixelgroup.id';
+const BASE = 'https://pixelgroup.id';
 
 const oohMediaStaticData = [
   {
     image: `${BASE}/uploads/large_IMG_20250411_103911_38db06e4de.jpg`,
   },
   {
-    image: `${BASE}/uploads/large_Copy_of_Pixel_2155_SO_1_195ab4f1ab.jpg`,
+    image: `${BASE}/uploads/large_IMG_20250411_103911_38db06e4de.jpg`,
   },
   {
-    image: `${BASE}/uploads/large_Pixel_9703_SO_fc95ff2730.jpg`,
+    image: `${BASE}/uploads/large_IMG_20250411_103911_38db06e4de.jpg`,
   },
 ];
 
@@ -23,10 +23,10 @@ const oohProductionStaticData = [
     image: `${BASE}/uploads/large_IMG_20250411_103839_3acbf2b5d6.jpg`,
   },
   {
-    image: `${BASE}/uploads/large_Copy_of_Pixel_1503_SO_1_53757bd66c.jpg`,
+    image: `${BASE}/uploads/large_IMG_20250411_103839_3acbf2b5d6.jpg`,
   },
   {
-    image: `${BASE}/uploads/large_Pixel_0350_SO_4f119ac9cf.jpg`,
+    image: `${BASE}/uploads/large_IMG_20250411_103839_3acbf2b5d6.jpg`,
   },
 ];
 
@@ -52,9 +52,12 @@ function HeroSection() {
     <section className="relative z-10 pt-28 pb-20" id="ooh-media-management">
       <div className="relative isolate z-10 h-full pb-11 md:pb-14 xl:pb-20">
         <div aria-hidden="true" className="absolute inset-x-0 top-[-20%] z-0 h-[150%] overflow-hidden bg-background">
-          <video autoPlay loop muted playsInline className="absolute top-0 right-0 h-full w-full object-cover md:w-4/6 opacity-80 mix-blend-multiply">
-            <source src="https://pixelgroup.id/video/dot-wave-16x10-c.mp4" type="video/mp4" />
-          </video>
+          <div className="blue-dot-grid opacity-30">
+            <div className="dot-layer dot-layer-1" />
+            <div className="dot-layer dot-layer-2" />
+            <div className="dot-layer dot-layer-3" />
+          </div>
+          <div className="blue-glow-top opacity-50" />
           <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-background/0" />
           <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-background to-background/0" />
         </div>
@@ -65,7 +68,7 @@ function HeroSection() {
             {t('services.hero.title')}
           </h1>
           <h2 className={`mt-4 max-w-[536px] text-[40px] leading-[1.2] md:text-[50px] xl:text-[68px] transition-all duration-1000 delay-200 ${mounted ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
-            <span className="text-primary">OOH</span> <span>M</span><span className="font-ramillas italic">edia</span> <span className="font-bold">Management</span>
+            <span className="text-accent">OOH</span> <span>M</span><span className="font-ramillas italic">edia</span> <span className="font-bold">Management</span>
           </h2>
           <p className={`mt-4 text-base font-lato md:pl-[30%] md:text-lg lg:pl-[41%] lg:text-right xl:text-xl transition-all duration-1000 delay-400 ${mounted ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
             {t('services.hero.desc')}
@@ -91,7 +94,7 @@ function MediaManagementSection() {
     <div className="relative z-10 py-6">
       <div className="container flex md:gap-x-4 xl:gap-x-20">
         <div className="hidden w-[40%] md:block">
-          <div className="relative box-border w-full overflow-hidden rounded-2xl border border-white/10 md:aspect-[294/430] xl:aspect-[1/1]">
+          <div className="relative box-border w-full overflow-hidden rounded-2xl border border-border md:aspect-[294/430] xl:aspect-[1/1]">
             {oohMediaServices.map((service, i) => (
               <img
                 key={i}
@@ -138,10 +141,10 @@ function ProductionHouseSection() {
         <div className="container relative z-10 font-helvetica">
           <div className="flex justify-end">
             <h2 className={`mt-4 max-w-[536px] text-right text-[40px] leading-[1.2] md:text-[50px] xl:text-[68px] transition-all duration-1000 ${prodVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
-              <span className="text-primary">OOH</span> <span>Pro</span><span className="font-ramillas italic">ductio</span>n <span className="font-bold">House</span>
+              <span className="text-accent">OOH</span> <span>Pro</span><span className="font-ramillas italic font-normal text-accent">ductio</span>n <span className="font-bold">House</span>
             </h2>
           </div>
-          <p className={`mt-4 max-w-[640px] text-base font-lato md:text-lg xl:text-xl transition-all duration-1000 delay-200 ${prodVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
+          <p className={`mt-4 max-w-[640px] text-base font-lato md:text-lg xl:text-xl transition-all duration-1000 delay-200 ${prodVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px] ml-auto text-right'}`}>
             {t('services.production.desc')}
           </p>
         </div>
@@ -149,7 +152,7 @@ function ProductionHouseSection() {
       <div className="relative z-10 mt-14">
         <div className="container flex md:gap-x-4 xl:gap-x-20 flex-row-reverse">
           <div className="hidden w-[40%] md:block">
-            <div className="relative box-border w-full overflow-hidden rounded-2xl border border-white/10 md:aspect-[294/430] xl:aspect-[1/1]">
+            <div className="relative box-border w-full overflow-hidden rounded-2xl border border-border md:aspect-[294/430] xl:aspect-[1/1]">
               {oohProductionServices.map((service, i) => (
                 <img
                   key={i}
@@ -181,13 +184,13 @@ function ProductionHouseSection() {
 
 function AccordionItem({ number, title, desc, image, isOpen, onToggle }) {
   return (
-    <div onClick={onToggle} className="flex cursor-pointer items-start gap-x-1 border-b border-white/10 md:gap-x-2 pb-4 xl:pb-6 pt-6 xl:pt-10 hover:border-primary transition-colors group">
-      <span className="w-7 font-bold font-lato text-primary text-sm md:text-base mt-[4px]">
+    <div onClick={onToggle} className={`flex cursor-pointer items-start gap-x-1 border-b md:gap-x-2 pb-4 xl:pb-6 pt-6 xl:pt-10 transition-colors group ${isOpen ? 'border-accent' : 'border-border hover:border-accent'}`}>
+      <span className={`w-7 font-bold font-lato text-sm md:text-base mt-[4px] transition-colors ${isOpen ? 'text-primary' : 'text-accent group-hover:text-primary'}`}>
         {number}
       </span>
       <div className="flex-1">
         <div className="flex gap-x-1 mb-4">
-          <h3 className="flex-1 font-helvetica text-[24px] leading-[1.1] md:text-[28px] xl:text-[32px] group-hover:text-primary transition-colors">
+          <h3 className={`flex-1 font-helvetica text-[24px] leading-[1.1] md:text-[28px] xl:text-[32px] transition-colors ${isOpen ? 'text-primary font-bold' : 'text-foreground group-hover:text-primary'}`}>
             {title}
           </h3>
           <span className={`block self-center transition-transform duration-500 md:hidden ${isOpen ? 'rotate-180' : ''}`}>
@@ -199,10 +202,10 @@ function AccordionItem({ number, title, desc, image, isOpen, onToggle }) {
         </div>
         {isOpen && (
           <div className="overflow-hidden">
-            <div className="relative mb-4 box-border block aspect-[322/240] w-full overflow-hidden rounded-2xl border border-white/10 md:hidden">
+            <div className="relative mb-4 box-border block aspect-[322/240] w-full overflow-hidden rounded-2xl border border-border md:hidden">
               <img src={image} className="h-full w-full object-cover" alt={title} />
             </div>
-            <p className="font-lato text-[14px] leading-[1.4] md:text-base text-blue-100">
+            <p className="font-lato text-[14px] leading-[1.4] md:text-base text-foreground/70">
               {desc}
             </p>
           </div>

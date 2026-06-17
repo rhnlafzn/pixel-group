@@ -18,6 +18,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const pathname = usePathname();
   
   const { lang, setLang, t } = useLanguage();
@@ -25,17 +27,31 @@ export default function Navbar() {
   useEffect(() => {
     setMounted(true);
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 50);
+      
+      if (currentScrollY > lastScrollY && currentScrollY > 150) {
+        setShowNavbar(false);
+      } else {
+        setShowNavbar(true);
+      }
+      setLastScrollY(currentScrollY);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
+
+  const isHome = pathname === '/';
+  const headerTextColor = 'text-foreground';
+  const scrollBgColor = scrolled 
+    ? 'bg-background/45 backdrop-blur-[2px]' 
+    : 'bg-transparent';
 
   return (
-    <header className={`navbar fixed inset-x-0 top-0 z-[999] h-[88px] max-w-[100dvw] md:h-24 landscape:h-[60px] transition-all duration-1000 ease-in-out ${
-      scrolled ? 'bg-[#1E40AF]/90 backdrop-blur-md shadow-lg shadow-blue-900/30' : 'bg-transparent'
+    <header className={`navbar fixed inset-x-0 top-0 z-[999] h-[88px] max-w-[100dvw] md:h-24 landscape:h-[60px] transition-all duration-300 ease-in-out ${scrollBgColor} ${headerTextColor} ${
+      showNavbar ? 'translate-y-0' : '-translate-y-full shadow-none'
     } ${
-      mounted ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 -translate-y-[20px] blur-[5px]'
+      mounted ? 'opacity-100 blur-none' : 'opacity-0 -translate-y-[20px] blur-[5px]'
     }`}>
       <div className="container flex h-full items-center justify-between">
         <nav className="hidden md:block">
@@ -56,19 +72,19 @@ export default function Navbar() {
         </nav>
 
         <button
-          className="-m-2 z-50 p-2 hover:bg-white/10 rounded-lg md:hidden"
+          className="-m-2 z-50 p-2 hover:bg-foreground/10 rounded-lg md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
           {mobileOpen ? (
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 8L24 24" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-              <path d="M24 8L8 24" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+              <path d="M8 8L24 24" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              <path d="M24 8L8 24" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
           ) : (
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5.33325 12H26.6666" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M5.33325 20H18.6666" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M5.33325 12H26.6666" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M5.33325 20H18.6666" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           )}
         </button>
@@ -82,7 +98,7 @@ export default function Navbar() {
           <div className="relative">
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="hidden md:flex items-center border-b-2 border-white/60 px-0 py-2 font-lato font-semibold text-lg hover:border-white transition-colors cursor-pointer bg-transparent border-t-0 border-x-0 rounded-none focus:outline-none text-white"
+              className="hidden md:flex items-center border-b-2 px-0 py-2 font-lato font-semibold text-lg hover:border-accent transition-colors cursor-pointer bg-transparent border-t-0 border-x-0 rounded-none focus:outline-none border-foreground/40 text-foreground"
             >
               <span className="mr-2">{lang}</span>
               <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" className={`size-4 transition-transform duration-300 ${dropdownOpen ? 'rotate-180' : ''}`}>
@@ -90,16 +106,16 @@ export default function Navbar() {
               </svg>
             </button>
             {dropdownOpen && (
-              <div className="absolute right-0 mt-2 w-20 bg-[#1E40AF] border border-white/20 rounded-lg shadow-xl overflow-hidden z-[1000] text-center">
+              <div className="absolute right-0 mt-2 w-20 bg-white/95 backdrop-blur-md border border-border rounded-lg shadow-xl overflow-hidden z-[1000] text-center">
                 <button
                   onClick={() => { setLang('EN'); setDropdownOpen(false); }}
-                  className="block w-full px-4 py-2 text-sm font-semibold text-white hover:bg-[#2563EB] transition-colors border-0 rounded-none bg-transparent"
+                  className="block w-full px-4 py-2 text-sm font-semibold text-foreground hover:bg-primary hover:text-white transition-colors border-0 rounded-none bg-transparent"
                 >
                   EN
                 </button>
                 <button
                   onClick={() => { setLang('ID'); setDropdownOpen(false); }}
-                  className="block w-full px-4 py-2 text-sm font-semibold text-white hover:bg-[#2563EB] transition-colors border-0 rounded-none bg-transparent"
+                  className="block w-full px-4 py-2 text-sm font-semibold text-foreground hover:bg-primary hover:text-white transition-colors border-0 rounded-none bg-transparent"
                 >
                   ID
                 </button>
@@ -129,13 +145,13 @@ export default function Navbar() {
           <div className="flex gap-x-6 mt-4">
             <button
               onClick={() => { setLang('ID'); setMobileOpen(false); }}
-              className={`px-4 py-2 border-b-2 text-xl font-semibold cursor-pointer transition-colors bg-transparent border-t-0 border-x-0 ${lang === 'ID' ? 'border-[#93C5FD] text-[#93C5FD]' : 'border-transparent text-white/60 hover:text-white'}`}
+              className={`px-4 py-2 border-b-2 text-xl font-semibold cursor-pointer transition-colors bg-transparent border-t-0 border-x-0 ${lang === 'ID' ? 'border-accent text-accent' : 'border-transparent text-foreground/60 hover:text-foreground'}`}
             >
               ID
             </button>
             <button
               onClick={() => { setLang('EN'); setMobileOpen(false); }}
-              className={`px-4 py-2 border-b-2 text-xl font-semibold cursor-pointer transition-colors bg-transparent border-t-0 border-x-0 ${lang === 'EN' ? 'border-[#93C5FD] text-[#93C5FD]' : 'border-transparent text-white/60 hover:text-white'}`}
+              className={`px-4 py-2 border-b-2 text-xl font-semibold cursor-pointer transition-colors bg-transparent border-t-0 border-x-0 ${lang === 'EN' ? 'border-accent text-accent' : 'border-transparent text-foreground/60 hover:text-foreground'}`}
             >
               EN
             </button>

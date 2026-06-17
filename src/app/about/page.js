@@ -6,11 +6,7 @@ import { useLanguage } from '@/context/LanguageContext';
 
 const BASE = 'https://pixelgroup.id';
 
-const expertiseStaticData = [
-  { key: 'comp', image: `${BASE}/uploads/LRT_Dukuh_Atas_Welcome_Vision_151124_4257_84a34a08cd.webp` },
-  { key: 'street', image: `${BASE}/uploads/Copy_of_Pixel_3645_SO_252009ae18.webp` },
-  { key: 'synergy', image: `${BASE}/uploads/Copy_of_9_H4_A8576_Edit_SO_b96660aaea.webp` },
-];
+
 
 const whyUsStaticData = [
   {
@@ -35,13 +31,36 @@ const whyUsStaticData = [
   },
 ];
 
+const visionItem = {
+  image: `${BASE}/uploads/large_TMII_Gate_03_270924_00704_9c70b38b0e.jpg`,
+};
+
+const missionItems = [
+  {
+    number: '01',
+    image: `${BASE}/uploads/large_CGK_3_Inter_Giant_LED_210125_00930_3a938a7030.jpg`,
+  },
+  {
+    number: '02',
+    image: `${BASE}/uploads/large_Still_2024_11_13_100243_1_15_1_e50178550e.jpg`,
+  },
+  {
+    number: '03',
+    image: `${BASE}/uploads/large_HSR_HLM_Boarding_Pillar_Warp_051224_7408_aa907be6c4.jpg`,
+  },
+  {
+    number: '04',
+    image: `${BASE}/uploads/large_GBK_Runner_Asia_Afrika_100225_2272_51a2c90401.jpg`,
+  },
+];
+
 export default function AboutPage() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <main>
         <HeroSection />
-        <ExpertiseSection />
-        <DiscoveryMapSection />
+        <HistoryTimelineSection />
+        <VisionMissionSection />
         <WhyUsSection />
       </main>
       <CTASection />
@@ -58,84 +77,277 @@ function HeroSection() {
     <section className="relative isolate z-10 flex items-center pt-16 md:pt-20">
       <div className="relative isolate z-10 w-full">
         <div aria-hidden="true" className="absolute inset-x-0 top-[-10%] z-0 h-[120%] overflow-hidden bg-background">
-          <video autoPlay loop muted playsInline className="absolute top-0 right-0 h-full w-full object-cover md:w-4/6 opacity-80 mix-blend-multiply">
-            <source src="/video/dot-wave-16x10-c.mp4" type="video/mp4" />
-          </video>
+          <div className="blue-dot-grid opacity-30">
+            <div className="dot-layer dot-layer-1" />
+            <div className="dot-layer dot-layer-2" />
+            <div className="dot-layer dot-layer-3" />
+          </div>
+          <div className="blue-glow-top opacity-50" />
           <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-background/0" />
           <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-background to-background/0" />
         </div>
         <div
           className="container relative z-10 px-4 py-8 font-helvetica md:px-6 md:py-16"
         >
-          <h1 className={`font-bold text-foreground text-xl md:text-2xl transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
-            {t('about.hero.title')}
-          </h1>
-          <h2 className={`mt-4 max-w-[912px] text-[40px] leading-tight md:text-[50px] md:leading-[81.6px] lg:text-[68px] whitespace-pre-line transition-all duration-1000 delay-200 ${mounted ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
-            <span className="text-primary inline-block">
-              PT.
-            </span>{' '}
-            <span className="font-bold inline-block">
-              IDEA
-            </span>{' '}
-            <span className="text-primary font-tt-ramillas italic inline-block">
-              KREASI
-            </span>{' '}
-            <span className="font-bold inline-block">
-              MEDIA
-            </span>
-          </h2>
-          <p className={`mt-6 max-w-[912px] text-[16px] md:mt-8 md:text-[18px] lg:text-[20px] font-lato transition-all duration-1000 delay-400 ${mounted ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
-            {t('about.hero.desc')}
-          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+            {/* Left Column: Text content */}
+            <div className="lg:col-span-7 flex flex-col justify-center">
+              <h1 className={`font-bold text-foreground text-xl md:text-2xl transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
+                {t('about.hero.title')}
+              </h1>
+              
+              <h2 className={`mt-4 text-[40px] leading-tight md:text-[50px] md:leading-[81.6px] lg:text-[68px] whitespace-pre-line transition-all duration-1000 delay-200 ${mounted ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
+                <span className="text-accent inline-block">
+                  Am
+                </span>
+                <span className="text-accent font-tt-ramillas italic inline-block">
+                  plifying
+                </span>{' '}
+                <span className="text-accent inline-block">
+                  Business
+                </span>{' '}
+                <span className="font-bold inline-block">
+                  Impact
+                </span>{' '}
+                Through{' '}
+                <span className="font-bold inline-block">
+                  Visual Connections
+                </span>
+              </h2>
+              
+              <p className={`mt-6 text-[16px] md:mt-8 md:text-[18px] lg:text-[20px] font-lato transition-all duration-1000 delay-400 ${mounted ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
+                {t('about.hero.desc')}
+              </p>
+            </div>
+
+            {/* Right Column: Logo */}
+            <div className={`lg:col-span-5 flex justify-center lg:justify-end transition-all duration-1000 delay-500 ${mounted ? 'opacity-100 scale-100 blur-none' : 'opacity-0 scale-95 blur-[10px]'}`}>
+              <div className="relative group max-w-[280px] sm:max-w-[340px] lg:max-w-[380px] w-full">
+                {/* Soft backdrop blur and glow behind logo */}
+                <div className="absolute -inset-4 rounded-full bg-gradient-to-tr from-accent/10 to-accent/5 blur-2xl opacity-60 group-hover:opacity-80 transition duration-700 pointer-events-none" />
+                
+                <img
+                  src="/logo.png"
+                  alt="IDEA Logo"
+                  className="relative z-10 w-full h-auto object-contain drop-shadow-[0_8px_24px_rgba(26,83,208,0.12)] transition-transform duration-700 group-hover:scale-[1.03]"
+                  draggable="false"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function ExpertiseSection() {
-  const [expRef, expVisible] = useScrollAnimation({ threshold: 0.1 });
-  const [activeExpertise, setActiveExpertise] = useState(null);
+function VisionMissionSection() {
+  const [visRef, visVisible] = useScrollAnimation({ threshold: 0.05 });
+  const { lang, t } = useLanguage();
+  const [activeTab, setActiveTab] = useState('visi');
+
+  const visionData = {
+    title: t('about.vision.items.0.title'),
+    desc: t('about.vision.items.0.desc'),
+  };
+
+  const missionData = missionItems.map((item, i) => {
+    const rawTitle = t(`about.vision.items.${i + 1}.title`);
+    const cleanTitle = rawTitle.includes(':') ? rawTitle.split(':')[1].trim() : rawTitle;
+    return {
+      ...item,
+      title: cleanTitle,
+      desc: t(`about.vision.items.${i + 1}.desc`),
+    };
+  });
+
+  return (
+    <section className="py-10 lg:py-20 relative z-10">
+      <div className="container px-4 md:px-6 relative z-10" ref={visRef}>
+        
+        {/* 2-Column Split: Switched Contents on Left, Heading & Description on Right */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          
+          {/* Left Column: Switcher & Content Cards (order-last lg:order-first to show below header on mobile) */}
+          <div className={`lg:col-span-8 order-last lg:order-first transition-all duration-1000 delay-300 ${visVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
+            
+            {/* Tab Switcher */}
+            <div className="relative w-[304px] mx-auto flex gap-12 border-b border-border pb-3 mb-8">
+              <button
+                onMouseEnter={() => setActiveTab('visi')}
+                onClick={() => setActiveTab('visi')}
+                className={`w-32 text-center text-2xl md:text-3xl font-bold font-helvetica tracking-wide pb-1 cursor-pointer transition-colors duration-300 ${
+                  activeTab === 'visi' ? 'text-accent' : 'text-foreground/50 hover:text-foreground'
+                }`}
+              >
+                {lang === 'ID' ? 'Visi' : 'Vision'}
+              </button>
+              <button
+                onMouseEnter={() => setActiveTab('misi')}
+                onClick={() => setActiveTab('misi')}
+                className={`w-32 text-center text-2xl md:text-3xl font-bold font-helvetica tracking-wide pb-1 cursor-pointer transition-colors duration-300 ${
+                  activeTab === 'misi' ? 'text-accent' : 'text-foreground/50 hover:text-foreground'
+                }`}
+              >
+                {lang === 'ID' ? 'Misi' : 'Mission'}
+              </button>
+              
+              {/* Sliding Line */}
+              <div 
+                className="absolute bottom-0 h-[3px] bg-accent rounded-full transition-all duration-300 ease-in-out"
+                style={{
+                  left: activeTab === 'visi' ? '0px' : '176px', // 128px button width + 48px gap-12 = 176px
+                  width: '128px'
+                }}
+              />
+            </div>
+
+            {/* Content Blocks with Smooth Transitions - Stacked in a grid to avoid height changes */}
+            <div className="grid grid-cols-1 grid-rows-1 items-start w-full">
+              
+              {/* VISION CONTENT */}
+              <div 
+                className="col-start-1 row-start-1 transition-all duration-500 ease-in-out w-full"
+                style={{
+                  opacity: activeTab === 'visi' ? 1 : 0,
+                  transform: activeTab === 'visi' ? 'translateY(0px) scale(1)' : 'translateY(32px) scale(0.95)',
+                  pointerEvents: activeTab === 'visi' ? 'auto' : 'none'
+                }}
+              >
+                <div className="relative overflow-hidden bg-card/60 backdrop-blur-md border border-border p-8 md:p-10 lg:p-12 rounded-3xl shadow-xl hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-500">
+                  <div className="relative z-10 py-6">
+                    <p className="text-lg md:text-xl lg:text-2xl font-lato leading-relaxed text-foreground/85 italic relative pl-6 text-left">
+                      <span className="text-6xl text-accent/20 font-serif absolute top-[-15px] left-[-15px] pointer-events-none">“</span>
+                      {visionData.desc}
+                      <span className="text-6xl text-accent/20 font-serif absolute bottom-[-45px] pointer-events-none ml-2">”</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* MISSIONS CONTENT */}
+              <div 
+                className="col-start-1 row-start-1 transition-all duration-500 ease-in-out w-full"
+                style={{
+                  opacity: activeTab === 'misi' ? 1 : 0,
+                  transform: activeTab === 'misi' ? 'translateY(0px) scale(1)' : 'translateY(32px) scale(0.95)',
+                  pointerEvents: activeTab === 'misi' ? 'auto' : 'none'
+                }}
+              >
+                {/* Grid of 4 Missions: 2-column grid on desktop to fit Left Column span */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                  {missionData.map((item, i) => {
+                    const delayClass = i === 0 
+                      ? 'delay-100' 
+                      : i === 1 
+                      ? 'delay-200' 
+                      : i === 2 
+                      ? 'delay-300' 
+                      : 'delay-400';
+
+                    return (
+                      <div
+                        key={i}
+                        className={`group relative flex flex-col bg-card border border-border rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-500 overflow-hidden ${delayClass}`}
+                      >
+                        {/* Subtle hover gradient background */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                        {/* Header: Number & Line */}
+                        <div className="relative z-10 flex items-center justify-between mb-6">
+                          <span className="text-3xl font-bold font-helvetica text-accent">
+                            {item.number}
+                          </span>
+                          <div className="w-12 h-[2px] bg-accent/30 group-hover:w-20 group-hover:bg-accent transition-all duration-500" />
+                        </div>
+
+                        {/* Body Content */}
+                        <div className="relative z-10 flex-1 flex flex-col justify-start">
+                          <h5 className="text-lg md:text-xl font-bold font-helvetica text-foreground mb-4 group-hover:text-accent transition-colors duration-300">
+                            {item.title}
+                          </h5>
+                          <p className="font-lato text-[14px] md:text-[15px] text-foreground/75 leading-relaxed">
+                            {item.desc}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          {/* Right Column: Heading & Overall Description (order-first lg:order-last) */}
+          <div className={`lg:col-span-4 order-first lg:order-last font-helvetica lg:self-center text-right transition-all duration-1000 delay-200 ${visVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
+            <div className="flex justify-end mb-6">
+              <h3 className="text-[40px] md:text-[50px] lg:text-[60px] xl:text-[68px] leading-tight md:leading-[81.6px]">
+                {lang === 'ID' ? (
+                  <>
+                    <span className="text-accent">V</span>
+                    <span className="text-accent font-tt-ramillas italic">isi</span> & Misi
+                  </>
+                ) : (
+                  <>
+                    <span className="text-accent">V</span>
+                    <span className="text-accent font-tt-ramillas italic">ision</span> & Mission
+                  </>
+                )}
+              </h3>
+            </div>
+            <p className="text-[16px] md:text-[18px] lg:text-[20px] leading-relaxed md:leading-[29px] tracking-[0.15px] font-lato text-foreground/80">
+              {t('about.vision.desc')}
+            </p>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+}
+
+function WhyUsSection() {
+  const [whyRef, whyVisible] = useScrollAnimation({ threshold: 0.1 });
+  const [activeItem, setActiveItem] = useState(null);
   const { lang, t } = useLanguage();
 
-  const expertiseCards = expertiseStaticData.map(item => ({
+  const whyUsItems = whyUsStaticData.map((item, i) => ({
     ...item,
-    title: t(`about.expertise.cards.${item.key}.title`),
-    description: t(`about.expertise.cards.${item.key}.desc`),
+    title: t(`about.whyUs.items.${i}.title`),
+    description: t(`about.whyUs.items.${i}.desc`),
   }));
 
   return (
     <section className="relative z-10 flex flex-col justify-center py-10 lg:py-20">
-      <div className="container relative z-10 px-4 md:px-6" ref={expRef}>
-        <div className="py-8 font-helvetica md:py-16">
-          <h3 className={`text-[40px] md:text-[50px] lg:text-[68px] leading-tight md:leading-[81.6px] whitespace-pre-line transition-all duration-1000 ${expVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
+      <div className="container relative z-10 px-4 md:px-6" ref={whyRef}>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center py-8 font-helvetica md:py-16">
+          <h3 className={`lg:col-span-5 text-[40px] md:text-[50px] lg:text-[68px] leading-tight md:leading-[81.6px] whitespace-pre-line transition-all duration-1000 ${whyVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
             {lang === 'ID' ? (
               <>
-                <span className="text-primary">K</span>
-                <span className="text-primary font-tt-ramillas italic">eah</span>
-                <span>lian Kami</span>
+                <span className="text-accent">M</span>
+                <span className="text-accent font-tt-ramillas italic">engapa</span> Kami
               </>
             ) : (
               <>
-                <span className="text-primary">O</span>
-                <span className="text-primary font-tt-ramillas italic">ur</span>
-                <span> Expertise</span>
+                <span className="text-accent">W</span>
+                <span className="text-accent font-tt-ramillas italic">hy</span> Us
               </>
             )}
           </h3>
-          <p className={`text-[16px] md:text-[18px] lg:text-[20px] leading-relaxed md:leading-[29px] tracking-[0.15px] mt-6 md:mt-0 md:pl-0 lg:pl-[40%] font-lato transition-all duration-1000 delay-200 ${expVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
-            {t('about.expertise.desc')}
+          <p className={`lg:col-span-7 text-[16px] md:text-[18px] lg:text-[20px] leading-relaxed md:leading-[29px] tracking-[0.15px] font-lato transition-all duration-1000 delay-200 ${whyVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
+            {t('about.whyUs.desc')}
           </p>
         </div>
-        <div className={`transition-all duration-1000 delay-400 ${expVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[40px]'}`}>
+        <div className={`transition-all duration-1000 delay-400 ${whyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[40px]'}`}>
           <div className="flex flex-col lg:flex-row w-full h-auto lg:h-[500px] gap-4">
-            {expertiseCards.map((card, i) => {
-              const isActive = activeExpertise === i;
+            {whyUsItems.map((card, i) => {
+              const isActive = activeItem === i;
               return (
                 <div
                   key={i}
-                  onClick={() => setActiveExpertise(isActive ? null : i)}
-                  className={`relative rounded-2xl shadow-md overflow-hidden border border-white/15 cursor-pointer transition-all duration-700 ease-in-out min-h-[250px] ${
+                  onClick={() => setActiveItem(isActive ? null : i)}
+                  className={`relative rounded-2xl shadow-md overflow-hidden border border-border cursor-pointer transition-all duration-700 ease-in-out min-h-[250px] ${
                     isActive ? 'lg:flex-[3] flex-[1.5]' : 'lg:flex-[1] flex-[1]'
                   }`}
                 >
@@ -143,12 +355,13 @@ function ExpertiseSection() {
                     <img src={card.image} alt={card.title} className="w-full h-full object-cover" loading="lazy" />
                   </div>
                   <div className="absolute inset-0 flex flex-col justify-end">
-                    <div className="bg-gradient-to-t from-black/70 to-transparent p-4 text-white">
-                      <p className="text-[24px] font-semibold mb-1 text-white font-helvetica">{card.title}</p>
+                    <div className="bg-gradient-to-t from-black/85 via-black/40 to-transparent p-4 text-white">
+                      <p className="text-accent font-bold text-sm tracking-wider uppercase mb-1">{card.number}</p>
+                      <p className="text-[20px] md:text-[24px] font-semibold mb-1 text-white font-helvetica">{card.title}</p>
                       <div className={`transition-all duration-500 overflow-hidden ${
                         isActive ? 'max-h-[200px] opacity-100 mt-2' : 'max-h-0 opacity-0'
                       }`}>
-                        <p className="text-[14px] text-neutral-300 font-lato leading-relaxed">
+                        <p className="text-[14px] text-white/80 font-lato leading-relaxed">
                           {card.description}
                         </p>
                       </div>
@@ -164,116 +377,164 @@ function ExpertiseSection() {
   );
 }
 
-function DiscoveryMapSection() {
-  const [mapRef, mapVisible] = useScrollAnimation({ threshold: 0.1 });
-  const { t } = useLanguage();
+function HistoryTimelineSection() {
+  const [histRef, histVisible] = useScrollAnimation({ threshold: 0.1 });
+  const [activeIndex, setActiveIndex] = useState(0);
+  const { lang } = useLanguage();
+
+  const timelineData = [
+    {
+      year: '1995',
+      period: '1995 - 2002',
+      title: 'Fokus Production I',
+      desc: lang === 'ID' 
+        ? 'Bermula dari inisiasi ide murni Program Revitalisasi yang pertama kali dilaksanakan di Cirebon, berjalan sukses dari tahun 1995 sampai dengan 2002.'
+        : 'Began from the initiation of the pure Revitalization Program idea first implemented in Cirebon, running successfully from 1995 to 2002.'
+    },
+    {
+      year: '2018',
+      period: '2018 - 2023',
+      title: lang === 'ID' ? 'Kemitraan LKC' : 'LKC Partnership',
+      desc: lang === 'ID'
+        ? 'Kemitraan strategis Fokus Production dengan Lembaga Kebudayaan Cirebon (LKC) dalam menghadirkan media luar ruang yang menyatu dengan nilai kelestarian budaya lokal.'
+        : 'Strategic partnership of Fokus Production with the Cirebon Cultural Institution (LKC) to deliver out-of-home media aligned with local cultural preservation values.'
+    },
+    {
+      year: '2023',
+      period: '2023 - Sekarang',
+      title: 'PT. IDEA KREASI MEDIA',
+      desc: lang === 'ID'
+        ? 'Dalam rangka ekspansi dan pengembangan bisnis yang lebih luas di Jakarta, Fokus Production bertransformasi secara legal menjadi PT. IDEA KREASI MEDIA.'
+        : 'In the context of wider business expansion and development in Jakarta, Fokus Production legally transformed into PT. IDEA KREASI MEDIA.'
+    }
+  ];
 
   return (
-    <section className="py-0 md:py-20 md:min-h-screen flex flex-col items-stretch">
-      <div className="container font-helvetica" ref={mapRef}>
-        <h3 className={`text-[40px] md:text-[50px] lg:text-[68px] leading-[120%] transition-all duration-1000 ${mapVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
-          <span className="text-primary font-bold block">IDEA</span>
-          <span>{t('about.map.title')}</span>
-        </h3>
-        <p className={`text-[20px] leading-[140%] md:pl-[30%] lg:pl-[40%] mt-4 font-lato transition-all duration-1000 delay-200 ${mapVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
-          {t('about.map.desc')}
-        </p>
-      </div>
-      <div className={`container flex-1 mt-8 pb-16 transition-all duration-1000 delay-400 ${mapVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[40px]'}`}>
-        <div className="relative w-full max-w-full overflow-hidden rounded-3xl border border-white/15">
-          <img
-            src={`${BASE}/uploads/about-us/New-map-with-blue-pin-point.png`}
-            alt="IDEA Development Map"
-            className="w-full h-auto object-contain"
-            loading="eager"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
+    <section className="py-12 md:py-16 relative z-10 flex flex-col justify-center geo-wave-bg">
+      <div className="container relative z-10 px-4 md:px-6" ref={histRef}>
+        
+        {/* Timeline Interaction */}
+        <div className={`transition-all duration-1000 ${histVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[40px]'}`}>
+          
+          {/* Horizontal Progress Line - Hidden on Mobile */}
+          <div className="relative w-full max-w-3xl mx-auto my-16 hidden md:block">
+            {/* Background Line */}
+            <div className="absolute top-1/2 left-0 right-0 h-[3px] bg-border/50 -translate-y-1/2 rounded-full" />
+            
+            {/* Progress Fill Line */}
+            <div 
+              className="absolute top-1/2 left-0 h-[3px] bg-accent -translate-y-1/2 rounded-full transition-all duration-500 ease-out" 
+              style={{ width: `${activeIndex * 50}%` }}
+            />
+            
+            {/* Nodes */}
+            <div className="relative flex justify-between w-full">
+              {timelineData.map((item, i) => {
+                const isActive = activeIndex === i;
+                return (
+                  <div 
+                    key={i} 
+                    className="relative flex flex-col items-center select-none"
+                  >
+                    {/* Hover hotspot wrapper */}
+                    <div 
+                      onMouseEnter={() => setActiveIndex(i)}
+                      onClick={() => setActiveIndex(i)}
+                      className="w-16 h-16 absolute -top-8 flex items-center justify-center cursor-pointer z-20 group"
+                    >
+                      {/* Node Circle */}
+                      <div className={`w-6 h-6 rounded-full border-[4px] border-background bg-card transition-all duration-300 ${
+                        isActive 
+                          ? 'bg-accent border-accent scale-125 shadow-[0_0_15px_rgba(26,83,208,0.5)]' 
+                          : 'bg-border/60 hover:bg-accent/40 group-hover:scale-110'
+                      }`} />
+                    </div>
 
-function WhyUsSection() {
-  const [whyRef, whyVisible] = useScrollAnimation({ threshold: 0.05 });
-  const { lang, t } = useLanguage();
-
-  const whyUsItems = whyUsStaticData.map((item, i) => ({
-    ...item,
-    title: t(`about.vision.items.${i}.title`),
-    desc: t(`about.vision.items.${i}.desc`),
-  }));
-
-  return (
-    <section className="py-10 lg:py-20 relative z-10">
-      <div className="container px-4 md:px-6 relative z-10" ref={whyRef}>
-        <div className="py-8 md:py-16 font-helvetica">
-          <div className="flex justify-end mb-6">
-            <h3 className={`text-[40px] md:text-[50px] lg:text-[68px] leading-tight md:leading-[81.6px] transition-all duration-1000 ${whyVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
-              {lang === 'ID' ? (
-                <>
-                  <span className="text-primary">V</span>
-                  <span className="text-primary font-tt-ramillas italic">isi</span> & Misi
-                </>
-              ) : (
-                <>
-                  <span className="text-primary">V</span>
-                  <span className="text-primary font-tt-ramillas italic">ision</span> & Mission
-                </>
-              )}
-            </h3>
+                    {/* Year Label */}
+                    <span className={`absolute -bottom-8 font-helvetica font-bold text-lg md:text-xl transition-all duration-300 ${
+                      isActive ? 'text-accent scale-110' : 'text-foreground/45 hover:text-foreground/75'
+                    }`}>
+                      {item.year}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-          <p className={`text-[16px] md:text-[18px] lg:text-[20px] leading-relaxed md:leading-[29px] tracking-[0.15px] w-full lg:w-[60%] font-lato transition-all duration-1000 delay-200 ${whyVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
-            {t('about.vision.desc')}
-          </p>
+
+          {/* Vertical Timeline for Mobile (Visible on mobile, hidden on desktop) */}
+          <div className="relative flex flex-col items-center gap-8 my-10 md:hidden">
+            {/* Center Vertical line */}
+            <div className="absolute top-0 bottom-0 left-[27px] w-[2px] bg-border/50" />
+            
+            {/* Mobile Year Buttons */}
+            <div className="flex flex-col items-stretch w-full gap-4 relative z-10">
+              {timelineData.map((item, i) => {
+                const isActive = activeIndex === i;
+                return (
+                  <button
+                    key={i}
+                    onClick={() => setActiveIndex(i)}
+                    onMouseEnter={() => setActiveIndex(i)}
+                    className="flex items-center gap-4 text-left p-3 rounded-2xl border transition-all duration-300 cursor-pointer w-full bg-card/40 border-border/50"
+                  >
+                    {/* Node Dot */}
+                    <div className={`w-8 h-8 flex items-center justify-center rounded-full border-2 font-bold text-sm transition-all duration-300 ${
+                      isActive ? 'bg-accent border-accent text-white scale-105 shadow-md' : 'bg-background border-border/80 text-foreground/50'
+                    }`}>
+                      {i + 1}
+                    </div>
+                    
+                    {/* Year Text */}
+                    <div className="flex-1">
+                      <span className={`text-lg font-bold font-helvetica ${isActive ? 'text-accent' : 'text-foreground/75'}`}>
+                        {item.year}
+                      </span>
+                      <span className="text-xs text-foreground/45 ml-2">({item.period})</span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Timeline Card Content (Smooth Grid Transition) */}
+          <div className="grid grid-cols-1 grid-rows-1 items-start max-w-2xl mx-auto w-full mt-10 min-h-[180px]">
+            {timelineData.map((item, i) => {
+              const isActive = activeIndex === i;
+              return (
+                <div
+                  key={i}
+                  className="col-start-1 row-start-1 transition-all duration-500 ease-in-out w-full"
+                  style={{
+                    opacity: isActive ? 1 : 0,
+                    transform: isActive ? 'translateY(0px) scale(1)' : 'translateY(32px) scale(0.95)',
+                    pointerEvents: isActive ? 'auto' : 'none'
+                  }}
+                >
+                  <div className="relative overflow-hidden bg-card/60 backdrop-blur-md border border-border p-8 md:p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 text-center">
+                    {/* Faint Year Watermark */}
+                    <div className="absolute right-10 bottom-0 text-[100px] md:text-[150px] font-bold font-helvetica text-accent/[0.02] select-none pointer-events-none translate-y-6">
+                      {item.year}
+                    </div>
+                    
+                    <span className="text-accent font-bold font-helvetica text-sm tracking-wider uppercase mb-2 block">
+                      {item.period}
+                    </span>
+                    <h4 className="text-2xl md:text-3xl font-bold font-helvetica text-foreground mb-4">
+                      {item.title}
+                    </h4>
+                    <p className="text-[16px] md:text-[18px] font-lato text-foreground/80 leading-relaxed max-w-xl mx-auto">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
         </div>
 
-        {/* Desktop: Sticky scroll cards */}
-        <div className="relative hidden min-h-[150vh] py-8 pb-[50px] md:block md:py-12 lg:mx-20">
-          {whyUsItems.map((item, i) => (
-            <div key={i} className="sticky" style={{ top: '200px', zIndex: 5 + i }}>
-              <div className="bg-[#1E40AF] border border-white/10 flex flex-row md:gap-[32px] lg:gap-[64px] mb-16 items-center h-[240px] px-8 rounded-2xl shadow-xl">
-                <div className="relative w-[429px] h-[190px] rounded-lg overflow-hidden border border-primary shrink-0">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <div className="w-[2px] h-[190px] bg-white/10 rounded-lg shrink-0" />
-                <div className="flex-1 flex flex-col justify-center text-white">
-                  <p className="text-primary font-medium mb-1 font-bold">{item.number}</p>
-                  <h4 className="text-2xl font-bold mb-2 font-helvetica text-white">{item.title}</h4>
-                  <p className="font-lato text-blue-100">{item.desc}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Mobile: Regular stacked cards */}
-        <div className="space-y-8 py-8 md:hidden">
-          {whyUsItems.map((item, i) => (
-            <div key={i} className="bg-[#1E40AF] border border-white/10 flex flex-row gap-4 items-center h-[240px] px-4 rounded-xl shadow-lg">
-              <div className="relative w-[140px] h-[190px] rounded-lg overflow-hidden border border-primary shrink-0">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <div className="w-[2px] h-[190px] bg-white/10 rounded-lg shrink-0" />
-              <div className="flex-1 flex flex-col justify-center text-white">
-                <p className="text-primary font-medium mb-1 font-bold">{item.number}</p>
-                <h4 className="text-xl font-bold mb-2 font-helvetica text-white">{item.title}</h4>
-                <p className="font-lato text-sm text-blue-100">{item.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );

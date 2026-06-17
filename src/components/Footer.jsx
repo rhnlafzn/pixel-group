@@ -1,42 +1,44 @@
 'use client';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useLanguage } from '@/context/LanguageContext';
+import { useCompany } from '@/context/CompanyContext';
 
 export default function Footer() {
   const [ref, isVisible] = useScrollAnimation();
   const { lang, t } = useLanguage();
+  const { settings } = useCompany();
 
   return (
     <footer>
-      <div className="relative isolate z-10 flex h-svh min-h-[626px] w-full items-end bg-[#1E3A8A] pt-20 text-white xl:pt-32">
+      <div className="relative isolate z-10 flex h-svh min-h-[626px] w-full items-end bg-surface pt-20 text-foreground xl:pt-32">
         <div aria-hidden="true" className="absolute inset-0 z-0 overflow-hidden">
-          <div className="blue-dot-grid">
+          <div className="blue-dot-grid opacity-15">
             <div className="dot-layer dot-layer-1" />
             <div className="dot-layer dot-layer-2" />
           </div>
-          <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-[#1A56DB] to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-background to-surface" />
         </div>
         <div ref={ref} className="container relative z-10 flex flex-col justify-between pb-8 xl:flex-row xl:pb-24">
           <div className="flex flex-col justify-start">
             <div className="relative w-fit">
               <h2
-                className={`font-helvetica text-[58px] text-white leading-normal xl:text-[120px] transition-all duration-1000 ${
+                className={`font-helvetica text-[58px] text-primary leading-normal xl:text-[120px] transition-all duration-1000 ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
               >
                 {lang === 'ID' ? (
-                  <>Wuju<span className="font-ramillas italic">dka</span>n</>
+                  <>Kua<span className="font-ramillas italic">sa</span>i Laju</>
                 ) : (
-                  <>Unl<span className="font-ramillas italic">oc</span>k y<span className="font-ramillas italic">ou</span>r</>
+                  <>Do<span className="font-ramillas italic">mi</span>nate the <span className="font-ramillas italic">Pa</span>ce</>
                 )}
               </h2>
               <div className="flex flex-wrap items-center md:flex-row-reverse md:gap-x-10 xl:gap-x-20">
                 <h2
-                  className={`w-full text-left font-ramillas text-[58px] text-[#93C5FD] leading-[1.2] md:w-fit md:text-[76px] xl:text-[120px] transition-all duration-1000 delay-200 ${
+                  className={`w-full text-left font-ramillas text-[58px] text-accent leading-[1.2] md:w-fit md:text-[76px] xl:text-[120px] transition-all duration-1000 delay-200 ${
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                   }`}
                 >
-                  {lang === 'ID' ? 'Potensi Anda' : 'Potential'}
+                  {lang === 'ID' ? 'Megapolitan' : 'Megapolitan'}
                 </h2>
                 <div
                   className={`relative mt-4 h-fit px-5 py-2 md:mt-0 md:px-8 md:py-4 transition-all duration-1000 delay-400 ${
@@ -46,41 +48,55 @@ export default function Footer() {
                   <div className="h-auto w-fit">
                     <p className="w-[100px] text-center text-base md:text-lg xl:text-xl">{t('footer.workWithUs')}</p>
                   </div>
-                  <span className="absolute top-0 left-0 size-[34px] rounded-tl border-[#93C5FD] border-t-2 border-l-2" />
-                  <span className="absolute right-0 bottom-0 size-[34px] rounded-br border-[#93C5FD] border-r-2 border-b-2" />
+                  <span className="absolute top-0 left-0 size-[34px] rounded-tl border-accent border-t-2 border-l-2" />
+                  <span className="absolute right-0 bottom-0 size-[34px] rounded-br border-accent border-r-2 border-b-2" />
                 </div>
               </div>
             </div>
           </div>
-
+ 
           <div className="mt-14 flex w-full flex-col items-end space-y-2 self-end text-right font-lato text-base md:mt-8 md:text-lg xl:mt-0 xl:text-xl">
-            <h2 className="font-bold font-helvetica text-[28px] leading-[1.1] md:text-[32px] xl:text-[40px] text-[#93C5FD]">PT. IDEA KREASI MEDIA</h2>
-            <a target="_blank" href="https://maps.app.goo.gl/8MKndDLHhaKB6JjVA" rel="noopener noreferrer">
-              <p className="!mt-10 text-white/80 hover:text-[#93C5FD] transition-colors">Jl. Panjang Cidodol No. 83, Kebayoran Lama, Jakarta Selatan 12220</p>
-            </a>
-            <p className="flex items-center justify-end gap-2 text-white/80">
-              <PhoneIcon /> {t('footer.phone')}: +62-21-2942-8555
-            </p>
-            <p>
-              <a target="_blank" href="https://wa.me/6281119220654?text=Hello" rel="noopener noreferrer" className="flex items-center justify-end gap-2 text-white/80 hover:text-[#93C5FD] transition-colors">
-                <WhatsAppIcon /> {t('footer.whatsapp')}: +62 811-1922-0654
+            <h2 className="font-bold font-helvetica text-[28px] leading-[1.1] md:text-[32px] xl:text-[40px] text-accent">{settings.name}</h2>
+            {settings.address && (
+              <a target="_blank" href={settings.mapsUrl || '#'} rel="noopener noreferrer">
+                <p className="!mt-10 text-foreground/70 hover:text-accent transition-colors">{settings.address}</p>
               </a>
-            </p>
-            <p>
-              <a target="_blank" href="mailto:contact@ideakreasimedia.co.id" rel="noopener noreferrer" className="flex items-center justify-end gap-2 text-white/80 hover:text-[#93C5FD] transition-colors">
-                <EmailIcon /> {t('footer.email')}: contact@ideakreasimedia.co.id
-              </a>
-            </p>
-            <div className="!mt-10 flex justify-end gap-3 text-white/80">
-              <a target="_blank" href="https://wa.me/6281119220654?text=Hello" rel="noopener noreferrer" aria-label="WhatsApp" className="grid size-12 place-content-center hover:text-[#93C5FD] transition-colors">
-                <WhatsAppIcon size={24} />
-              </a>
-              <a target="_blank" href="https://www.linkedin.com" rel="noopener noreferrer" aria-label="LinkedIn" className="grid size-12 place-content-center hover:text-[#93C5FD] transition-colors">
-                <LinkedInIcon />
-              </a>
-              <a target="_blank" href="https://www.instagram.com" rel="noopener noreferrer" aria-label="Instagram" className="grid size-12 place-content-center hover:text-[#93C5FD] transition-colors">
-                <InstagramIcon />
-              </a>
+            )}
+            {settings.phone && (
+              <p className="flex items-center justify-end gap-2 text-foreground/70">
+                <PhoneIcon /> {t('footer.phone')}: {settings.phone}
+              </p>
+            )}
+            {settings.whatsapp && (
+              <p>
+                <a target="_blank" href={settings.whatsappUrl || '#'} rel="noopener noreferrer" className="flex items-center justify-end gap-2 text-foreground/70 hover:text-accent transition-colors">
+                  <WhatsAppIcon /> {t('footer.whatsapp')}: {settings.whatsapp}
+                </a>
+              </p>
+            )}
+            {settings.email && (
+              <p>
+                <a target="_blank" href={`mailto:${settings.email}`} rel="noopener noreferrer" className="flex items-center justify-end gap-2 text-foreground/70 hover:text-accent transition-colors">
+                  <EmailIcon /> {t('footer.email')}: {settings.email}
+                </a>
+              </p>
+            )}
+            <div className="!mt-10 flex justify-end gap-3 text-foreground/70">
+              {settings.whatsappUrl && (
+                <a target="_blank" href={settings.whatsappUrl} rel="noopener noreferrer" aria-label="WhatsApp" className="grid size-12 place-content-center hover:text-accent transition-colors">
+                  <WhatsAppIcon size={24} />
+                </a>
+              )}
+              {settings.linkedin && (
+                <a target="_blank" href={settings.linkedin} rel="noopener noreferrer" aria-label="LinkedIn" className="grid size-12 place-content-center hover:text-accent transition-colors">
+                  <LinkedInIcon />
+                </a>
+              )}
+              {settings.instagram && (
+                <a target="_blank" href={settings.instagram} rel="noopener noreferrer" aria-label="Instagram" className="grid size-12 place-content-center hover:text-accent transition-colors">
+                  <InstagramIcon />
+                </a>
+              )}
             </div>
           </div>
         </div>
