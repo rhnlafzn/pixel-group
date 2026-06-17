@@ -1,18 +1,27 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Preloader({ onComplete }) {
-  const containerRef = useRef(null);
+  const [exit, setExit] = useState(false);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-    container.classList.add('preloader-animate');
-    const timeout = setTimeout(() => {
+    // Start exit animation after 4.2 seconds
+    const exitTimeout = setTimeout(() => {
+      setExit(true);
+    }, 4200);
+
+    // Call onComplete after 5.0 seconds (allowing 800ms exit transition)
+    const completeTimeout = setTimeout(() => {
       onComplete && onComplete();
-    }, 6000); // total duration
-    return () => clearTimeout(timeout);
+    }, 5000);
+
+    return () => {
+      clearTimeout(exitTimeout);
+      clearTimeout(completeTimeout);
+    };
   }, [onComplete]);
+
+  const text = "IDEA KREASI MEDIA";
 
   return (
     <>
@@ -21,105 +30,208 @@ export default function Preloader({ onComplete }) {
           position: fixed;
           inset: 0;
           display: flex;
+          flex-direction: column;
           align-items: center;
           justify-content: center;
-          background: #f6f8fb;
+          background-color: var(--color-background, #faf9f6);
           overflow: hidden;
-          z-index: 9999;
+          z-index: 99999;
+          transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1), opacity 0.8s cubic-bezier(0.7, 0, 0.3, 1);
         }
-        .fluid-bg {
+        .preloader-container.exit {
+          transform: translateY(-100%);
+          opacity: 0;
+          pointer-events: none;
+        }
+        /* Blobs Container */
+        .blobs-wrapper {
           position: absolute;
           inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          pointer-events: none;
           z-index: 1;
         }
-        .fluid-blob {
+        .blob {
           position: absolute;
           border-radius: 50%;
-          filter: blur(90px);
-          opacity: 0.55;
-          mix-blend-mode: multiply;
+          transform: scale(0);
+          opacity: 0;
         }
         .blob-1 {
-          width: 450px;
-          height: 450px;
-          background: #1a53d0;
-          left: -5%;
-          top: -5%;
-          animation: blobMove1 10s ease-in-out infinite alternate;
+          width: 380px;
+          height: 380px;
+          background: radial-gradient(circle, rgba(78, 205, 196, 0.35) 0%, transparent 70%);
+          filter: blur(40px);
+          animation: blobIntro1 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, blobFloat1 10s ease-in-out infinite alternate 1.2s;
         }
         .blob-2 {
-          width: 550px;
-          height: 550px;
-          background: #b89c72;
-          right: -5%;
-          bottom: -5%;
-          animation: blobMove2 12s ease-in-out infinite alternate;
+          width: 280px;
+          height: 480px;
+          background: radial-gradient(circle, rgba(255, 107, 107, 0.25) 0%, transparent 70%);
+          filter: blur(50px);
+          animation: blobIntro2 1.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, blobFloat2 12s ease-in-out infinite alternate 1.4s;
         }
         .blob-3 {
-          width: 400px;
-          height: 400px;
-          background: #1e3447;
-          left: 25%;
-          top: 25%;
-          animation: blobMove3 9s ease-in-out infinite alternate;
+          width: 320px;
+          height: 320px;
+          background: radial-gradient(circle, rgba(30, 52, 71, 0.15) 0%, transparent 70%);
+          filter: blur(40px);
+          animation: blobIntro3 1.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, blobFloat3 9s ease-in-out infinite alternate 1.6s;
         }
-        @keyframes blobMove1 {
+
+        @keyframes blobIntro1 {
+          to { transform: scale(1); opacity: 1; }
+        }
+        @keyframes blobIntro2 {
+          to { transform: scale(1); opacity: 1; }
+        }
+        @keyframes blobIntro3 {
+          to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes blobFloat1 {
+          0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+          50% { transform: translate(40px, -30px) scale(1.1) rotate(90deg); }
+          100% { transform: translate(-20px, 40px) scale(0.9) rotate(180deg); }
+        }
+        @keyframes blobFloat2 {
+          0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+          50% { transform: translate(-50px, 40px) scale(0.95) rotate(-120deg); }
+          100% { transform: translate(30px, -50px) scale(1.05) rotate(-240deg); }
+        }
+        @keyframes blobFloat3 {
           0% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(120px, 80px) scale(1.15); }
-          100% { transform: translate(40px, 160px) scale(0.95); }
+          50% { transform: translate(30px, 30px) scale(1.05); }
+          100% { transform: translate(-30px, -30px) scale(0.95); }
         }
-        @keyframes blobMove2 {
-          0% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(-80px, -120px) scale(0.85); }
-          100% { transform: translate(-160px, -40px) scale(1.1); }
+
+        /* Content elements */
+        .preloader-content {
+          position: relative;
+          z-index: 10;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
         }
-        @keyframes blobMove3 {
-          0% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(-60px, 100px) scale(1.1); }
-          100% { transform: translate(100px, -60px) scale(0.9); }
-        }
-        .title {
-          font-family: Helvetica, sans-serif;
+        .title-wrapper {
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+          font-family: var(--font-helvetica, 'Inter', sans-serif);
           font-weight: 900;
+          text-transform: uppercase;
           font-size: 2.2rem;
-          color: #1e3447;
-          text-align: center;
-          letter-spacing: 0.12em;
-          z-index: 2;
+          color: var(--color-primary, #1e3447);
+          letter-spacing: -0.02em;
+          line-height: 1.1;
+          margin-bottom: 1rem;
+        }
+        @media (min-width: 768px) {
+          .title-wrapper {
+            font-size: 3.5rem;
+          }
+        }
+        .char-wrapper {
+          display: flex;
+          overflow: hidden;
+        }
+        .char {
+          display: inline-block;
           opacity: 0;
-          transform: translateY(20px) scale(0.95);
-          animation: titleFadeIn 3.5s ease-in-out forwards 3s;
+          filter: blur(16px);
+          transform: translateY(20px) scale(0.9);
+          animation: charReveal 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
-        @media (min-width: 640px) {
-          .title {
-            font-size: 3rem;
+        @keyframes charReveal {
+          to {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0) scale(1);
           }
         }
-        @media (min-width: 1024px) {
-          .title {
-            font-size: 4rem;
+        .dot {
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: var(--color-accent, #1a53d0);
+          margin-left: 4px;
+          margin-bottom: 6px;
+          transform: scale(0);
+          animation: dotReveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 1.2s;
+        }
+        @media (min-width: 768px) {
+          .dot {
+            width: 12px;
+            height: 12px;
+            margin-left: 6px;
+            margin-bottom: 8px;
           }
         }
-        @keyframes titleFadeIn {
-          0% { opacity: 0; transform: translateY(20px) scale(0.95); filter: blur(8px); }
-          20% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-          80% { opacity: 1; }
-          100% { opacity: 0; transform: translateY(-15px); filter: blur(4px); }
+        @keyframes dotReveal {
+          to { transform: scale(1); }
         }
-        .preloader-animate {
-          animation: containerFadeOut 1s ease forwards 5.2s;
+
+        .subtitle {
+          font-family: var(--font-lato, 'Lato', sans-serif);
+          font-size: 0.7rem;
+          font-weight: 700;
+          letter-spacing: 0.4em;
+          text-transform: uppercase;
+          color: var(--color-primary, #1e3447);
+          opacity: 0;
+          transform: translateY(10px);
+          animation: subtitleReveal 0.8s ease forwards 1.6s;
+          margin-top: 0.5rem;
         }
-        @keyframes containerFadeOut {
-          to { opacity: 0; visibility: hidden; transform: translateY(-100px); }
+        @media (min-width: 768px) {
+          .subtitle {
+            font-size: 0.85rem;
+            letter-spacing: 0.5em;
+          }
+        }
+        @keyframes subtitleReveal {
+          to {
+            opacity: 0.65;
+            transform: translateY(0);
+          }
         }
       `}</style>
-      <div ref={containerRef} className="preloader-container">
-        <div className="fluid-bg">
-          <div className="fluid-blob blob-1" />
-          <div className="fluid-blob blob-2" />
-          <div className="fluid-blob blob-3" />
+      <div className={`preloader-container ${exit ? 'exit' : ''}`}>
+        <div className="blobs-wrapper">
+          <div className="blob blob-1" />
+          <div className="blob blob-2" />
+          <div className="blob blob-3" />
         </div>
-        <h1 className="title">IDEA KREASI MEDIA</h1>
+        <div className="preloader-content">
+          <div className="title-wrapper">
+            {(() => {
+              let globalCharIndex = 0;
+              return text.split(' ').map((word, wordIndex) => (
+                <span key={wordIndex} className="char-wrapper mr-3 last:mr-0">
+                  {word.split('').map((char, charIndex) => {
+                    const delay = globalCharIndex * 0.04;
+                    globalCharIndex++;
+                    return (
+                      <span
+                        key={charIndex}
+                        className="char"
+                        style={{ animationDelay: `${delay}s` }}
+                      >
+                        {char}
+                      </span>
+                    );
+                  })}
+                </span>
+              ));
+            })()}
+            <span className="dot" />
+          </div>
+          <div className="subtitle">OOH Specialist &amp; Production House</div>
+        </div>
       </div>
     </>
   );
