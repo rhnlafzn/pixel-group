@@ -648,7 +648,7 @@ function PortfolioSection() {
                           onClick={() => {
                             if (emblaApi) emblaApi.scrollTo(i);
                           }}
-                          className="min-w-0 shrink-0 grow-0 pl-4 h-full w-fit basis-1/3 xl:basis-1/5 flex items-center cursor-pointer"
+                          className={`min-w-0 shrink-0 grow-0 pl-4 h-full w-fit basis-1/3 xl:basis-1/5 flex items-center cursor-pointer relative ${isActive ? 'z-20' : isNext || isPrev ? 'z-10' : 'z-0'}`}
                         >
                           <div className="w-fit relative xl:h-[610px] flex flex-col items-center">
                             <div
