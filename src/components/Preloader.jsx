@@ -60,24 +60,24 @@ export default function Preloader({ onComplete }) {
           opacity: 0;
         }
         .blob-1 {
-          width: 380px;
-          height: 380px;
-          background: radial-gradient(circle, rgba(78, 205, 196, 0.35) 0%, transparent 70%);
-          filter: blur(40px);
+          width: 480px;
+          height: 480px;
+          background: radial-gradient(circle, rgba(78, 205, 196, 0.55) 0%, transparent 70%);
+          filter: blur(50px);
           animation: blobIntro1 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, blobFloat1 10s ease-in-out infinite alternate 1.2s;
         }
         .blob-2 {
-          width: 280px;
-          height: 480px;
-          background: radial-gradient(circle, rgba(255, 107, 107, 0.25) 0%, transparent 70%);
-          filter: blur(50px);
+          width: 380px;
+          height: 580px;
+          background: radial-gradient(circle, rgba(255, 107, 107, 0.45) 0%, transparent 70%);
+          filter: blur(60px);
           animation: blobIntro2 1.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, blobFloat2 12s ease-in-out infinite alternate 1.4s;
         }
         .blob-3 {
-          width: 320px;
-          height: 320px;
-          background: radial-gradient(circle, rgba(30, 52, 71, 0.15) 0%, transparent 70%);
-          filter: blur(40px);
+          width: 420px;
+          height: 420px;
+          background: radial-gradient(circle, rgba(30, 52, 71, 0.3) 0%, transparent 70%);
+          filter: blur(45px);
           animation: blobIntro3 1.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, blobFloat3 9s ease-in-out infinite alternate 1.6s;
         }
 
@@ -93,18 +93,18 @@ export default function Preloader({ onComplete }) {
 
         @keyframes blobFloat1 {
           0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-          50% { transform: translate(40px, -30px) scale(1.1) rotate(90deg); }
-          100% { transform: translate(-20px, 40px) scale(0.9) rotate(180deg); }
+          50% { transform: translate(60px, -40px) scale(1.15) rotate(90deg); }
+          100% { transform: translate(-30px, 60px) scale(0.9) rotate(180deg); }
         }
         @keyframes blobFloat2 {
           0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-          50% { transform: translate(-50px, 40px) scale(0.95) rotate(-120deg); }
-          100% { transform: translate(30px, -50px) scale(1.05) rotate(-240deg); }
+          50% { transform: translate(-70px, 60px) scale(0.9) rotate(-120deg); }
+          100% { transform: translate(40px, -70px) scale(1.1) rotate(-240deg); }
         }
         @keyframes blobFloat3 {
           0% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(30px, 30px) scale(1.05); }
-          100% { transform: translate(-30px, -30px) scale(0.95); }
+          50% { transform: translate(40px, 40px) scale(1.1); }
+          100% { transform: translate(-40px, -40px) scale(0.9); }
         }
 
         /* Content elements */
@@ -158,8 +158,8 @@ export default function Preloader({ onComplete }) {
           height: 8px;
           border-radius: 50%;
           background-color: var(--color-accent, #1a53d0);
-          margin-left: 4px;
-          margin-bottom: 6px;
+          margin-left: 2px;
+          margin-bottom: 4px;
           transform: scale(0);
           animation: dotReveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 1.2s;
         }
@@ -167,8 +167,8 @@ export default function Preloader({ onComplete }) {
           .dot {
             width: 12px;
             height: 12px;
-            margin-left: 6px;
-            margin-bottom: 8px;
+            margin-left: 4px;
+            margin-bottom: 6px;
           }
         }
         @keyframes dotReveal {
@@ -210,25 +210,33 @@ export default function Preloader({ onComplete }) {
           <div className="title-wrapper">
             {(() => {
               let globalCharIndex = 0;
-              return text.split(' ').map((word, wordIndex) => (
-                <span key={wordIndex} className="char-wrapper mr-3 last:mr-0">
-                  {word.split('').map((char, charIndex) => {
-                    const delay = globalCharIndex * 0.04;
-                    globalCharIndex++;
-                    return (
-                      <span
-                        key={charIndex}
-                        className="char"
-                        style={{ animationDelay: `${delay}s` }}
-                      >
-                        {char}
-                      </span>
-                    );
-                  })}
-                </span>
-              ));
+              const words = text.split(' ');
+              return words.map((word, wordIndex) => {
+                const isLastWord = wordIndex === words.length - 1;
+                return (
+                  <span key={wordIndex} className="char-wrapper mr-3 last:mr-0">
+                    {word.split('').map((char, charIndex) => {
+                      const delay = globalCharIndex * 0.04;
+                      globalCharIndex++;
+                      const isLastChar = charIndex === word.length - 1;
+                      return (
+                        <span key={charIndex} style={{ display: 'inline-flex', alignItems: 'baseline' }}>
+                          <span
+                            className="char"
+                            style={{ animationDelay: `${delay}s` }}
+                          >
+                            {char}
+                          </span>
+                          {isLastWord && isLastChar && (
+                            <span className="dot" />
+                          )}
+                        </span>
+                      );
+                    })}
+                  </span>
+                );
+              });
             })()}
-            <span className="dot" />
           </div>
           <div className="subtitle">OOH Specialist &amp; Production House</div>
         </div>
