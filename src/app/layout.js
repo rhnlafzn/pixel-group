@@ -3,6 +3,7 @@ import './globals.css';
 import PageLayoutWrapper from '@/components/PageLayoutWrapper';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { CompanyProvider } from '@/context/CompanyContext';
+import { Analytics } from '@vercel/analytics/next';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -110,6 +111,7 @@ export default function RootLayout({ children }) {
             </PageLayoutWrapper>
           </CompanyProvider>
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
