@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PT. Idea Kreasi Media - OOH Media Website
 
-## Getting Started
+A Next.js 16 (App Router) web application built for **PT. Idea Kreasi Media**, specializing in Out-Of-Home (OOH) media campaigns, billboards, and street name signage.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 📂 Project Architecture
+
+To facilitate seamless collaboration across different maintenance teams, the codebase follows a highly modular structure:
+
+```text
+pixel-group/
+├── public/                 # Static assets served directly (logo, hero images, etc.)
+│   ├── images/             # Organized visual assets (about, services, portfolio)
+│   └── logo-idea.png       # Primary branding logo
+├── scripts/                # Node.js utility and database management scripts
+│   └── seed_db.mjs         # Script to seed Firestore database with initial data
+├── src/
+│   ├── app/                # Next.js App Router (Pages, layouts, and route handlers)
+│   │   ├── about/          # "Tentang Kami" page and layout
+│   │   ├── admin/          # Admin Portal dashboard (Portfolios, Settings, Inbox)
+│   │   ├── contact-us/     # "Hubungi Kami" contact form
+│   │   ├── our-works/      # Dynamic portfolio display
+│   │   ├── services/       # Services presentation
+│   │   ├── robots.js       # Dynamic robots.txt SEO rules
+│   │   ├── sitemap.js      # Dynamic sitemap.xml SEO crawler index
+│   │   ├── layout.js       # Root layout containing SEO metadata and JSON-LD schema
+│   │   └── page.js         # Landing page (Homepage)
+│   ├── components/         # Reusable UI components (Navbar, Footer, CTA, Canvas animations)
+│   ├── context/            # React Context Providers for global state
+│   │   ├── CompanyContext.js   # Fetches and manages company settings from Firestore
+│   │   └── LanguageContext.js  # Manages multi-language translation state (ID/EN)
+│   ├── hooks/              # Custom React Hooks (scroll animations, etc.)
+│   ├── lib/                # Database and third-party library initializations
+│   │   └── firebase.js     # Firebase App and Firestore configuration
+│   ├── translations/       # Translation JSON dictionaries (ID/EN)
+│   └── utils/              # Utility helper functions
+└── .env.local              # Local environment credentials (excluded from Git)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🔥 Firebase Database Integration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project is connected directly to **Firebase Firestore** for dynamic content management.
 
-## Learn More
+### Seeding Initial Data
+If you need to populate a new Firestore database instance, run the built-in seeding script:
+```bash
+node scripts/seed_db.mjs
+```
+This script will automatically write:
+1. Default Company Identity Settings to the `company_settings/default` document.
+2. 11 starting portfolio items to the `portfolio_works` collection.
 
-To learn more about Next.js, take a look at the following resources:
+### Environment Variables
+To connect this app online (both in local dev and production), configure the following environment variables in `.env.local` or your hosting provider (e.g. Vercel, Netlify):
+```env
+NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+*Note: If these variables are not set, the application will automatically fall back to browser `localStorage` as a fail-safe.*
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🚀 SEO & Launching
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The application is pre-configured with SEO best practices for Google Search indexing:
+* **JSON-LD Schema**: Root layout contains `Organization` and `WebSite` structured data to display rich search results (Knowledge Graphs, logos, and contacts).
+* **Robots.txt**: Excludes the `/admin` path from being crawled to protect dashboard security.
+* **Sitemap.xml**: Auto-generates URLs for all public routes to aid search engine indexing.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🛠️ Development and Maintenance
+
+### Getting Started
+Install dependencies and run the local development server:
+```bash
+npm install
+npm run dev
+```
+
+### Production Build
+Generate optimized production bundle:
+```bash
+npm run build
+npm start
+```
