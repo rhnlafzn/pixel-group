@@ -9,13 +9,13 @@ export default function CTASection() {
   const { lang, t } = useLanguage();
 
   return (
-    <section className="relative z-10 flex h-svh min-h-[580px] md:min-h-[680px] flex-col items-stretch justify-center bg-gradient-to-br from-surface to-card md:overflow-hidden snap-start">
-      <div aria-hidden="true" className="absolute inset-0 overflow-hidden z-0">
-        <BackgroundVideo opacity={0.4} />
+    <section className="relative z-10 flex h-svh min-h-[580px] md:min-h-[680px] flex-col items-stretch justify-center bg-transparent snap-start">
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="blue-glow-top opacity-60" />
         <div className="blue-glow-bottom opacity-40" />
-        <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-background to-background/0" />
-        <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-background to-background/0" />
+      </div>
+      <div aria-hidden="true" className="absolute inset-0 overflow-hidden z-0 pointer-events-none">
+        <BackgroundVideo opacity={0.4} />
       </div>
       <div className="relative z-10 mx-auto w-full px-5 lg:max-w-[1122px] lg:px-4">
         <div className="w-full" ref={ref}>
@@ -25,9 +25,9 @@ export default function CTASection() {
             } md:text-[76px] xl:text-[120px]`}
           >
             {lang === 'ID' ? (
-              <>Jawa<i className="font-ramillas italic">ban</i>nya</>
+              <>Jawa<i className="font-ramillas italic ml-[0.02em] mr-[0.08em] pr-[0.02em]">ban</i>nya</>
             ) : (
-              <>The An<i className="font-ramillas italic">swe</i>r</>
+              <>The An<i className="font-ramillas italic ml-[0.02em] mr-[0.08em] pr-[0.02em]">swe</i>r</>
             )}
           </h2>
           <div className="flex flex-wrap items-end justify-between">
@@ -39,16 +39,16 @@ export default function CTASection() {
               {lang === 'ID' ? (
                 <>
                   <span>Untuk </span>
-                  <i className="font-ramillas italic">Seluruh </i>
-                  <span>Kam<i className="font-ramillas italic">panye</i> </span>
+                  <i className="font-ramillas italic ml-[0.02em] mr-[0.08em]">Seluruh</i>{' '}
+                  <span>Kam<i className="font-ramillas italic ml-[0.02em] mr-[0.08em] pr-[0.02em]">panye</i></span>{' '}
                   <br className="hidden md:block" />
                   <span className="font-bold text-accent">OOH Anda.</span>
                 </>
               ) : (
                 <>
                   <span>For </span>
-                  <i className="font-ramillas italic">All </i>
-                  <span>Y<i className="font-ramillas italic">ou</i>r </span>
+                  <i className="font-ramillas italic ml-[0.02em] mr-[0.08em]">All</i>{' '}
+                  <span>Y<i className="font-ramillas italic ml-[0.02em] mr-[0.08em] pr-[0.02em]">ou</i>r</span>{' '}
                   <br className="hidden md:block" />
                   <span className="font-bold text-accent">OOH Campaigns.</span>
                 </>

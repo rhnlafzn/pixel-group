@@ -120,11 +120,32 @@ export default function BackgroundVideo({ opacity = 0.3, className = '' }) {
 
           if (dotOpacity <= 0) continue;
 
+          // Smooth vertical fade-out near top and bottom edges of the canvas to prevent sharp boundary lines
+          const fadeBoundary = Math.min(height * 0.2, 120);
+          let edgeFade = 1;
+          if (screenY < fadeBoundary) {
+            edgeFade = screenY / fadeBoundary;
+          } else if (screenY > height - fadeBoundary) {
+            edgeFade = Math.max(0, height - screenY) / fadeBoundary;
+          }
+          edgeFade = Math.max(0, Math.min(1, edgeFade));
+
+          // Smooth horizontal fade-out on the left side of the screen to prevent clashing with text
+          let horizontalFade = 1;
+          const leftFadeBoundary = width * 0.55;
+          if (screenX < leftFadeBoundary) {
+            horizontalFade = screenX / leftFadeBoundary;
+          }
+          horizontalFade = 0.12 + Math.max(0, Math.min(1, horizontalFade)) * 0.88;
+
+          const finalOpacity = dotOpacity * edgeFade * horizontalFade;
+          if (finalOpacity <= 0) continue;
+
           // Draw the dot
           ctx.beginPath();
           ctx.arc(screenX, screenY, radius, 0, Math.PI * 2);
           // Spira Cobalt blue accent: #1A53D0 = rgb(26, 83, 208)
-          ctx.fillStyle = `rgba(26, 83, 208, ${dotOpacity})`;
+          ctx.fillStyle = `rgba(26, 83, 208, ${finalOpacity})`;
           ctx.fill();
         }
       }

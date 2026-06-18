@@ -10,17 +10,17 @@ export default function Footer() {
 
   return (
     <footer>
-      <div className="relative isolate z-10 flex h-svh min-h-[580px] md:min-h-[626px] w-full items-end bg-surface pt-20 text-foreground xl:pt-32">
+      <div className="relative isolate z-10 flex h-svh min-h-[580px] md:min-h-[626px] w-full items-end bg-transparent pt-20 text-foreground xl:pt-32">
         <div aria-hidden="true" className="absolute inset-0 z-0 overflow-hidden">
           <div className="blue-dot-grid opacity-15">
             <div className="dot-layer dot-layer-1" />
             <div className="dot-layer dot-layer-2" />
           </div>
-          <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-background to-surface" />
+          <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-transparent to-transparent" />
         </div>
         <div ref={ref} className="container relative z-10 flex flex-col justify-between pb-8 xl:flex-row xl:pb-24">
           <div className="flex flex-col justify-start">
-            <div className="relative w-fit">
+            <div className="relative w-full md:w-fit">
               <h2
                 className={`font-helvetica text-[42px] sm:text-[58px] text-primary leading-normal xl:text-[120px] transition-all duration-1000 ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
@@ -69,14 +69,14 @@ export default function Footer() {
             )}
             {settings.whatsapp && (
               <p>
-                <a target="_blank" href={settings.whatsappUrl || '#'} rel="noopener noreferrer" className="flex items-center justify-end gap-2 text-foreground/70 hover:text-accent transition-colors">
+                <a target="_blank" href={settings.whatsappUrl || '#'} rel="noopener noreferrer" className="flex items-center justify-end gap-2 text-foreground/70 hover:text-accent transition-colors break-all">
                   <WhatsAppIcon /> {t('footer.whatsapp')}: {settings.whatsapp}
                 </a>
               </p>
             )}
             {settings.email && (
               <p>
-                <a target="_blank" href={`mailto:${settings.email}`} rel="noopener noreferrer" className="flex items-center justify-end gap-2 text-foreground/70 hover:text-accent transition-colors">
+                <a target="_blank" href={`mailto:${settings.email}`} rel="noopener noreferrer" className="flex items-center justify-end gap-2 text-foreground/70 hover:text-accent transition-colors break-all">
                   <EmailIcon /> {t('footer.email')}: {settings.email}
                 </a>
               </p>

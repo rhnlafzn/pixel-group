@@ -46,7 +46,7 @@ export default function Navbar() {
   const isHome = pathname === '/';
   const headerTextColor = mobileOpen ? 'text-white' : 'text-foreground';
   const scrollBgColor = scrolled 
-    ? 'bg-background/45 backdrop-blur-[2px]' 
+    ? 'bg-gradient-to-b from-background via-background/70 to-transparent' 
     : 'bg-transparent';
 
   return (
@@ -138,8 +138,10 @@ export default function Navbar() {
           {navItems.map((item) => (
             <Link
               key={item.href}
-              className={`nav-link text-3xl font-semibold transition-colors text-white/95 hover:text-accent ${
-                pathname === item.href ? 'active text-accent' : ''
+              className={`text-3xl font-bold transition-all duration-300 ${
+                pathname === item.href 
+                  ? 'text-white border-b-2 border-white pb-1' 
+                  : 'text-white/85 hover:text-white'
               }`}
               href={item.href}
               onClick={() => setMobileOpen(false)}

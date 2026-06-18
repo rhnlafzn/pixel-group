@@ -34,15 +34,13 @@ export default function ContactUsPage() {
     const parts = successDesc.split('{name}');
 
     return (
-      <div className="flex min-h-screen flex-col bg-background">
+      <div className="flex min-h-screen flex-col">
         <div className="pt-16 md:pt-24">
           <section className="pt-4 relative z-10">
             <div className="relative z-10 isolate min-h-[600px] flex items-center justify-center">
-              <div aria-hidden="true" className="absolute inset-x-0 bg-background top-[-20%] h-full md:h-[150%] overflow-hidden z-0">
+              <div aria-hidden="true" className="absolute inset-x-0 bg-transparent top-[-20%] h-full md:h-[150%] overflow-hidden z-0">
                 <BackgroundVideo opacity={0.3} />
                 <div className="blue-glow-top opacity-50" />
-                <div className="h-1/3 absolute bottom-0 inset-x-0 bg-gradient-to-t from-background to-background/0" />
-                <div className="h-1/3 absolute top-0 inset-x-0 bg-gradient-to-b from-background to-background/0" />
               </div>
 
               <div className="relative z-10 container px-4 md:px-6 font-helvetica flex flex-col items-center text-center">
@@ -84,7 +82,7 @@ export default function ContactUsPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="flex min-h-screen flex-col">
       <div className="pt-16 md:pt-24">
         <ContactSection 
           formData={formData} 
@@ -106,11 +104,9 @@ function ContactSection({ formData, setFormData, handleSubmit, isSubmitting }) {
   return (
     <section className="pt-4 relative z-10">
       <div className="relative z-10 isolate min-h-[600px]">
-        <div aria-hidden="true" className="absolute inset-x-0 bg-background top-[-20%] h-full md:h-[150%] overflow-hidden z-0">
+        <div aria-hidden="true" className="absolute inset-x-0 bg-transparent top-[-20%] h-full md:h-[150%] overflow-hidden z-0">
           <BackgroundVideo opacity={0.3} />
           <div className="blue-glow-top opacity-50" />
-          <div className="h-1/3 absolute bottom-0 inset-x-0 bg-gradient-to-t from-background to-background/0" />
-          <div className="h-1/3 absolute top-0 inset-x-0 bg-gradient-to-b from-background to-background/0" />
         </div>
 
         <div className="relative z-10 container px-4 md:px-6 font-helvetica">

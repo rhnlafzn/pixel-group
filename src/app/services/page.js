@@ -53,7 +53,7 @@ export default function ServicesPage() {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="flex min-h-screen flex-col">
       <main className="flex-1 pt-24" id="page-scroll-container">
         <Block1Section />
         <Block2Section />
@@ -92,7 +92,7 @@ function Block1Section() {
       </div>
       <div className={`relative z-10 mt-10 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[5px]'}`}>
         <div className="container flex flex-col md:flex-row md:gap-x-8 xl:gap-x-20">
-          <div className="w-full md:w-[40%] mb-6 md:mb-0">
+          <div className="hidden md:block w-full md:w-[40%] mb-6 md:mb-0">
             <div className="relative box-border w-full overflow-hidden rounded-2xl border border-border aspect-[4/3] md:aspect-[294/430] xl:aspect-[1/1]">
               {services.map((service, i) => (
                 <img
@@ -151,7 +151,7 @@ function Block2Section() {
       </div>
       <div className={`relative z-10 mt-10 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[5px]'}`}>
         <div className="container flex flex-col md:flex-row-reverse md:gap-x-8 xl:gap-x-20">
-          <div className="w-full md:w-[40%] mb-6 md:mb-0">
+          <div className="hidden md:block w-full md:w-[40%] mb-6 md:mb-0">
             <div className="relative box-border w-full overflow-hidden rounded-2xl border border-border aspect-[4/3] md:aspect-[294/430] xl:aspect-[1/1]">
               {services.map((service, i) => (
                 <img
@@ -210,7 +210,7 @@ function Block3Section() {
       </div>
       <div className={`relative z-10 mt-10 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[5px]'}`}>
         <div className="container flex flex-col md:flex-row md:gap-x-8 xl:gap-x-20">
-          <div className="w-full md:w-[40%] mb-6 md:mb-0">
+          <div className="hidden md:block w-full md:w-[40%] mb-6 md:mb-0">
             <div className="relative box-border w-full overflow-hidden rounded-2xl border border-border aspect-[4/3] md:aspect-[294/430] xl:aspect-[1/1]">
               {services.map((service, i) => (
                 <img
@@ -269,7 +269,7 @@ function Block4Section() {
       </div>
       <div className={`relative z-10 mt-10 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[5px]'}`}>
         <div className="container flex flex-col md:flex-row-reverse md:gap-x-8 xl:gap-x-20">
-          <div className="w-full md:w-[40%] mb-6 md:mb-0">
+          <div className="hidden md:block w-full md:w-[40%] mb-6 md:mb-0">
             <div className="relative box-border w-full overflow-hidden rounded-2xl border border-border aspect-[4/3] md:aspect-[294/430] xl:aspect-[1/1]">
               {services.map((service, i) => (
                 <img

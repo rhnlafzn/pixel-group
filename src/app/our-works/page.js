@@ -132,7 +132,7 @@ const initialWorksData = [
 
 export default function OurWorksPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="flex min-h-screen flex-col">
       <HeroSection />
       <CTASection />
     </div>
@@ -149,11 +149,9 @@ function HeroSection() {
     <>
       <section className="relative z-10 mt-24 pt-4 pb-4 font-helvetica md:pb-20">
         <div className="relative isolate z-10 h-[390px] md:h-[490px]">
-          <div aria-hidden="true" className="absolute inset-x-0 top-[-30%] z-0 h-[120%] overflow-hidden bg-background md:h-[150%]">
+          <div aria-hidden="true" className="absolute inset-x-0 top-[-30%] z-0 h-[120%] overflow-hidden bg-transparent md:h-[150%]">
             <BackgroundVideo opacity={0.3} />
             <div className="blue-glow-top opacity-50" />
-            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-background/0" />
-            <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-background to-background/0" />
           </div>
           <div
             className="container relative z-10 font-helvetica"

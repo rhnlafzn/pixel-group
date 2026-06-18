@@ -139,6 +139,7 @@ export default function GeneralAdminPortal() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeTab, setActiveTab] = useState('works'); // 'works', 'company', 'homepage', 'services', 'about'
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   // Company Settings Form State
   const [compName, setCompName] = useState('');
@@ -604,7 +605,39 @@ export default function GeneralAdminPortal() {
 
   // Render Dashboard view if logged in
   return (
-    <div className="flex min-h-screen bg-background font-helvetica text-[#1E3447] relative">
+    <div className="flex flex-col md:flex-row min-h-screen bg-background font-helvetica text-[#1E3447] relative">
+      
+      {/* Backdrop overlay for mobile sidebar */}
+      {mobileSidebarOpen && (
+        <div 
+          onClick={() => setMobileSidebarOpen(false)}
+          className="fixed inset-0 z-40 bg-[#1E3447]/50 backdrop-blur-sm md:hidden animate-fadeIn"
+        />
+      )}
+
+      {/* Mobile Top Bar */}
+      <div className="md:hidden flex items-center justify-between bg-[#1E3447] text-white px-5 py-4 fixed top-0 left-0 right-0 z-30 shadow-md h-16">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setMobileSidebarOpen(true)}
+            className="p-1 rounded hover:bg-white/10 transition-colors cursor-pointer text-white"
+            aria-label="Open Sidebar"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          <span className="font-bold text-sm leading-tight tracking-wide">{settings.name} Admin</span>
+        </div>
+        <button
+          onClick={() => setShowLogoutConfirm(true)}
+          className="text-red-400 hover:text-red-300 p-1.5 rounded-lg hover:bg-white/5 transition-all duration-200 cursor-pointer"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+        </button>
+      </div>
       
       {/* ── Custom Delete Confirmation Modal ── */}
       {deleteConfirmId && (
@@ -681,8 +714,10 @@ export default function GeneralAdminPortal() {
       )}
 
       {/* Sidebar navigation */}
-      <aside className={`bg-[#1E3447] text-white flex flex-col justify-between shrink-0 shadow-xl border-r border-[#1E3447]/20 relative z-20 transition-all duration-300 ${
-        sidebarCollapsed ? 'w-20' : 'w-64 md:w-72'
+      <aside className={`bg-[#1E3447] text-white flex flex-col justify-between shrink-0 shadow-xl border-r border-[#1E3447]/20 fixed md:sticky top-0 bottom-0 left-0 h-screen z-50 md:z-20 transition-all duration-300 ${
+        sidebarCollapsed ? 'md:w-20' : 'w-64 md:w-72'
+      } ${
+        mobileSidebarOpen ? 'translate-x-0 w-64' : '-translate-x-full md:translate-x-0'
       }`}>
         <div>
           {/* Brand header */}
@@ -691,7 +726,7 @@ export default function GeneralAdminPortal() {
               <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center font-bold text-lg text-white shadow-md shrink-0">
                 I
               </div>
-              {!sidebarCollapsed && (
+              {(!sidebarCollapsed || mobileSidebarOpen) && (
                 <div className="truncate transition-opacity duration-300">
                   <h2 className="font-bold text-sm leading-tight tracking-wide">{settings.name}</h2>
                   <span className="text-[10px] text-white/50 font-lato tracking-wider uppercase">Admin Portal</span>
@@ -699,120 +734,78 @@ export default function GeneralAdminPortal() {
               )}
             </div>
             
-            {/* Collapse Toggle Button */}
-            <button
-              onClick={toggleSidebar}
-              className="p-1 rounded hover:bg-white/10 transition-colors text-white/70 hover:text-white cursor-pointer"
-              title={sidebarCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
-            >
-              {sidebarCollapsed ? (
+            {/* Collapse Toggle Button (Desktop) / Close Button (Mobile) */}
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => setMobileSidebarOpen(false)}
+                className="p-1 rounded hover:bg-white/10 transition-colors text-white/70 hover:text-white cursor-pointer md:hidden"
+                title="Close Sidebar"
+              >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
-              ) : (
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 19l-7-7 7-7M19 19l-7-7 7-7" />
-                </svg>
-              )}
-            </button>
+              </button>
+              
+              <button
+                onClick={toggleSidebar}
+                className="p-1 rounded hover:bg-white/10 transition-colors text-white/70 hover:text-white cursor-pointer hidden md:block"
+                title={sidebarCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
+              >
+                {sidebarCollapsed ? (
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                  </svg>
+                ) : (
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 19l-7-7 7-7M19 19l-7-7 7-7" />
+                  </svg>
+                )}
+              </button>
+            </div>
           </div>
 
           {/* Navigation Links */}
           <nav className="p-4 space-y-1">
             <button
-              onClick={() => setActiveTab('works')}
+              onClick={() => { setActiveTab('works'); setMobileSidebarOpen(false); }}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-sm font-semibold transition-all duration-200 cursor-pointer ${
                 activeTab === 'works'
                   ? 'bg-accent text-white shadow-md'
                   : 'text-white/70 hover:bg-white/5 hover:text-white'
-              } ${sidebarCollapsed ? 'justify-center' : ''}`}
+              } ${sidebarCollapsed ? 'md:justify-center' : ''}`}
               title={lang === 'ID' ? 'Portofolio' : 'Portfolio'}
             >
               <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              {!sidebarCollapsed && <span>{lang === 'ID' ? 'Portofolio' : 'Portfolio'}</span>}
+              {(!sidebarCollapsed || mobileSidebarOpen) && <span>{lang === 'ID' ? 'Portofolio' : 'Portfolio'}</span>}
             </button>
 
             <button
-              onClick={() => setActiveTab('company')}
+              onClick={() => { setActiveTab('company'); setMobileSidebarOpen(false); }}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-sm font-semibold transition-all duration-200 cursor-pointer ${
                 activeTab === 'company'
                   ? 'bg-accent text-white shadow-md'
                   : 'text-white/70 hover:bg-white/5 hover:text-white'
-              } ${sidebarCollapsed ? 'justify-center' : ''}`}
+              } ${sidebarCollapsed ? 'md:justify-center' : ''}`}
               title={lang === 'ID' ? 'Identitas Perusahaan' : 'Company Identity'}
             >
               <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
               </svg>
-              {!sidebarCollapsed && <span>{lang === 'ID' ? 'Identitas Perusahaan' : 'Company Identity'}</span>}
-            </button>
-
-            <button
-              onClick={() => setActiveTab('homepage')}
-              className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-left text-sm font-semibold transition-all duration-200 cursor-pointer ${
-                activeTab === 'homepage'
-                  ? 'bg-accent text-white shadow-md'
-                  : 'text-white/40 hover:bg-white/5/10 hover:text-white/60'
-              } ${sidebarCollapsed ? 'justify-center' : ''}`}
-              title={lang === 'ID' ? 'Atur Beranda' : 'Homepage Settings'}
-            >
-              <div className="flex items-center gap-3">
-                <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-                {!sidebarCollapsed && <span>{lang === 'ID' ? 'Atur Beranda' : 'Homepage Settings'}</span>}
-              </div>
-              {!sidebarCollapsed && <span className="text-[9px] uppercase tracking-wider bg-white/10 px-2 py-0.5 rounded-full text-white/50 shrink-0 font-lato">Soon</span>}
-            </button>
-
-            <button
-              onClick={() => setActiveTab('services')}
-              className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-left text-sm font-semibold transition-all duration-200 cursor-pointer ${
-                activeTab === 'services'
-                  ? 'bg-accent text-white shadow-md'
-                  : 'text-white/40 hover:bg-white/5/10 hover:text-white/60'
-              } ${sidebarCollapsed ? 'justify-center' : ''}`}
-              title={lang === 'ID' ? 'Atur Layanan' : 'Services Settings'}
-            >
-              <div className="flex items-center gap-3">
-                <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                {!sidebarCollapsed && <span>{lang === 'ID' ? 'Atur Layanan' : 'Services Settings'}</span>}
-              </div>
-              {!sidebarCollapsed && <span className="text-[9px] uppercase tracking-wider bg-white/10 px-2 py-0.5 rounded-full text-white/50 shrink-0 font-lato">Soon</span>}
-            </button>
-
-            <button
-              onClick={() => setActiveTab('about')}
-              className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-left text-sm font-semibold transition-all duration-200 cursor-pointer ${
-                activeTab === 'about'
-                  ? 'bg-accent text-white shadow-md'
-                  : 'text-white/40 hover:bg-white/5/10 hover:text-white/60'
-              } ${sidebarCollapsed ? 'justify-center' : ''}`}
-              title={lang === 'ID' ? 'Atur Tentang Kami' : 'About Settings'}
-            >
-              <div className="flex items-center gap-3">
-                <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                {!sidebarCollapsed && <span>{lang === 'ID' ? 'Atur Tentang Kami' : 'About Settings'}</span>}
-              </div>
-              {!sidebarCollapsed && <span className="text-[9px] uppercase tracking-wider bg-white/10 px-2 py-0.5 rounded-full text-white/50 shrink-0 font-lato">Soon</span>}
+              {(!sidebarCollapsed || mobileSidebarOpen) && <span>{lang === 'ID' ? 'Identitas Perusahaan' : 'Company Identity'}</span>}
             </button>
           </nav>
         </div>
 
         {/* Sidebar Footer */}
         <div className="p-4 border-t border-white/10">
-          <div className={`flex items-center justify-between ${sidebarCollapsed ? 'flex-col gap-3 justify-center' : ''}`}>
+          <div className={`flex items-center justify-between ${(sidebarCollapsed && !mobileSidebarOpen) ? 'flex-col gap-3 justify-center' : ''}`}>
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center text-accent font-bold text-xs shrink-0">
                 A
               </div>
-              {!sidebarCollapsed && <span className="text-xs text-white/70 font-semibold font-lato">admin</span>}
+              {(!sidebarCollapsed || mobileSidebarOpen) && <span className="text-xs text-white/70 font-semibold font-lato">admin</span>}
             </div>
             <button
               onClick={() => setShowLogoutConfirm(true)}
@@ -824,7 +817,7 @@ export default function GeneralAdminPortal() {
               </svg>
             </button>
           </div>
-          {!sidebarCollapsed && (
+          {(!sidebarCollapsed || mobileSidebarOpen) && (
             <div className="text-[10px] text-white/40 text-center font-lato select-none mt-4">
               © {new Date().getFullYear()} {settings.name}
             </div>
@@ -833,7 +826,7 @@ export default function GeneralAdminPortal() {
       </aside>
 
       {/* Main content area */}
-      <main className="flex-1 min-h-screen overflow-y-auto pb-16 relative z-10 px-6 md:px-10">
+      <main className="flex-1 min-h-screen overflow-y-auto pt-20 md:pt-8 pb-16 relative z-10 px-4 md:px-10">
         {/* Glow Effects in Workspace */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <div className="blue-glow-top opacity-30" />
@@ -1310,7 +1303,7 @@ export default function GeneralAdminPortal() {
               <form onSubmit={handleSaveCompanySettings} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   {/* Company Name */}
-                  <div className="flex flex-col gap-1.5 col-span-2">
+                  <div className="flex flex-col gap-1.5 col-span-1 md:col-span-2">
                     <label className="text-sm font-semibold text-foreground/80">
                       {lang === 'ID' ? 'Nama Perusahaan *' : 'Company Name *'}
                     </label>
@@ -1381,7 +1374,7 @@ export default function GeneralAdminPortal() {
                   </div>
 
                   {/* Address */}
-                  <div className="flex flex-col gap-1.5 col-span-2">
+                  <div className="flex flex-col gap-1.5 col-span-1 md:col-span-2">
                     <label className="text-sm font-semibold text-foreground/80">
                       {lang === 'ID' ? 'Alamat Kantor' : 'Office Address'}
                     </label>
@@ -1395,7 +1388,7 @@ export default function GeneralAdminPortal() {
                   </div>
 
                   {/* Google Maps URL */}
-                  <div className="flex flex-col gap-1.5 col-span-2">
+                  <div className="flex flex-col gap-1.5 col-span-1 md:col-span-2">
                     <label className="text-sm font-semibold text-foreground/80">
                       {lang === 'ID' ? 'Tautan Peta Google Maps' : 'Google Maps URL'}
                     </label>

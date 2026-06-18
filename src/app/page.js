@@ -171,7 +171,7 @@ const initialWorksData = [
 
 export default function HomePage() {
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="flex min-h-screen flex-col">
       <HeroSection />
       <OurSolutionSection />
       <PortfolioSection />
@@ -190,7 +190,7 @@ function HeroSection() {
 
   return (
     <section className="min-h-screen hero relative isolate snap-start">
-      <div className="absolute inset-x-0 h-screen overflow-hidden">
+      <div className="absolute inset-x-0 h-screen overflow-hidden hero-image-container">
         <div className="inset-0 absolute z-0">
           <picture>
             <source media="(min-width:768px)" srcSet="/hero.png" />
@@ -201,9 +201,8 @@ function HeroSection() {
             />
           </picture>
         </div>
-        <div className="absolute inset-0 bg-white/30 z-[1] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/30 to-transparent z-[1] pointer-events-none" />
       </div>
-      <div className="shadow" />
       <div className="container relative z-10 h-screen">
         <div className="flex flex-col justify-end items-center md:items-end h-full overflow-hidden pb-10 md:pb-0">
           <div className="relative pb-10 text w-fit text-center md:text-right flex flex-col items-center md:items-end">
@@ -284,7 +283,7 @@ function OurServiceSection() {
   ];
 
   return (
-    <section className="relative isolate bg-surface text-foreground py-20 snap-start overflow-hidden border-b border-border">
+    <section className="relative isolate bg-transparent text-foreground py-20 snap-start overflow-hidden border-b border-border">
       {/* Background visual graphics */}
       <div className="absolute inset-0 z-0">
         <BackgroundVideo opacity={0.3} />
@@ -416,12 +415,14 @@ function OurSolutionSection() {
   ];
 
   return (
-    <section ref={ref} className="our-services relative isolate bg-background text-foreground snap-start">
+    <section ref={ref} className="our-services relative isolate bg-transparent text-foreground snap-start">
       <h2 className="sr-only">Our Services</h2>
-      <div className="absolute inset-x-0 top-0 z-0 h-[120%] overflow-hidden bg-background">
-        <BackgroundVideo opacity={0.3} />
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="blue-glow-top opacity-40" />
         <div className="blue-glow-bottom opacity-30" />
+      </div>
+      <div className="absolute inset-x-0 top-0 z-0 h-[120%] overflow-hidden bg-transparent pointer-events-none">
+        <BackgroundVideo opacity={0.3} />
       </div>
 
       {/* Title & Tabs at bottom */}
@@ -465,26 +466,28 @@ function OurSolutionSection() {
             <div className="container px-6">
               <div className={`pt-[128px] xl:pt-[100px] transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[45px] blur-[10px]'}`}>
                 {lang === 'ID' ? (
-                  <p className="max-w-[1113px] font-helvetica text-[48px] sm:text-[58px] leading-[1.1] md:text-[76px] xl:text-[120px] [&_span]:inline-block">
-                    <span>
-                      Domi<span className="italic font-ramillas">nasi</span>
-                    </span>{' '}
-                    Visual{' '}
-                    <span className="font-bold tracking-wide">Absolut</span>{' '}
-                    di{' '}
-                    <span className="font-bold text-accent tracking-wide">Jantung</span>{' '}
+                  <p className="max-w-[1113px] font-helvetica text-[48px] sm:text-[58px] leading-[1.1] md:text-[76px] xl:text-[120px] [&>span]:inline-block">
+                    <span className="mr-[0.25em]">
+                      Domi<span className="italic font-ramillas ml-[0.02em] pr-[0.02em]">nasi</span>
+                    </span>
+                    <span className="mr-[0.25em]">Visual</span>
+                    <span className="font-bold tracking-wide mr-[0.25em]">Absolut</span>
+                    <span className="mr-[0.25em]">di</span>
+                    <span className="font-bold text-accent tracking-wide mr-[0.25em]">Jantung</span>
                     <span className="font-bold text-accent tracking-wide">Megapolitan</span>
                   </p>
                 ) : (
-                  <p className="max-w-[1113px] font-helvetica text-[48px] sm:text-[58px] leading-[1.1] md:text-[76px] xl:text-[120px] [&_span]:inline-block">
-                    <span>
-                      Abso<span className="italic font-ramillas">lute</span>
-                    </span>{' '}
-                    Visual{' '}
-                    <span className="font-bold tracking-wide">Dominance</span>{' '}
-                    in the{' '}
-                    <span className="font-bold text-accent tracking-wide">Heart</span>{' '}
-                    of the{' '}
+                  <p className="max-w-[1113px] font-helvetica text-[48px] sm:text-[58px] leading-[1.1] md:text-[76px] xl:text-[120px] [&>span]:inline-block">
+                    <span className="mr-[0.25em]">
+                      Abso<span className="italic font-ramillas ml-[0.02em] pr-[0.02em]">lute</span>
+                    </span>
+                    <span className="mr-[0.25em]">Visual</span>
+                    <span className="font-bold tracking-wide mr-[0.25em]">Dominance</span>
+                    <span className="mr-[0.25em]">in</span>
+                    <span className="mr-[0.25em]">the</span>
+                    <span className="font-bold text-accent tracking-wide mr-[0.25em]">Heart</span>
+                    <span className="mr-[0.25em]">of</span>
+                    <span className="mr-[0.25em]">the</span>
                     <span className="font-bold text-accent tracking-wide">Megapolitan</span>
                   </p>
                 )}
@@ -625,7 +628,7 @@ function PortfolioSection() {
   };
 
   return (
-    <section className="bg-background z-10 isolate min-h-screen flex items-center overflow-hidden py-10 md:py-20 snap-start">
+    <section className="bg-transparent z-10 isolate min-h-screen flex items-center overflow-hidden py-10 md:py-20 snap-start">
       <div className="container relative flex flex-col-reverse xl:flex-row">
         {/* Carousel */}
         <div
@@ -633,8 +636,8 @@ function PortfolioSection() {
           className={`overflow-visible xl:w-[800px] xl:h-screen relative flex xl:block justify-center pt-[2vh] md:pt-14 xl:pt-0 snap-start transition-all duration-1000 ${carouselVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[50px] blur-[5px]'}`}
         >
           {mounted && portfolioItems.length > 0 && (
-            <div className="flex justify-center px-5 w-full max-w-[800px] md:max-w-[1200px] relative xl:h-full">
-              <div className="relative h-full w-full xl:w-[150%] flex items-center">
+            <div className="flex justify-center px-5 w-full md:w-[1200px] xl:w-[800px] relative xl:h-full">
+              <div className="relative h-[60vh] min-h-[450px] xl:h-full w-full xl:w-full flex items-center">
                 <div className="overflow-hidden w-full" ref={emblaRef}>
                   <div className="flex -ml-4 select-none">
                     {portfolioItems.map((item, i) => {
@@ -651,19 +654,20 @@ function PortfolioSection() {
                           onClick={() => {
                             if (emblaApi) emblaApi.scrollTo(i);
                           }}
-                          className={`min-w-0 shrink-0 grow-0 pl-4 h-full w-fit basis-1/3 xl:basis-1/5 flex items-center cursor-pointer relative ${isActive ? 'z-20' : isNext || isPrev ? 'z-10' : 'z-0'}`}
+                          className={`min-w-0 shrink-0 grow-0 pl-4 h-full w-fit basis-[60%] sm:basis-1/3 xl:basis-1/5 flex items-center cursor-pointer relative ${isActive ? 'z-20' : isNext || isPrev ? 'z-10' : 'z-0'}`}
                         >
                           <div className="w-fit relative xl:h-[610px] flex flex-col items-center">
                             <div
-                              className={`box-border rounded-lg relative overflow-clip h-[50vh] min-h-[350px] max-h-[400px] md:max-h-[unset] xl:h-[540px] transition-all duration-500 ${
+                              className={`ring-1 ring-neutral-300 box-border rounded-lg relative overflow-clip h-[50vh] min-h-[350px] max-h-[400px] md:max-h-[unset] xl:h-[540px] ${
                                 isActive
-                                  ? 'scale-100 z-10 ring-2 ring-accent shadow-[0_0_25px_rgba(26,83,208,0.25)]'
+                                  ? 'scale-100 z-10 shadow-[0_0_25px_rgba(26,83,208,0.25)]'
                                   : isNext || isPrev
-                                  ? 'scale-[0.8] translate-x-[0%] z-0 ring-1 ring-border'
-                                  : 'scale-[0.6] translate-x-[20%] z-0 ring-1 ring-border'
+                                  ? 'scale-[0.8] translate-x-[0%] z-0'
+                                  : 'scale-[0.6] translate-x-[20%] z-0'
                               }`}
                               style={{
                                 aspectRatio: '2/3',
+                                transition: 'all .5s'
                               }}
                             >
                               <img
@@ -672,17 +676,29 @@ function PortfolioSection() {
                                 loading="lazy"
                                 decoding="async"
                                 draggable="false"
-                                className="select-none touch-none border border-border rounded-lg object-cover w-full h-full absolute top-0 left-0 pointer-events-none"
-                                style={{ objectPosition: item.objectPosition || 'left' }}
+                                className="select-none touch-none border border-white rounded-lg pointer-events-none"
+                                style={{
+                                  objectFit: 'cover',
+                                  width: '100%',
+                                  height: '100%',
+                                  position: 'absolute',
+                                  top: 0,
+                                  left: 0,
+                                  objectPosition: item.objectPosition || 'left'
+                                }}
                               />
                             </div>
-                            {isActive && (
-                              <div className="w-full text-center pt-2">
-                                <p className="font-semibold text-xl md:text-2xl text-foreground line-clamp-1">
-                                  {item.location}
-                                </p>
-                              </div>
-                            )}
+                            <h4
+                              className="font-semibold text-xl md:text-2xl w-full text-center text-foreground pt-2 bottom-0 line-clamp-2 transition-all duration-500"
+                              style={{
+                                opacity: isActive ? 1 : 0,
+                                filter: isActive ? 'none' : 'blur(20px)',
+                                transform: isActive ? 'translateY(0)' : 'translateY(20px)',
+                                pointerEvents: isActive ? 'auto' : 'none'
+                              }}
+                            >
+                              {item.location}
+                            </h4>
                           </div>
                         </div>
                       );
@@ -713,7 +729,7 @@ function PortfolioSection() {
         </div>
 
         {/* Text side */}
-        <div className="flex bg-background relative z-10 flex-1 snap-start" ref={portfolioRef}>
+        <div className="flex bg-transparent relative z-10 flex-1 snap-start" ref={portfolioRef}>
           <div className="flex-1 text-right xl:max-w-[471px] ml-auto flex flex-col items-end justify-center">
             {lang === 'ID' ? (
               <h2 className={`text-[40px] md:text-[50px] xl:text-[68px] text-foreground leading-[1.2] max-w-[442px] xl:max-w-none font-helvetica [&_span]:inline-block transition-all duration-1000 ${portfolioVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[10px]'}`}>
@@ -762,7 +778,7 @@ function PortfolioSection() {
               </button>
             </div>
           </div>
-          <div className="absolute inset-y-0 right-0 w-screen translate-x-full bg-background" />
+          <div className="absolute inset-y-0 right-0 w-screen translate-x-full bg-transparent" />
         </div>
       </div>
     </section>
@@ -775,13 +791,11 @@ function AboutSection() {
 
   return (
     <section className="relative min-h-screen snap-start">
-      <div className="absolute inset-0 w-full h-full bg-surface">
+      <div className="absolute inset-0 w-full h-full bg-transparent">
         <BackgroundVideo opacity={0.3} />
         <div className="blue-glow-top" />
         <div className="blue-glow-bottom" />
       </div>
-      <div className="shadow-top" />
-      <div className="shadow-bottom" />
       <div
         ref={aboutRef}
         className="z-10 container min-h-screen py-16 relative font-helvetica flex flex-col justify-start md:justify-between text-foreground"
@@ -860,7 +874,7 @@ function ClientsSection() {
   const { lang, t } = useLanguage();
 
   return (
-    <section ref={clientsRef} className={`flex flex-col py-[158px] bg-background snap-start transition-all duration-1000 ${clientsVisible ? 'opacity-100' : 'opacity-0'}`}>
+    <section ref={clientsRef} className={`flex flex-col py-[158px] bg-transparent snap-start transition-all duration-1000 ${clientsVisible ? 'opacity-100' : 'opacity-0'}`}>
       <div className={`order-1 w-full overflow-hidden transition-all duration-1000 delay-100 ${clientsVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[-30px] blur-[5px]'}`}>
         <MarqueeRow images={clientLogosRow1} duration="40s" reverse />
       </div>
@@ -989,7 +1003,7 @@ function ProjectsSection() {
     : initialWorksData.slice(0, 8);
 
   return (
-    <section ref={ref} className="snap-start bg-background min-h-screen py-16">
+    <section ref={ref} className="snap-start bg-transparent min-h-screen py-16">
       <div className="container pb-4 text-foreground">
         <div className={`snap-start pt-8 pb-6 md:pt-16 md:pb-7 xl:pb-10 transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[5px]'}`}>
           <h2 className="flex-1 text-accent whitespace-pre-line text-[32px] sm:text-[48px] md:text-[62px] xl:text-[90px] font-helvetica">

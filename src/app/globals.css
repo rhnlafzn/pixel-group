@@ -268,16 +268,10 @@
   );
 }
 
-/* Hero shadow */
-.hero .shadow {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 40%;
-  background: linear-gradient(to top, var(--color-background), transparent);
-  z-index: 5;
-  pointer-events: none;
+/* Hero image container mask for seamless transition */
+.hero-image-container {
+  mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
 }
 
 /* Corner bracket decoration */
@@ -325,11 +319,11 @@
   }
 }
 
-/* Mobile menu — premium dark slate matching footer */
+/* Mobile menu — premium light blue gradient */
 .mobile-menu {
   position: fixed;
   inset: 0;
-  background: #0d1c2a; /* Premium midnight/slate blue matching footer */
+  background: linear-gradient(135deg, #4A90E2 0%, #1A53D0 100%);
   z-index: 40;
   transform: translateX(100%);
   transition: transform 0.3s ease;

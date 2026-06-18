@@ -57,7 +57,7 @@ const missionItems = [
 
 export default function AboutPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="flex min-h-screen flex-col">
       <main>
         <HeroSection />
         <HistoryTimelineSection />
@@ -77,11 +77,9 @@ function HeroSection() {
   return (
     <section className="relative isolate z-10 flex items-center pt-16 md:pt-20">
       <div className="relative isolate z-10 w-full">
-        <div aria-hidden="true" className="absolute inset-x-0 top-[-10%] z-0 h-[120%] overflow-hidden bg-background">
+        <div aria-hidden="true" className="absolute inset-x-0 top-[-10%] z-0 h-[120%] overflow-hidden bg-transparent">
           <BackgroundVideo opacity={0.3} />
           <div className="blue-glow-top opacity-50" />
-          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-background/0" />
-          <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-background to-background/0" />
         </div>
         <div
           className="container relative z-10 px-4 py-8 font-helvetica md:px-6 md:py-16"
