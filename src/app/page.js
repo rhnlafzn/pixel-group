@@ -305,11 +305,10 @@ function OurServiceSection() {
         {/* Services Circular Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-24">
           {services.map((item, i) => (
-            <div 
-              key={i} 
-              className={`flex flex-col items-center group transition-all duration-1000 delay-${i * 150} ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[40px]'
-              }`}
+            <div
+              key={i}
+              className={`flex flex-col items-center group transition-all duration-1000 delay-${i * 150} ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[40px]'
+                }`}
             >
               {/* Outer Circular Frame */}
               <div className="relative w-44 h-44 md:w-52 md:h-52 rounded-full border border-border overflow-hidden shadow-2xl transition-all duration-500 group-hover:border-accent group-hover:scale-105 bg-card/20 backdrop-blur-sm">
@@ -321,7 +320,7 @@ function OurServiceSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
               </div>
-              
+
               {/* Text underneath circle */}
               <h3 className="font-helvetica text-xl font-bold mt-6 text-foreground text-center group-hover:text-accent transition-colors">
                 {item.title}
@@ -346,11 +345,10 @@ function OurServiceSection() {
         {/* Experience Circular Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {experienceItems.map((item, i) => (
-            <div 
-              key={i} 
-              className={`flex flex-col items-center group transition-all duration-1000 delay-${i * 150} ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[40px]'
-              }`}
+            <div
+              key={i}
+              className={`flex flex-col items-center group transition-all duration-1000 delay-${i * 150} ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[40px]'
+                }`}
             >
               {/* Outer Circular Frame */}
               <div className="relative w-44 h-44 md:w-52 md:h-52 rounded-full border border-border overflow-hidden shadow-2xl transition-all duration-500 group-hover:border-accent group-hover:scale-105 bg-card/20 backdrop-blur-sm">
@@ -362,7 +360,7 @@ function OurServiceSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
               </div>
-              
+
               {/* Text underneath circle */}
               <h3 className="font-helvetica text-xl font-bold mt-6 text-foreground text-center group-hover:text-accent transition-colors">
                 {item.title}
@@ -441,9 +439,8 @@ function OurSolutionSection() {
               {services.map((s, i) => (
                 <button
                   key={i}
-                  className={`flex-1 text-center pb-3 border-b-2 transition-all cursor-pointer ${
-                    activeSlide === i + 1 ? 'border-accent text-foreground font-semibold' : 'border-border text-foreground/40 hover:text-foreground'
-                  }`}
+                  className={`flex-1 text-center pb-3 border-b-2 transition-all cursor-pointer ${activeSlide === i + 1 ? 'border-accent text-foreground font-semibold' : 'border-border text-foreground/40 hover:text-foreground'
+                    }`}
                   onClick={() => setActiveSlide(i + 1)}
                 >
                   {s.title}
@@ -639,7 +636,7 @@ function PortfolioSection() {
             <div className="flex justify-center px-5 w-full md:w-[1200px] xl:w-[800px] relative xl:h-full">
               <div className="relative h-[60vh] min-h-[450px] xl:h-full w-full xl:w-full flex items-center">
                 <div className="overflow-hidden w-full" ref={emblaRef}>
-                  <div className="flex -ml-4 select-none">
+                  <div className="flex -mx-2 select-none">
                     {portfolioItems.map((item, i) => {
                       const nextIndex = (selectedIndex + 1) % portfolioItems.length;
                       const prevIndex = (selectedIndex - 1 + portfolioItems.length) % portfolioItems.length;
@@ -654,17 +651,16 @@ function PortfolioSection() {
                           onClick={() => {
                             if (emblaApi) emblaApi.scrollTo(i);
                           }}
-                          className={`min-w-0 shrink-0 grow-0 pl-4 h-full w-fit basis-[60%] sm:basis-1/3 xl:basis-1/5 flex items-center cursor-pointer relative ${isActive ? 'z-20' : isNext || isPrev ? 'z-10' : 'z-0'}`}
+                          className={`min-w-0 shrink-0 grow-0 px-2 h-full w-fit basis-[70%] sm:basis-1/3 xl:basis-1/5 flex items-center justify-center cursor-pointer relative ${isActive ? 'z-20' : isNext || isPrev ? 'z-10' : 'z-0'}`}
                         >
                           <div className="w-fit relative xl:h-[610px] flex flex-col items-center">
                             <div
-                              className={`ring-1 ring-neutral-300 box-border rounded-lg relative overflow-clip h-[50vh] min-h-[350px] max-h-[400px] md:max-h-[unset] xl:h-[540px] ${
-                                isActive
+                              className={`ring-1 ring-neutral-300 box-border rounded-lg relative overflow-clip h-[50vh] min-h-[350px] max-h-[400px] md:max-h-[unset] xl:h-[540px] ${isActive
                                   ? 'scale-100 z-10 shadow-[0_0_25px_rgba(26,83,208,0.25)]'
                                   : isNext || isPrev
-                                  ? 'scale-[0.8] translate-x-[0%] z-0'
-                                  : 'scale-[0.6] translate-x-[20%] z-0'
-                              }`}
+                                    ? 'scale-[0.8] translate-x-[0%] z-0'
+                                    : 'scale-[0.6] translate-x-[20%] z-0'
+                                }`}
                               style={{
                                 aspectRatio: '2/3',
                                 transition: 'all .5s'
@@ -1086,7 +1082,7 @@ function ProjectsSection() {
                     </div>
                   </div>
                 )}
-                
+
                 <div className="grid grid-cols-2 gap-4">
                   {activeProjects[2] && (
                     <div className="group relative overflow-hidden rounded-2xl border border-border h-28 sm:h-36 lg:h-[184px] xl:h-[216px] w-full bg-card shadow-sm hover:shadow-md transition-all duration-300">
