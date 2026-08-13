@@ -401,8 +401,8 @@ function OurSolutionSection() {
       {/* Title & Tabs at bottom */}
       <div className={`absolute inset-x-0 bottom-6 z-20 md:bottom-20 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px]'}`}>
         <div className="container relative mx-auto h-fit w-full">
-          <div className="flex flex-wrap items-end justify-start gap-x-20 gap-y-8">
-            <div className="w-full xl:w-fit">
+          <div className="flex flex-wrap items-end justify-start gap-x-10 gap-y-8 lg:gap-x-20">
+            <div className="w-full lg:w-fit">
               <p
                 className={`inline-block cursor-pointer whitespace-nowrap font-bold font-helvetica text-[28px] leading-normal md:text-[32px] xl:text-[40px] transition-colors ${activeSlide === 0 ? 'text-foreground' : 'text-foreground/40 hover:text-foreground'}`}
                 onClick={() => setActiveSlide(0)}
@@ -410,11 +410,14 @@ function OurSolutionSection() {
                 {lang === 'ID' ? 'Solusi Kami' : 'Our Solution'}
               </p>
             </div>
-            <div className="step flex flex-1 flex-nowrap items-end gap-x-1 sm:gap-x-4 md:gap-x-6 text-[11px] sm:text-sm md:text-base xl:text-xl overflow-x-auto">
+            {/* flex-nowrap + whitespace-nowrap + overflow-x-auto: baris tab tidak
+                pernah membungkus ke baris baru (penyebab tumpang tindih di layar
+                laptop) — jika ruang sempit, baris ini scroll horizontal saja. */}
+            <div className="step flex flex-1 flex-nowrap items-end gap-x-4 sm:gap-x-6 md:gap-x-8 text-[11px] sm:text-sm md:text-base xl:text-xl overflow-x-auto">
               {services.map((s, i) => (
                 <button
                   key={i}
-                  className={`flex-1 text-center pb-3 border-b-2 transition-all cursor-pointer ${activeSlide === i + 1 ? 'border-accent text-foreground font-semibold' : 'border-border text-foreground/40 hover:text-foreground'
+                  className={`shrink-0 whitespace-nowrap text-center pb-3 border-b-2 transition-all cursor-pointer ${activeSlide === i + 1 ? 'border-accent text-foreground font-semibold' : 'border-border text-foreground/40 hover:text-foreground'
                     }`}
                   onClick={() => setActiveSlide(i + 1)}
                 >
@@ -427,8 +430,14 @@ function OurSolutionSection() {
         </div>
       </div>
 
-      {/* Slider container */}
-      <div className="h-screen min-h-[500px] overflow-hidden md:h-[90svh] xl:h-screen relative z-10 landscape:h-[80svh] landscape:min-h-[400px]">
+      {/* Slider container
+          Catatan: sengaja TIDAK memakai varian `landscape:` di sini — laptop pada
+          umumnya berorientasi landscape, sehingga rule tersebut ikut memangkas
+          tinggi section pada layar lebar juga dan membuat judul besar di Slide 1
+          bertabrakan dengan bar tab yang absolute di bawahnya. `min-h` bertingkat
+          dijadikan jaring pengaman: jika viewport pendek, section boleh sedikit
+          lebih tinggi dari layar (di-scroll) daripada kontennya saling tumpang tindih. */}
+      <div className="h-screen min-h-[560px] overflow-hidden md:h-[90svh] md:min-h-[620px] lg:min-h-[680px] xl:h-screen xl:min-h-0 relative z-10">
         <div
           className="flex w-fit justify-start transition-transform ease-in"
           style={{ transform: `translateX(-${activeSlide * 100}svw)`, transitionDuration: '400ms' }}
@@ -436,9 +445,9 @@ function OurSolutionSection() {
           {/* Slide 1: Tagline */}
           <div className="w-[100svw]">
             <div className="container px-6">
-              <div className={`pt-[128px] xl:pt-[100px] transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[45px] blur-[10px]'}`}>
+              <div className={`pt-[128px] lg:pt-16 xl:pt-[100px] transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[45px] blur-[10px]'}`}>
                 {lang === 'ID' ? (
-                  <p className="max-w-[1113px] font-helvetica text-[36px] sm:text-[48px] leading-[1.1] md:text-[76px] xl:text-[120px] [&>span]:inline-block">
+                  <p className="max-w-[1113px] font-helvetica text-[36px] sm:text-[48px] leading-[1.1] md:text-[76px] lg:text-[58px] xl:text-[120px] [&>span]:inline-block">
                     <span className="mr-[0.25em]">
                       Domi<span className="italic font-ramillas ml-[0.02em] pr-[0.02em]">nasi</span>
                     </span>
@@ -449,7 +458,7 @@ function OurSolutionSection() {
                     <span className="font-bold text-accent tracking-wide">Megapolitan</span>
                   </p>
                 ) : (
-                  <p className="max-w-[1113px] font-helvetica text-[36px] sm:text-[48px] leading-[1.1] md:text-[76px] xl:text-[120px] [&>span]:inline-block">
+                  <p className="max-w-[1113px] font-helvetica text-[36px] sm:text-[48px] leading-[1.1] md:text-[76px] lg:text-[58px] xl:text-[120px] [&>span]:inline-block">
                     <span className="mr-[0.25em]">
                       Abso<span className="italic font-ramillas ml-[0.02em] pr-[0.02em]">lute</span>
                     </span>
@@ -470,19 +479,19 @@ function OurSolutionSection() {
           {/* Dynamic Service Slides */}
           {services.map((service, idx) => (
             <div key={idx} className="w-[100svw]">
-              <div className="container flex flex-col gap-4 px-6 pt-[5rem] md:pt-24 xl:flex-row xl:gap-10">
-                <div className={`relative aspect-[350/252] flex-1 overflow-hidden rounded-2xl border border-neutral-300 md:aspect-[782/357] xl:aspect-[644/503] transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[5px]'}`}>
+              <div className="container flex flex-col gap-4 px-6 pt-[5rem] md:pt-24 lg:flex-row lg:items-center lg:gap-8 xl:gap-10">
+                <div className={`relative aspect-[350/252] flex-1 overflow-hidden rounded-2xl border border-neutral-300 md:aspect-[782/357] lg:aspect-[644/503] transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[5px]'}`}>
                   <Image
                     src={getDirectDriveLink(service.image)}
                     alt={service.heading}
                     fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     className="h-full w-full object-cover"
                   />
                 </div>
                 <div className={`flex-1 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-[40px] blur-[5px]'}`}>
                   <div className="pr-5 text-foreground">
-                    <h3 className="text-[32px] leading-[1.1] md:text-[40px] xl:text-[52px] font-helvetica text-foreground">
+                    <h3 className="text-[32px] leading-[1.1] md:text-[40px] lg:text-[34px] xl:text-[52px] font-helvetica text-foreground">
                       {service.heading}
                     </h3>
                     <p className="mt-4 line-clamp-3 font-lato text-base md:text-lg xl:mt-6 xl:text-xl text-foreground/60">
@@ -909,13 +918,13 @@ function ClientsSection() {
         <h2 className="text-[36px] sm:text-[48px] leading-[1.1] md:text-[62px] xl:text-[90px] font-helvetica">
           {lang === 'ID' ? (
             <>
-              <span className="text-accent italic">Klien</span>{' '}
-              <span>Kami</span>
+              <span className="text-accent italic">Dominasi</span>{' '}
+              <span>Kategori</span>
             </>
           ) : (
             <>
-              <span className="text-accent italic">Our</span>{' '}
-              <span>Clients</span>
+              <span className="text-accent italic">Category</span>{' '}
+              <span>Domination</span>
             </>
           )}
         </h2>
